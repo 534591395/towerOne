@@ -1,0 +1,1022 @@
+{
+	"groups": [
+		{
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,Base02_png,Base03_png,buildTool_json,Boss01_json,Boss01_png,Boss02_json,Boss02_png,Monster01_json,Monster01_png,Monster02_json,Monster02_png,Monster03_json,Monster03_png,Monster04_json,Monster04_png,Monster05_json,Monster05_png,Monster06_json,Monster06_png,Monster07_json,Monster07_png,Monster08_json,Monster08_png,Monster09_json,Monster09_png,Monster10_json,Monster10_png,Monster11_json,Monster11_png,Monster12_json,Monster12_png,Monster13_json,Monster13_png,Monster14_json,Monster14_png,Monster15_json,Monster15_png,MagicWizard010203_json,MagicWizard010203_png,ShieldSoilder01_json,ShieldSoilder01_png,ZenYuan1_json,ZenYuan1_png,ZenYuan2_json,ZenYuan2_png,arrow_fire1_mp3,arrow_fire2_mp3,arrow_hit1_mp3,arrow_hit2_mp3,arrow_ready1_mp3,arrow_ready2_mp3,arrow_ready3_mp3,bo_start_mp3,building_mp3,explo_fireend1_mp3,explo_firestart1_mp3,explo_ready1_mp3,explo_ready2_mp3,explo_ready3_mp3,gamebgsound_mp3,loaderClose_mp3,loaderOpen_mp3,magic_fire1_mp3,magic_ready1_mp3,magic_ready2_mp3,magic_ready3_mp3,map0bg_mp3,mapbgsound_mp3,monster_die1_mp3,monster_die2_mp3,monster_die3_mp3,monster_die4_mp3,select_mp3,sell_tower_mp3,shield_fire1_mp3,shield_fire2_mp3,shield_fire3_mp3,shield_ready1_mp3,shield_ready2_mp3,shield_ready3_mp3,victory_mp3,ArrowShooter01_json,ArrowShooter01_png,ArrowShooter02_json,ArrowShooter02_png,ArrowShooter03_1_json,ArrowShooter03_1_png,ArrowShooter03_2_json,ArrowShooter03_2_png,ExploTower01_json,ExploTower01_png,ExploTower02_json,ExploTower02_png,ExploTower03_1_json,ExploTower03_1_png,towers_json,Arrow01_json,Arrow01_png,Arrow032_json,Arrow032_png,Explo01_json,Explo01_png,Explo02_json,Explo02_png,Explo03_1_json,Explo03_1_png,MagicBullet010203_json,MagicBullet010203_png,0ui_bg_jpg,0ui_btn_png,backToIndex_png,backToMaps_png,cuizi_png,flag0_png,flag1_png,gkxz_png,gushimoshi_png,heroIcon_png,liantiao_png,lifeBar_png,lifeBarBg_png,loadbg_jpg,loadl_png,loadr_png,lose_png,map_jpg,map0_jpg,map0_json,map1_jpg,map1_json,map2_jpg,map2_json,map3_jpg,map3_json,map4_jpg,map4_json,map5_jpg,map5_json,mb_png,men_png,NumFont_fnt,NumFont_png,NumFont0_fnt,NumFont0_png,NumFont2_fnt,NumFont2_png,NumFont3_fnt,NumFont3_png,NumFontda_fnt,NumFontda_png,pause_png,probarbg_png,probartop_png,quitgame_png,stone1_json,stone1_png,tryagain_png,uiinfo_png,uiskill1_png,uiskill1off_png,uiskill2_png,uiskill2off_png,uiskillbg_png,uiskilloff_png,uiskillon_png,uptower_png,victory_png,welbg_jpg,welbtn_png,wellogo_png,wujinmoshi_png,wujinmoshi2_png,xx_png,loading_1_png,loading_2_png,loading_3_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/CheckBox/checkbox_select_disabled.png",
+			"type": "image",
+			"name": "checkbox_select_disabled_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_down.png",
+			"type": "image",
+			"name": "checkbox_select_down_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_select_up.png",
+			"type": "image",
+			"name": "checkbox_select_up_png"
+		},
+		{
+			"url": "assets/CheckBox/checkbox_unselect.png",
+			"type": "image",
+			"name": "checkbox_unselect_png"
+		},
+		{
+			"url": "assets/ItemRenderer/selected.png",
+			"type": "image",
+			"name": "selected_png"
+		},
+		{
+			"url": "assets/Panel/border.png",
+			"type": "image",
+			"name": "border_png"
+		},
+		{
+			"url": "assets/Panel/header.png",
+			"type": "image",
+			"name": "header_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_disabled.png",
+			"type": "image",
+			"name": "radiobutton_select_disabled_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_down.png",
+			"type": "image",
+			"name": "radiobutton_select_down_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_select_up.png",
+			"type": "image",
+			"name": "radiobutton_select_up_png"
+		},
+		{
+			"url": "assets/RadioButton/radiobutton_unselect.png",
+			"type": "image",
+			"name": "radiobutton_unselect_png"
+		},
+		{
+			"url": "assets/ScrollBar/roundthumb.png",
+			"type": "image",
+			"name": "roundthumb_png"
+		},
+		{
+			"url": "assets/Slider/thumb.png",
+			"type": "image",
+			"name": "thumb_png"
+		},
+		{
+			"url": "assets/Slider/track.png",
+			"type": "image",
+			"name": "track_png"
+		},
+		{
+			"url": "assets/Slider/tracklight.png",
+			"type": "image",
+			"name": "tracklight_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/handle.png",
+			"type": "image",
+			"name": "handle_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/off.png",
+			"type": "image",
+			"name": "off_png"
+		},
+		{
+			"url": "assets/ToggleSwitch/on.png",
+			"type": "image",
+			"name": "on_png"
+		},
+		{
+			"url": "assets/Button/button_down.png",
+			"type": "image",
+			"name": "button_down_png"
+		},
+		{
+			"url": "assets/Button/button_up.png",
+			"type": "image",
+			"name": "button_up_png"
+		},
+		{
+			"url": "assets/ProgressBar/thumb_pb.png",
+			"type": "image",
+			"name": "thumb_pb_png"
+		},
+		{
+			"url": "assets/ProgressBar/track_pb.png",
+			"type": "image",
+			"name": "track_pb_png"
+		},
+		{
+			"url": "assets/ScrollBar/track_sb.png",
+			"type": "image",
+			"name": "track_sb_png"
+		},
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"name": "description_json",
+			"type": "json",
+			"url": "config/description.json"
+		},
+		{
+			"name": "Base02_png",
+			"type": "image",
+			"url": "assets/game/build/Base02.png"
+		},
+		{
+			"name": "Base03_png",
+			"type": "image",
+			"url": "assets/game/build/Base03.png"
+		},
+		{
+			"name": "buildTool_json",
+			"type": "sheet",
+			"url": "assets/game/build/buildTool.json",
+			"subkeys": "yuan,zd01,zd03_1,zd03_2,buildbarbg,buildbartop,building1,building2,building3,building4,cashbg,dp01,dp03_1,dp03_2,empty01,gj01,gj03_1,gj03_2,lock,mf01,mf03_1,mf03_2,sell,sj"
+		},
+		{
+			"name": "Boss01_json",
+			"type": "json",
+			"url": "assets/game/monsters/Boss01.json"
+		},
+		{
+			"name": "Boss01_png",
+			"type": "image",
+			"url": "assets/game/monsters/Boss01.png"
+		},
+		{
+			"name": "Boss02_json",
+			"type": "json",
+			"url": "assets/game/monsters/Boss02.json"
+		},
+		{
+			"name": "Boss02_png",
+			"type": "image",
+			"url": "assets/game/monsters/Boss02.png"
+		},
+		{
+			"name": "Monster01_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster01.json"
+		},
+		{
+			"name": "Monster01_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster01.png"
+		},
+		{
+			"name": "Monster02_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster02.json"
+		},
+		{
+			"name": "Monster02_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster02.png"
+		},
+		{
+			"name": "Monster03_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster03.json"
+		},
+		{
+			"name": "Monster03_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster03.png"
+		},
+		{
+			"name": "Monster04_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster04.json"
+		},
+		{
+			"name": "Monster04_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster04.png"
+		},
+		{
+			"name": "Monster05_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster05.json"
+		},
+		{
+			"name": "Monster05_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster05.png"
+		},
+		{
+			"name": "Monster06_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster06.json"
+		},
+		{
+			"name": "Monster06_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster06.png"
+		},
+		{
+			"name": "Monster07_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster07.json"
+		},
+		{
+			"name": "Monster07_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster07.png"
+		},
+		{
+			"name": "Monster08_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster08.json"
+		},
+		{
+			"name": "Monster08_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster08.png"
+		},
+		{
+			"name": "Monster09_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster09.json"
+		},
+		{
+			"name": "Monster09_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster09.png"
+		},
+		{
+			"name": "Monster10_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster10.json"
+		},
+		{
+			"name": "Monster10_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster10.png"
+		},
+		{
+			"name": "Monster11_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster11.json"
+		},
+		{
+			"name": "Monster11_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster11.png"
+		},
+		{
+			"name": "Monster12_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster12.json"
+		},
+		{
+			"name": "Monster12_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster12.png"
+		},
+		{
+			"name": "Monster13_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster13.json"
+		},
+		{
+			"name": "Monster13_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster13.png"
+		},
+		{
+			"name": "Monster14_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster14.json"
+		},
+		{
+			"name": "Monster14_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster14.png"
+		},
+		{
+			"name": "Monster15_json",
+			"type": "json",
+			"url": "assets/game/monsters/Monster15.json"
+		},
+		{
+			"name": "Monster15_png",
+			"type": "image",
+			"url": "assets/game/monsters/Monster15.png"
+		},
+		{
+			"name": "MagicWizard010203_json",
+			"type": "json",
+			"url": "assets/game/soilders/MagicWizard010203.json"
+		},
+		{
+			"name": "MagicWizard010203_png",
+			"type": "image",
+			"url": "assets/game/soilders/MagicWizard010203.png"
+		},
+		{
+			"name": "ShieldSoilder01_json",
+			"type": "json",
+			"url": "assets/game/soilders/ShieldSoilder01.json"
+		},
+		{
+			"name": "ShieldSoilder01_png",
+			"type": "image",
+			"url": "assets/game/soilders/ShieldSoilder01.png"
+		},
+		{
+			"name": "ZenYuan1_json",
+			"type": "json",
+			"url": "assets/game/soilders/ZenYuan1.json"
+		},
+		{
+			"name": "ZenYuan1_png",
+			"type": "image",
+			"url": "assets/game/soilders/ZenYuan1.png"
+		},
+		{
+			"name": "ZenYuan2_json",
+			"type": "json",
+			"url": "assets/game/soilders/ZenYuan2.json"
+		},
+		{
+			"name": "ZenYuan2_png",
+			"type": "image",
+			"url": "assets/game/soilders/ZenYuan2.png"
+		},
+		{
+			"name": "arrow_fire1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/arrow_fire1.mp3"
+		},
+		{
+			"name": "arrow_fire2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/arrow_fire2.mp3"
+		},
+		{
+			"name": "arrow_hit1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/arrow_hit1.mp3"
+		},
+		{
+			"name": "arrow_hit2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/arrow_hit2.mp3"
+		},
+		{
+			"name": "arrow_ready1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/arrow_ready1.mp3"
+		},
+		{
+			"name": "arrow_ready2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/arrow_ready2.mp3"
+		},
+		{
+			"name": "arrow_ready3_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/arrow_ready3.mp3"
+		},
+		{
+			"name": "bo_start_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/bo_start.mp3"
+		},
+		{
+			"name": "building_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/building.mp3"
+		},
+		{
+			"name": "explo_fireend1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/explo_fireend1.mp3"
+		},
+		{
+			"name": "explo_firestart1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/explo_firestart1.mp3"
+		},
+		{
+			"name": "explo_ready1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/explo_ready1.mp3"
+		},
+		{
+			"name": "explo_ready2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/explo_ready2.mp3"
+		},
+		{
+			"name": "explo_ready3_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/explo_ready3.mp3"
+		},
+		{
+			"name": "gamebgsound_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/gamebgsound.mp3"
+		},
+		{
+			"name": "loaderClose_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/loaderClose.mp3"
+		},
+		{
+			"name": "loaderOpen_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/loaderOpen.mp3"
+		},
+		{
+			"name": "magic_fire1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/magic_fire1.mp3"
+		},
+		{
+			"name": "magic_ready1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/magic_ready1.mp3"
+		},
+		{
+			"name": "magic_ready2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/magic_ready2.mp3"
+		},
+		{
+			"name": "magic_ready3_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/magic_ready3.mp3"
+		},
+		{
+			"name": "map0bg_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/map0bg.mp3"
+		},
+		{
+			"name": "mapbgsound_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/mapbgsound.mp3"
+		},
+		{
+			"name": "monster_die1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/monster_die1.mp3"
+		},
+		{
+			"name": "monster_die2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/monster_die2.mp3"
+		},
+		{
+			"name": "monster_die3_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/monster_die3.mp3"
+		},
+		{
+			"name": "monster_die4_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/monster_die4.mp3"
+		},
+		{
+			"name": "select_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/select.mp3"
+		},
+		{
+			"name": "sell_tower_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/sell_tower.mp3"
+		},
+		{
+			"name": "shield_fire1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/shield_fire1.mp3"
+		},
+		{
+			"name": "shield_fire2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/shield_fire2.mp3"
+		},
+		{
+			"name": "shield_fire3_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/shield_fire3.mp3"
+		},
+		{
+			"name": "shield_ready1_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/shield_ready1.mp3"
+		},
+		{
+			"name": "shield_ready2_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/shield_ready2.mp3"
+		},
+		{
+			"name": "shield_ready3_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/shield_ready3.mp3"
+		},
+		{
+			"name": "victory_mp3",
+			"type": "sound",
+			"url": "assets/game/sound/victory.mp3"
+		},
+		{
+			"name": "ArrowShooter01_json",
+			"type": "json",
+			"url": "assets/game/towers/ArrowShooter01.json"
+		},
+		{
+			"name": "ArrowShooter01_png",
+			"type": "image",
+			"url": "assets/game/towers/ArrowShooter01.png"
+		},
+		{
+			"name": "ArrowShooter02_json",
+			"type": "json",
+			"url": "assets/game/towers/ArrowShooter02.json"
+		},
+		{
+			"name": "ArrowShooter02_png",
+			"type": "image",
+			"url": "assets/game/towers/ArrowShooter02.png"
+		},
+		{
+			"name": "ArrowShooter03_1_json",
+			"type": "json",
+			"url": "assets/game/towers/ArrowShooter03_1.json"
+		},
+		{
+			"name": "ArrowShooter03_1_png",
+			"type": "image",
+			"url": "assets/game/towers/ArrowShooter03_1.png"
+		},
+		{
+			"name": "ArrowShooter03_2_json",
+			"type": "json",
+			"url": "assets/game/towers/ArrowShooter03_2.json"
+		},
+		{
+			"name": "ArrowShooter03_2_png",
+			"type": "image",
+			"url": "assets/game/towers/ArrowShooter03_2.png"
+		},
+		{
+			"name": "ExploTower01_json",
+			"type": "json",
+			"url": "assets/game/towers/ExploTower01.json"
+		},
+		{
+			"name": "ExploTower01_png",
+			"type": "image",
+			"url": "assets/game/towers/ExploTower01.png"
+		},
+		{
+			"name": "ExploTower02_json",
+			"type": "json",
+			"url": "assets/game/towers/ExploTower02.json"
+		},
+		{
+			"name": "ExploTower02_png",
+			"type": "image",
+			"url": "assets/game/towers/ExploTower02.png"
+		},
+		{
+			"name": "ExploTower03_1_json",
+			"type": "json",
+			"url": "assets/game/towers/ExploTower03_1.json"
+		},
+		{
+			"name": "ExploTower03_1_png",
+			"type": "image",
+			"url": "assets/game/towers/ExploTower03_1.png"
+		},
+		{
+			"name": "towers_json",
+			"type": "sheet",
+			"url": "assets/game/towers/towers.json",
+			"subkeys": "ArrowTower01,ArrowTower02,ArrowTower03_1,ArrowTower03_2,MagicTower01,MagicTower02,MagicTower03_1,MagicTower03_2,ShieldTower01,ShieldTower02,ShieldTower03_1,ShieldTower03_2"
+		},
+		{
+			"name": "Arrow01_json",
+			"type": "json",
+			"url": "assets/game/weapon/Arrow01.json"
+		},
+		{
+			"name": "Arrow01_png",
+			"type": "image",
+			"url": "assets/game/weapon/Arrow01.png"
+		},
+		{
+			"name": "Arrow032_json",
+			"type": "json",
+			"url": "assets/game/weapon/Arrow032.json"
+		},
+		{
+			"name": "Arrow032_png",
+			"type": "image",
+			"url": "assets/game/weapon/Arrow032.png"
+		},
+		{
+			"name": "Explo01_json",
+			"type": "json",
+			"url": "assets/game/weapon/Explo01.json"
+		},
+		{
+			"name": "Explo01_png",
+			"type": "image",
+			"url": "assets/game/weapon/Explo01.png"
+		},
+		{
+			"name": "Explo02_json",
+			"type": "json",
+			"url": "assets/game/weapon/Explo02.json"
+		},
+		{
+			"name": "Explo02_png",
+			"type": "image",
+			"url": "assets/game/weapon/Explo02.png"
+		},
+		{
+			"name": "Explo03_1_json",
+			"type": "json",
+			"url": "assets/game/weapon/Explo03_1.json"
+		},
+		{
+			"name": "Explo03_1_png",
+			"type": "image",
+			"url": "assets/game/weapon/Explo03_1.png"
+		},
+		{
+			"name": "MagicBullet010203_json",
+			"type": "json",
+			"url": "assets/game/weapon/MagicBullet010203.json"
+		},
+		{
+			"name": "MagicBullet010203_png",
+			"type": "image",
+			"url": "assets/game/weapon/MagicBullet010203.png"
+		},
+		{
+			"name": "0ui_bg_jpg",
+			"type": "image",
+			"url": "assets/game/0ui_bg.jpg"
+		},
+		{
+			"name": "0ui_btn_png",
+			"type": "image",
+			"url": "assets/game/0ui_btn.png"
+		},
+		{
+			"name": "backToIndex_png",
+			"type": "image",
+			"url": "assets/game/backToIndex.png"
+		},
+		{
+			"name": "backToMaps_png",
+			"type": "image",
+			"url": "assets/game/backToMaps.png"
+		},
+		{
+			"name": "cuizi_png",
+			"type": "image",
+			"url": "assets/game/cuizi.png"
+		},
+		{
+			"name": "flag0_png",
+			"type": "image",
+			"url": "assets/game/flag0.png"
+		},
+		{
+			"name": "flag1_png",
+			"type": "image",
+			"url": "assets/game/flag1.png"
+		},
+		{
+			"name": "gkxz_png",
+			"type": "image",
+			"url": "assets/game/gkxz.png"
+		},
+		{
+			"name": "gushimoshi_png",
+			"type": "image",
+			"url": "assets/game/gushimoshi.png"
+		},
+		{
+			"name": "heroIcon_png",
+			"type": "image",
+			"url": "assets/game/heroIcon.png"
+		},
+		{
+			"name": "liantiao_png",
+			"type": "image",
+			"url": "assets/game/liantiao.png"
+		},
+		{
+			"name": "lifeBar_png",
+			"type": "image",
+			"url": "assets/game/lifeBar.png"
+		},
+		{
+			"name": "lifeBarBg_png",
+			"type": "image",
+			"url": "assets/game/lifeBarBg.png"
+		},
+		{
+			"name": "loadbg_jpg",
+			"type": "image",
+			"url": "assets/game/loadbg.jpg"
+		},
+		{
+			"name": "loadl_png",
+			"type": "image",
+			"url": "assets/game/loadl.png"
+		},
+		{
+			"name": "loadr_png",
+			"type": "image",
+			"url": "assets/game/loadr.png"
+		},
+		{
+			"name": "lose_png",
+			"type": "image",
+			"url": "assets/game/lose.png"
+		},
+		{
+			"name": "map_jpg",
+			"type": "image",
+			"url": "assets/game/map.jpg"
+		},
+		{
+			"name": "map0_jpg",
+			"type": "image",
+			"url": "assets/game/map0.jpg"
+		},
+		{
+			"name": "map0_json",
+			"type": "json",
+			"url": "assets/game/map0.json"
+		},
+		{
+			"name": "map1_jpg",
+			"type": "image",
+			"url": "assets/game/map1.jpg"
+		},
+		{
+			"name": "map1_json",
+			"type": "json",
+			"url": "assets/game/map1.json"
+		},
+		{
+			"name": "map2_jpg",
+			"type": "image",
+			"url": "assets/game/map2.jpg"
+		},
+		{
+			"name": "map2_json",
+			"type": "json",
+			"url": "assets/game/map2.json"
+		},
+		{
+			"name": "map3_jpg",
+			"type": "image",
+			"url": "assets/game/map3.jpg"
+		},
+		{
+			"name": "map3_json",
+			"type": "json",
+			"url": "assets/game/map3.json"
+		},
+		{
+			"name": "map4_jpg",
+			"type": "image",
+			"url": "assets/game/map4.jpg"
+		},
+		{
+			"name": "map4_json",
+			"type": "json",
+			"url": "assets/game/map4.json"
+		},
+		{
+			"name": "map5_jpg",
+			"type": "image",
+			"url": "assets/game/map5.jpg"
+		},
+		{
+			"name": "map5_json",
+			"type": "json",
+			"url": "assets/game/map5.json"
+		},
+		{
+			"name": "mb_png",
+			"type": "image",
+			"url": "assets/game/mb.png"
+		},
+		{
+			"name": "men_png",
+			"type": "image",
+			"url": "assets/game/men.png"
+		},
+		{
+			"name": "NumFont_fnt",
+			"type": "font",
+			"url": "assets/game/NumFont.fnt"
+		},
+		{
+			"name": "NumFont_png",
+			"type": "image",
+			"url": "assets/game/NumFont.png"
+		},
+		{
+			"name": "NumFont0_fnt",
+			"type": "font",
+			"url": "assets/game/NumFont0.fnt"
+		},
+		{
+			"name": "NumFont0_png",
+			"type": "image",
+			"url": "assets/game/NumFont0.png"
+		},
+		{
+			"name": "NumFont2_fnt",
+			"type": "font",
+			"url": "assets/game/NumFont2.fnt"
+		},
+		{
+			"name": "NumFont2_png",
+			"type": "image",
+			"url": "assets/game/NumFont2.png"
+		},
+		{
+			"name": "NumFont3_fnt",
+			"type": "font",
+			"url": "assets/game/NumFont3.fnt"
+		},
+		{
+			"name": "NumFont3_png",
+			"type": "image",
+			"url": "assets/game/NumFont3.png"
+		},
+		{
+			"name": "NumFontda_fnt",
+			"type": "font",
+			"url": "assets/game/NumFontda.fnt"
+		},
+		{
+			"name": "NumFontda_png",
+			"type": "image",
+			"url": "assets/game/NumFontda.png"
+		},
+		{
+			"name": "pause_png",
+			"type": "image",
+			"url": "assets/game/pause.png"
+		},
+		{
+			"name": "probarbg_png",
+			"type": "image",
+			"url": "assets/game/probarbg.png"
+		},
+		{
+			"name": "probartop_png",
+			"type": "image",
+			"url": "assets/game/probartop.png"
+		},
+		{
+			"name": "quitgame_png",
+			"type": "image",
+			"url": "assets/game/quitgame.png"
+		},
+		{
+			"name": "stone1_json",
+			"type": "json",
+			"url": "assets/game/stone1.json"
+		},
+		{
+			"name": "stone1_png",
+			"type": "image",
+			"url": "assets/game/stone1.png"
+		},
+		{
+			"name": "tryagain_png",
+			"type": "image",
+			"url": "assets/game/tryagain.png"
+		},
+		{
+			"name": "uiinfo_png",
+			"type": "image",
+			"url": "assets/game/uiinfo.png"
+		},
+		{
+			"name": "uiskill1_png",
+			"type": "image",
+			"url": "assets/game/uiskill1.png"
+		},
+		{
+			"name": "uiskill1off_png",
+			"type": "image",
+			"url": "assets/game/uiskill1off.png"
+		},
+		{
+			"name": "uiskill2_png",
+			"type": "image",
+			"url": "assets/game/uiskill2.png"
+		},
+		{
+			"name": "uiskill2off_png",
+			"type": "image",
+			"url": "assets/game/uiskill2off.png"
+		},
+		{
+			"name": "uiskillbg_png",
+			"type": "image",
+			"url": "assets/game/uiskillbg.png"
+		},
+		{
+			"name": "uiskilloff_png",
+			"type": "image",
+			"url": "assets/game/uiskilloff.png"
+		},
+		{
+			"name": "uiskillon_png",
+			"type": "image",
+			"url": "assets/game/uiskillon.png"
+		},
+		{
+			"name": "uptower_png",
+			"type": "image",
+			"url": "assets/game/uptower.png"
+		},
+		{
+			"name": "victory_png",
+			"type": "image",
+			"url": "assets/game/victory.png"
+		},
+		{
+			"name": "welbg_jpg",
+			"type": "image",
+			"url": "assets/game/welbg.jpg"
+		},
+		{
+			"name": "welbtn_png",
+			"type": "image",
+			"url": "assets/game/welbtn.png"
+		},
+		{
+			"name": "wellogo_png",
+			"type": "image",
+			"url": "assets/game/wellogo.png"
+		},
+		{
+			"name": "wujinmoshi_png",
+			"type": "image",
+			"url": "assets/game/wujinmoshi.png"
+		},
+		{
+			"name": "wujinmoshi2_png",
+			"type": "image",
+			"url": "assets/game/wujinmoshi2.png"
+		},
+		{
+			"name": "xx_png",
+			"type": "image",
+			"url": "assets/game/xx.png"
+		},
+		{
+			"name": "loading_1_png",
+			"type": "image",
+			"url": "assets/game/loading/loading_1.png"
+		},
+		{
+			"name": "loading_2_png",
+			"type": "image",
+			"url": "assets/game/loading/loading_2.png"
+		},
+		{
+			"name": "loading_3_png",
+			"type": "image",
+			"url": "assets/game/loading/loading_3.png"
+		}
+	]
+}

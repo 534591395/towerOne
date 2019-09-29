@@ -1,0 +1,12 @@
+{
+  "16d7bf13e5e": {
+    "path": "..\\resource\\skins\\loading.ts",
+    "class": "loading",
+    "parentPath": ""
+  },
+  "global": {
+    "gridColor": 8421504,
+    "gridEnabled": false,
+    "gridSize": 20
+  }
+}
