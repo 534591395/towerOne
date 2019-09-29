@@ -7,6 +7,10 @@
   "global": {
     "gridColor": 8421504,
     "gridEnabled": false,
-    "gridSize": 20
+    "gridSize": 20,
+    "globalRulerEnable": true
+  },
+  "16d7c25a64d": {
+    "guideLinesEnabled": false
   }
 }
