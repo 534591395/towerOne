@@ -127,25 +127,31 @@ var Main = (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 4, , 5]);
-                        loadingView = new LoadingUI();
-                        this.stage.addChild(loadingView);
-                        return [4 /*yield*/, RES.loadConfig("resource/default.res.json", "resource/")];
+                        _a.trys.push([0, 5, , 6]);
+                        egret.ImageLoader.crossOrigin = 'anonymous';
+                        return [4 /*yield*/, RES.loadConfig("default.res.json", "resource/")];
                     case 1:
                         _a.sent();
+                        //await RES.loadConfig("default.res.json", "https://wxgame.dreamrabbit.tech/game/resource/");
                         return [4 /*yield*/, this.loadTheme()];
                     case 2:
+                        //await RES.loadConfig("default.res.json", "https://wxgame.dreamrabbit.tech/game/resource/");
                         _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("preload", 0, loadingView)];
+                        return [4 /*yield*/, RES.loadGroup("loading", 1)];
                     case 3:
                         _a.sent();
-                        this.stage.removeChild(loadingView);
-                        return [3 /*break*/, 5];
+                        loadingView = new LoadingUI();
+                        this.stage.addChild(loadingView);
+                        return [4 /*yield*/, RES.loadGroup("preload", 0, loadingView)];
                     case 4:
+                        _a.sent();
+                        this.stage.removeChild(loadingView);
+                        return [3 /*break*/, 6];
+                    case 5:
                         e_1 = _a.sent();
                         console.error(e_1);
-                        return [3 /*break*/, 5];
-                    case 5: return [2 /*return*/];
+                        return [3 /*break*/, 6];
+                    case 6: return [2 /*return*/];
                 }
             });
         });
