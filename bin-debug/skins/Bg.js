@@ -18,12 +18,15 @@ var Bg = (function (_super) {
     }
     Bg.prototype.animate = function () {
         var _this = this;
+        var gameStartEvent = new MainEvent(MainEvent.GameStart);
         // 点击开始触发动画效果
         this.btn.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
             _this.start.play(0);
         }, this);
         // 动画播放结束监听
-        this.start.addEventListener('complete', function () { }, this);
+        this.start.addEventListener('complete', function () {
+            _this.dispatchEvent(gameStartEvent);
+        }, this);
     };
     return Bg;
 }(eui.Component));

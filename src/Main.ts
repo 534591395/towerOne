@@ -29,6 +29,8 @@
 
 class Main extends eui.UILayer {
 
+    // 游戏场景容器
+    private gameLayer:egret.DisplayObjectContainer;
 
     protected createChildren(): void {
         super.createChildren();
@@ -68,15 +70,18 @@ class Main extends eui.UILayer {
     }
 
     private async loadResource() {
+        // 官方文档-资源加载顺序控制：http://developer.egret.com/cn/apidoc/index/name/RES.globalFunction#loadGroup
         try {
             egret.ImageLoader.crossOrigin = 'anonymous';
             await RES.loadConfig("default.res.json", "resource/");
             //await RES.loadConfig("default.res.json", "https://wxgame.dreamrabbit.tech/game/resource/");
             await this.loadTheme();
-            await RES.loadGroup("loading", 1);
+            await RES.loadGroup("loading", 2);
             const loadingView = new LoadingUI();
             this.stage.addChild(loadingView);
-            await RES.loadGroup("preload", 0, loadingView);
+            await RES.loadGroup("preload", 1, loadingView);
+            await RES.loadGroup("welcomeload", 0, loadingView);
+            
             this.stage.removeChild(loadingView);
         }
         catch (e) {
@@ -92,7 +97,6 @@ class Main extends eui.UILayer {
             theme.addEventListener(eui.UIEvent.COMPLETE, () => {
                 resolve();
             }, this);
-
         })
     }
 
@@ -102,9 +106,27 @@ class Main extends eui.UILayer {
      * Create scene interface
      */
     protected createGameScene(): void {
-        const bg = new Bg();
-        this.stage.addChild(bg);
+       this.gameLayer = new egret.DisplayObjectContainer();
+       this.addChild(this.gameLayer);
+
+       // 加载欢迎背景页 
+       const bg = new Bg();
+       this.gameLayer.addChild(bg);
+
+       bg.addEventListener(MainEvent.GameStart, this.index, this);
     }
+    
+    // 点击开始游戏后，进入游戏主页
+    private index() {
+        const run = new Run();
+        const bg = this.gameLayer.getChildAt(0);
+        if (bg) {
+            bg.removeEventListener(MainEvent.GameStart, this.index, this);
+        }
+        this.gameLayer.removeChildAt(0);
+        this.gameLayer.addChild(run);
+    }
+
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
      * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.

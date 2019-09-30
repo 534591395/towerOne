@@ -125,7 +125,7 @@ var Main = (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        _a.trys.push([0, 5, , 6]);
+                        _a.trys.push([0, 6, , 7]);
                         egret.ImageLoader.crossOrigin = 'anonymous';
                         return [4 /*yield*/, RES.loadConfig("default.res.json", "resource/")];
                     case 1:
@@ -135,21 +135,24 @@ var Main = (function (_super) {
                     case 2:
                         //await RES.loadConfig("default.res.json", "https://wxgame.dreamrabbit.tech/game/resource/");
                         _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("loading", 1)];
+                        return [4 /*yield*/, RES.loadGroup("loading", 2)];
                     case 3:
                         _a.sent();
                         loadingView = new LoadingUI();
                         this.stage.addChild(loadingView);
-                        return [4 /*yield*/, RES.loadGroup("preload", 0, loadingView)];
+                        return [4 /*yield*/, RES.loadGroup("preload", 1, loadingView)];
                     case 4:
                         _a.sent();
-                        this.stage.removeChild(loadingView);
-                        return [3 /*break*/, 6];
+                        return [4 /*yield*/, RES.loadGroup("welcomeload", 0, loadingView)];
                     case 5:
+                        _a.sent();
+                        this.stage.removeChild(loadingView);
+                        return [3 /*break*/, 7];
+                    case 6:
                         e_1 = _a.sent();
                         console.error(e_1);
-                        return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
+                        return [3 /*break*/, 7];
+                    case 7: return [2 /*return*/];
                 }
             });
         });
@@ -170,8 +173,22 @@ var Main = (function (_super) {
      * Create scene interface
      */
     Main.prototype.createGameScene = function () {
+        this.gameLayer = new egret.DisplayObjectContainer();
+        this.addChild(this.gameLayer);
+        // 加载欢迎背景页 
         var bg = new Bg();
-        this.stage.addChild(bg);
+        this.gameLayer.addChild(bg);
+        bg.addEventListener(MainEvent.GameStart, this.index, this);
+    };
+    // 点击开始游戏后，进入游戏主页
+    Main.prototype.index = function () {
+        var run = new Run();
+        var bg = this.gameLayer.getChildAt(0);
+        if (bg) {
+            bg.removeEventListener(MainEvent.GameStart, this.index, this);
+        }
+        this.gameLayer.removeChildAt(0);
+        this.gameLayer.addChild(run);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
