@@ -32,6 +32,8 @@ class Main extends eui.UILayer {
     // 游戏场景容器
     private gameLayer:egret.DisplayObjectContainer;
 
+    private loadBar: LoadBar;
+
     protected createChildren(): void {
         super.createChildren();
 
@@ -125,24 +127,16 @@ class Main extends eui.UILayer {
         }
         this.gameLayer.removeChildAt(0);
         this.gameLayer.addChild(run);
-
+        
+        // 监听进入场景加载进度条
         run.addEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
     }
 
     // 场景加载进度条
     private createLoadBar(e:MainEvent) {
         console.log('加载场景', e.resName);
-    }
-
-    /**
-     * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
-     * Create a Bitmap object according to name keyword.As for the property of name please refer to the configuration file of resources/resource.json.
-     */
-    private createBitmapByName(name: string): egret.Bitmap {
-        let result = new egret.Bitmap();
-        let texture: egret.Texture = RES.getRes(name);
-        result.texture = texture;
-        return result;
+        this.loadBar = new LoadBar();
+        this.addChild(this.loadBar);
     }
 
 }
