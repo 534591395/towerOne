@@ -13,10 +13,10 @@ r.prototype = e.prototype, t.prototype = new r();
 };
 var MainEvent = (function (_super) {
     __extends(MainEvent, _super);
-    function MainEvent(type, bubbles, cancelable, resName) {
+    function MainEvent(type, resName, bubbles, cancelable) {
+        if (resName === void 0) { resName = ""; }
         if (bubbles === void 0) { bubbles = false; }
         if (cancelable === void 0) { cancelable = false; }
-        if (resName === void 0) { resName = ""; }
         var _this = _super.call(this, type, bubbles, cancelable) || this;
         _this._resName = "";
         _this._resName = resName;
@@ -31,6 +31,7 @@ var MainEvent = (function (_super) {
     });
     // 触发游戏开始时调用该事件类型
     MainEvent.GameStart = '游戏开始';
+    MainEvent.OpenLoadBar = '打开场景加载进度条';
     return MainEvent;
 }(egret.Event));
 __reflect(MainEvent.prototype, "MainEvent");

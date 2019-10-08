@@ -6,9 +6,11 @@ class MainEvent extends egret.Event {
     // 触发游戏开始时调用该事件类型
     public static GameStart:string = '游戏开始';
 
+    public static OpenLoadBar:string = '打开场景加载进度条';
+
     private _resName: string = ""; 
 
-    public constructor(type:string, bubbles:boolean=false, cancelable:boolean=false, resName:string="") {
+    public constructor(type:string, resName:string="", bubbles:boolean=false, cancelable:boolean=false) {
         super(type, bubbles, cancelable);
         this._resName = resName;
     }

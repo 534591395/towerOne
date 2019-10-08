@@ -189,6 +189,11 @@ var Main = (function (_super) {
         }
         this.gameLayer.removeChildAt(0);
         this.gameLayer.addChild(run);
+        run.addEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
+    };
+    // 场景加载进度条
+    Main.prototype.createLoadBar = function (e) {
+        console.log('加载场景', e.resName);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。

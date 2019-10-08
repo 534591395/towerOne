@@ -125,6 +125,13 @@ class Main extends eui.UILayer {
         }
         this.gameLayer.removeChildAt(0);
         this.gameLayer.addChild(run);
+
+        run.addEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
+    }
+
+    // 场景加载进度条
+    private createLoadBar(e:MainEvent) {
+        console.log('加载场景', e.resName);
     }
 
     /**
