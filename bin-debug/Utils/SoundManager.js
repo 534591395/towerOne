@@ -27,7 +27,7 @@ var SoundManager = (function () {
         if (value === void 0) { value = 1; }
         var sound = RES.getRes(name);
         sound.type = egret.Sound.EFFECT;
-        var channel = sound.play();
+        var channel = sound.play(0, 1);
         // 设置播放音量
         channel.volume = value;
     };

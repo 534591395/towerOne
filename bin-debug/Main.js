@@ -195,6 +195,7 @@ var Main = (function (_super) {
     // 场景加载进度条
     Main.prototype.createLoadBar = function (e) {
         console.log('加载场景', e.resName);
+        this.gameLayer.removeChildAt(0);
         this.loadBar = new LoadBar();
         this.addChild(this.loadBar);
     };

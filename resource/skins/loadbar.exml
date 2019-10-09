@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin width="800" height="480" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
-	<e:Group id="left" width="400" height="480" x="0" y="0" anchorOffsetY="0" anchorOffsetX="0">
+	<e:Group id="leftGroup" width="400" height="480" x="-400" y="0" anchorOffsetY="0" anchorOffsetX="0">
 		<e:Image width="400" height="480" x="0" y="0" source="loadbg"/>
 		<e:Image width="400" height="480" x="0" y="0" source="loadl"/>
-		<e:Group id="loadLeft" width="198" height="36" x="301" y="340">
+		<e:Group id="loadLeftGroup" width="198" height="36" x="301" y="340">
 			<e:Image width="198" height="36" x="0" y="0" source="probarbg"/>
 			<e:Image id="barl" width="1" height="18" x="9" y="9" source="probartop"/>
 		</e:Group>
 	</e:Group>
-	<e:Group id="right" width="400" height="480" x="400" y="0">
+	<e:Group id="rightGroup" width="400" height="480" x="800" y="0">
 		<e:Image width="400" height="480" x="0" y="0" source="loadbg"/>
 		<e:Image width="400" height="480" x="0" y="0" source="loadr"/>
-		<e:Group id="loadRight" width="198" height="36" x="-99" y="340">
+		<e:Group id="loadRightGroup" width="198" height="36" x="-99" y="340">
 			<e:Image width="198" height="36" x="0" y="0" source="probarbg"/>
 			<e:Image id="barr" width="1" height="18" x="9" y="9" source="probartop"/>
 		</e:Group>

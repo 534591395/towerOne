@@ -13,7 +13,7 @@ class SoundManager {
         let bgSound: egret.Sound = RES.getRes(name);
         // [静态] 背景音乐
         bgSound.type = egret.Sound.MUSIC;
-       this.channel = bgSound.play(startTime, loops);
+        this.channel = bgSound.play(startTime, loops);
     }
 
     // 停止播放背景音乐
@@ -26,7 +26,7 @@ class SoundManager {
         let sound: egret.Sound = RES.getRes(name);
         sound.type = egret.Sound.EFFECT;
 
-        let channel: egret.SoundChannel = sound.play();
+        let channel: egret.SoundChannel = sound.play(0, 1);
         // 设置播放音量
         channel.volume = value;
     }

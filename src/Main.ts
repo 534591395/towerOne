@@ -135,6 +135,8 @@ class Main extends eui.UILayer {
     // 场景加载进度条
     private createLoadBar(e:MainEvent) {
         console.log('加载场景', e.resName);
+        this.gameLayer.removeChildAt(0);
+
         this.loadBar = new LoadBar();
         this.addChild(this.loadBar);
     }
