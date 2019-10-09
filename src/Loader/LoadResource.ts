@@ -49,15 +49,17 @@ class LoadResource extends egret.DisplayObjectContainer {
     }
   
     // 场景资源加载条--结束加载--收起
-    private hideLoadBar():void {
+    private hideLoadBar(e:MainEvent):void {
         this.removeChild(this.loadBar);
+        // 加载完毕后，触发对应事件
+        this.dispatchEvent(new MainEvent(MainEvent.LoadAnimateComplete, e.resName));
     }
 
     // 开始加载资源
     private async startLoadBar(e:MainEvent) {
         await this.loadGroup(e.resName, 0, this.loadBar);
         // 资源加载完毕后，触发动画
-        this.loadBar.hideLoader();
+        this.loadBar.hideLoader(e.resName);
     }
 
 
@@ -73,7 +75,4 @@ class LoadResource extends egret.DisplayObjectContainer {
         })
     }
     
-
-    
-
 }

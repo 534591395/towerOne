@@ -13,13 +13,14 @@
 		"libs/modules/greensock/greensock.js"
 	],
 	"game": [
-		"bin-debug/Loader/LoadBar.js",
+		"bin-debug/Events/MainEvent.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Platform.js",
 		"bin-debug/Run.js",
 		"bin-debug/ThemeAdapter.js",
-		"bin-debug/Events/MainEvent.js",
+		"bin-debug/World.js",
 		"bin-debug/Main.js",
+		"bin-debug/Loader/LoadBar.js",
 		"bin-debug/Loader/LoadingUI.js",
 		"bin-debug/Loader/LoadResource.js",
 		"bin-debug/skins/Bg.js",

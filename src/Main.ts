@@ -7,8 +7,7 @@ class Main extends eui.UILayer {
     // 游戏场景容器
     private gameLayer:egret.DisplayObjectContainer;
 
-    private loadBar: LoadBar;
-
+    // 资源加载类
     private loadResource: LoadResource;
     
     /**场景堆栈*/
@@ -39,6 +38,8 @@ class Main extends eui.UILayer {
         this.loadResource = new LoadResource();
         this.addChild(this.loadResource);
 
+        this.loadResource.addEventListener(MainEvent.LoadAnimateComplete, this.addSence, this);
+
         this.runGame().catch(e => {
             console.log(e);
         })
@@ -53,8 +54,6 @@ class Main extends eui.UILayer {
         // console.log(userInfo);
     }
 
-
-    private textfield: egret.TextField;
     /**
      * 创建场景界面
      * Create scene interface
@@ -99,6 +98,18 @@ class Main extends eui.UILayer {
         view.destroy();
 
         await this.loadResource.showLoadBar(e.resName);
+    }
+
+    // 根据当前加载的场景资源组名，添加相应场景，引导界面除外
+    private addSence(e:MainEvent) {
+        const sceneName: any = {
+            "maps": "World"
+        };
+        // 获取对象名称
+        const className = egret.getDefinitionByName(sceneName[e.resName]);
+        const obj = new className();
+        this.gameLayer.addChild(obj);
+        this.views.push(obj);
     }
 
 }

@@ -118,8 +118,10 @@ var LoadResource = (function (_super) {
         });
     };
     // 场景资源加载条--结束加载--收起
-    LoadResource.prototype.hideLoadBar = function () {
+    LoadResource.prototype.hideLoadBar = function (e) {
         this.removeChild(this.loadBar);
+        // 加载完毕后，触发对应事件
+        this.dispatchEvent(new MainEvent(MainEvent.LoadAnimateComplete, e.resName));
     };
     // 开始加载资源
     LoadResource.prototype.startLoadBar = function (e) {
@@ -130,7 +132,7 @@ var LoadResource = (function (_super) {
                     case 1:
                         _a.sent();
                         // 资源加载完毕后，触发动画
-                        this.loadBar.hideLoader();
+                        this.loadBar.hideLoader(e.resName);
                         return [2 /*return*/];
                 }
             });

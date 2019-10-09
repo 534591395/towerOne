@@ -22,8 +22,6 @@ var LoadBar = (function (_super) {
         return _this;
     }
     LoadBar.prototype.onProgress = function (current, total) {
-        //this.textField.text = `Loading...${current}/${total}`;
-        //this.loading.width = (current/total) * 428;
         this.barleft.width = (current / total) * 182;
         this.barRight.width = (current / total) * 182;
     };
@@ -40,12 +38,12 @@ var LoadBar = (function (_super) {
         SoundManager.playEffect("loaderClose");
     };
     // 加载完毕，展开动画
-    LoadBar.prototype.hideLoader = function () {
+    LoadBar.prototype.hideLoader = function (resGroupName) {
         var _this = this;
         TweenMax.to(this.leftGroup, 0.3, { delay: 0.6, x: -400, ease: Cubic.easeOut });
         TweenMax.to(this.rightGroup, 0.3, { delay: 0.6, x: 800, ease: Cubic.easeOut, onComplete: function () {
                 // 加载完毕后，展开动画结束
-                _this.dispatchEvent(new MainEvent(MainEvent.LoadAnimateComplete));
+                _this.dispatchEvent(new MainEvent(MainEvent.LoadAnimateComplete, resGroupName));
             } });
         // 播放展开音效
         SoundManager.playEffect("loaderOpen");

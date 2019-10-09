@@ -20,8 +20,6 @@ class LoadBar extends eui.Component implements RES.PromiseTaskReporter {
     
 
     public onProgress(current: number, total: number): void {
-        //this.textField.text = `Loading...${current}/${total}`;
-        //this.loading.width = (current/total) * 428;
         this.barleft.width = (current/total) * 182;
         this.barRight.width = (current/total) * 182;
     }
@@ -39,11 +37,11 @@ class LoadBar extends eui.Component implements RES.PromiseTaskReporter {
     }
 
     // 加载完毕，展开动画
-    public hideLoader():void {
+    public hideLoader(resGroupName: string):void {
         TweenMax.to(this.leftGroup, 0.3, {delay: 0.6, x: -400, ease: Cubic.easeOut});
         TweenMax.to(this.rightGroup, 0.3, {delay: 0.6, x: 800, ease: Cubic.easeOut, onComplete: () => {
             // 加载完毕后，展开动画结束
-            this.dispatchEvent(new MainEvent(MainEvent.LoadAnimateComplete));
+            this.dispatchEvent(new MainEvent(MainEvent.LoadAnimateComplete, resGroupName));
         } });
         // 播放展开音效
         SoundManager.playEffect("loaderOpen");

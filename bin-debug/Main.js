@@ -73,6 +73,7 @@ var Main = (function (_super) {
         // 资源类
         this.loadResource = new LoadResource();
         this.addChild(this.loadResource);
+        this.loadResource.addEventListener(MainEvent.LoadAnimateComplete, this.addSence, this);
         this.runGame().catch(function (e) {
             console.log(e);
         });
@@ -138,6 +139,17 @@ var Main = (function (_super) {
                 }
             });
         });
+    };
+    // 根据当前加载的场景资源组名，添加相应场景，引导界面除外
+    Main.prototype.addSence = function (e) {
+        var sceneName = {
+            "maps": "World"
+        };
+        // 获取对象名称
+        var className = egret.getDefinitionByName(sceneName[e.resName]);
+        var obj = new className();
+        this.gameLayer.addChild(obj);
+        this.views.push(obj);
     };
     return Main;
 }(eui.UILayer));
