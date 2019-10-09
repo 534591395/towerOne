@@ -8,6 +8,10 @@ class MainEvent extends egret.Event {
 
     public static OpenLoadBar:string = '打开场景加载进度条';
 
+    public static StartLoadBar:string = '开始加载资源';
+
+    public static LoadAnimateComplete:string = '资源加载完成，动画播放结束';
+
     private _resName: string = ""; 
 
     public constructor(type:string, resName:string="", bubbles:boolean=false, cancelable:boolean=false) {

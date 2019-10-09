@@ -86,7 +86,7 @@ class Run extends egret.DisplayObjectContainer {
     }
 
     // 手动清除静态资源缓存
-    public destroy() {
+    public destroy():void {
         RES.destroyRes('welbg');
         RES.destroyRes('wellogo');
         RES.destroyRes('liantiao');

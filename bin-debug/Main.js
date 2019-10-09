@@ -1,31 +1,6 @@
-//////////////////////////////////////////////////////////////////////////////////////
-//
-//  Copyright (c) 2014-present, Egret Technology.
-//  All rights reserved.
-//  Redistribution and use in source and binary forms, with or without
-//  modification, are permitted provided that the following conditions are met:
-//
-//     * Redistributions of source code must retain the above copyright
-//       notice, this list of conditions and the following disclaimer.
-//     * Redistributions in binary form must reproduce the above copyright
-//       notice, this list of conditions and the following disclaimer in the
-//       documentation and/or other materials provided with the distribution.
-//     * Neither the name of the Egret nor the
-//       names of its contributors may be used to endorse or promote products
-//       derived from this software without specific prior written permission.
-//
-//  THIS SOFTWARE IS PROVIDED BY EGRET AND CONTRIBUTORS "AS IS" AND ANY EXPRESS
-//  OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-//  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-//  IN NO EVENT SHALL EGRET AND CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-//  INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;LOSS OF USE, DATA,
-//  OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-//  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-//  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
-//  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-//////////////////////////////////////////////////////////////////////////////////////
+/**
+ * 游戏入口类
+ */
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
@@ -74,7 +49,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        /**场景堆栈*/
+        _this.views = [];
+        return _this;
     }
     Main.prototype.createChildren = function () {
         _super.prototype.createChildren.call(this);
@@ -92,79 +70,24 @@ var Main = (function (_super) {
         var assetAdapter = new AssetAdapter();
         egret.registerImplementation("eui.IAssetAdapter", assetAdapter);
         egret.registerImplementation("eui.IThemeAdapter", new ThemeAdapter());
+        // 资源类
+        this.loadResource = new LoadResource();
+        this.addChild(this.loadResource);
         this.runGame().catch(function (e) {
             console.log(e);
         });
     };
     Main.prototype.runGame = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var userInfo;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadResource()];
+                    case 0: return [4 /*yield*/, this.loadResource.init()];
                     case 1:
                         _a.sent();
                         this.createGameScene();
-                        //const result = await RES.getResAsync("description_json")
-                        return [4 /*yield*/, platform.login()];
-                    case 2:
-                        //const result = await RES.getResAsync("description_json")
-                        _a.sent();
-                        return [4 /*yield*/, platform.getUserInfo()];
-                    case 3:
-                        userInfo = _a.sent();
-                        console.log(userInfo);
                         return [2 /*return*/];
                 }
             });
-        });
-    };
-    Main.prototype.loadResource = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var loadingView, e_1;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        _a.trys.push([0, 5, , 6]);
-                        egret.ImageLoader.crossOrigin = 'anonymous';
-                        return [4 /*yield*/, RES.loadConfig("default.res.json", "resource/")];
-                    case 1:
-                        _a.sent();
-                        //await RES.loadConfig("default.res.json", "https://wxgame.dreamrabbit.tech/game/resource/");
-                        return [4 /*yield*/, this.loadTheme()];
-                    case 2:
-                        //await RES.loadConfig("default.res.json", "https://wxgame.dreamrabbit.tech/game/resource/");
-                        _a.sent();
-                        return [4 /*yield*/, RES.loadGroup("loading", 2)];
-                    case 3:
-                        _a.sent();
-                        loadingView = new LoadingUI();
-                        this.stage.addChild(loadingView);
-                        //await RES.loadGroup("preload", 1, loadingView);
-                        return [4 /*yield*/, RES.loadGroup("welcomeload", 0, loadingView)];
-                    case 4:
-                        //await RES.loadGroup("preload", 1, loadingView);
-                        _a.sent();
-                        this.stage.removeChild(loadingView);
-                        return [3 /*break*/, 6];
-                    case 5:
-                        e_1 = _a.sent();
-                        console.error(e_1);
-                        return [3 /*break*/, 6];
-                    case 6: return [2 /*return*/];
-                }
-            });
-        });
-    };
-    Main.prototype.loadTheme = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            // load skin theme configuration file, you can manually modify the file. And replace the default skin.
-            //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
-            var theme = new eui.Theme("resource/default.thm.json", _this.stage);
-            theme.addEventListener(eui.UIEvent.COMPLETE, function () {
-                resolve();
-            }, _this);
         });
     };
     /**
@@ -177,6 +100,7 @@ var Main = (function (_super) {
         // 加载欢迎背景页 
         var bg = new Bg();
         this.gameLayer.addChild(bg);
+        this.views.push(bg);
         bg.addEventListener(MainEvent.GameStart, this.index, this);
     };
     // 点击开始游戏后，进入游戏主页
@@ -187,16 +111,33 @@ var Main = (function (_super) {
             bg.removeEventListener(MainEvent.GameStart, this.index, this);
         }
         this.gameLayer.removeChildAt(0);
+        this.views.shift();
         this.gameLayer.addChild(run);
+        this.views.push(run);
         // 监听进入场景加载进度条
         run.addEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
     };
     // 场景加载进度条
     Main.prototype.createLoadBar = function (e) {
-        console.log('加载场景', e.resName);
-        this.gameLayer.removeChildAt(0);
-        this.loadBar = new LoadBar();
-        this.addChild(this.loadBar);
+        return __awaiter(this, void 0, void 0, function () {
+            var run, view;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        console.log('加载场景', e.resName);
+                        run = this.gameLayer.getChildAt(0);
+                        if (run) {
+                            run.removeEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
+                        }
+                        view = this.views.shift();
+                        view.destroy();
+                        return [4 /*yield*/, this.loadResource.showLoadBar(e.resName)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     return Main;
 }(eui.UILayer));

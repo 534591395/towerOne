@@ -32,6 +32,8 @@ var MainEvent = (function (_super) {
     // 触发游戏开始时调用该事件类型
     MainEvent.GameStart = '游戏开始';
     MainEvent.OpenLoadBar = '打开场景加载进度条';
+    MainEvent.StartLoadBar = '开始加载资源';
+    MainEvent.LoadAnimateComplete = '资源加载完成，动画播放结束';
     return MainEvent;
 }(egret.Event));
 __reflect(MainEvent.prototype, "MainEvent");
