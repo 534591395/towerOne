@@ -15,6 +15,7 @@ var World = (function (_super) {
     __extends(World, _super);
     function World() {
         var _this = _super.call(this) || this;
+        _this.skinName = "resource/skins/world.exml";
         // 播放背景音乐
         SoundManager.playBgSound("mapbgsound");
         return _this;
