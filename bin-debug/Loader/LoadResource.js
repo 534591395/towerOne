@@ -111,6 +111,7 @@ var LoadResource = (function (_super) {
     LoadResource.prototype.showLoadBar = function (resGroupName) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
+                console.log(resGroupName, this.loadBar);
                 this.addChild(this.loadBar);
                 this.loadBar.showLoadBar(resGroupName);
                 return [2 /*return*/];

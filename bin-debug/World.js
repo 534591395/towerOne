@@ -20,16 +20,22 @@ var World = (function (_super) {
         SoundManager.playBgSound("mapbgsound");
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
-        //this.addEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
     }
     World.prototype.onAddToStage = function () {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        //this.removeEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
         this.guanka();
     };
     World.prototype.guanka = function () {
         TweenMax.to(this.backToIndex, 0.5, { delay: 1, y: 421, ease: Cubic.easeInOut });
         TweenMax.to(this.heroIcon, 0.5, { delay: 1, y: 397, ease: Cubic.easeInOut });
+        this.backToIndex.touchEnabled = true;
+        this.backToIndex.addEventListener(egret.TouchEvent.TOUCH_TAP, this.backRun, this);
+    };
+    // 返回主界面
+    World.prototype.backRun = function () {
+        this.backToIndex.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.backRun, this);
+        this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "welcomeload"));
+        SoundManager.stopBgSound();
     };
     return World;
 }(eui.Component));

@@ -87,18 +87,20 @@ class Main extends eui.UILayer {
         this.views.push(run);
         
         // 监听进入场景加载进度条
-        run.addEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
+        run.addEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
     }
 
     // 场景加载进度条
-    private async createLoadBar(e:MainEvent) {
+    private async showLoadBar(e:MainEvent) {
         console.log('加载场景', e.resName);
-        const run = this.gameLayer.getChildAt(0);
-        if (run) {
-            run.removeEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
+        const obj = this.gameLayer.getChildAt(0);
+        if (obj) {
+            obj.removeEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
         }
         const view = this.views.shift();
-        view.destroy();
+        if (view.destroy) {
+            view.destroy();
+        }
 
         await this.loadResource.showLoadBar(e.resName);
     }
@@ -106,13 +108,16 @@ class Main extends eui.UILayer {
     // 根据当前加载的场景资源组名，添加相应场景，引导界面除外
     private addSence(e:MainEvent) {
         const sceneName: any = {
-            "maps": "World"
+            "maps": "World",
+            "welcomeload": 'Run'
         };
         // 获取对象名称
         const className = egret.getDefinitionByName(sceneName[e.resName]);
         const obj = new className();
         this.gameLayer.addChild(obj);
         this.views.push(obj);
+        // 添加自定义监听事件，
+        obj.addEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
     }
 
 }

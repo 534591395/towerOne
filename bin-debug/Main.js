@@ -119,22 +119,24 @@ var Main = (function (_super) {
         this.gameLayer.addChild(run);
         this.views.push(run);
         // 监听进入场景加载进度条
-        run.addEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
+        run.addEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
     };
     // 场景加载进度条
-    Main.prototype.createLoadBar = function (e) {
+    Main.prototype.showLoadBar = function (e) {
         return __awaiter(this, void 0, void 0, function () {
-            var run, view;
+            var obj, view;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         console.log('加载场景', e.resName);
-                        run = this.gameLayer.getChildAt(0);
-                        if (run) {
-                            run.removeEventListener(MainEvent.OpenLoadBar, this.createLoadBar, this);
+                        obj = this.gameLayer.getChildAt(0);
+                        if (obj) {
+                            obj.removeEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
                         }
                         view = this.views.shift();
-                        view.destroy();
+                        if (view.destroy) {
+                            view.destroy();
+                        }
                         return [4 /*yield*/, this.loadResource.showLoadBar(e.resName)];
                     case 1:
                         _a.sent();
@@ -146,13 +148,16 @@ var Main = (function (_super) {
     // 根据当前加载的场景资源组名，添加相应场景，引导界面除外
     Main.prototype.addSence = function (e) {
         var sceneName = {
-            "maps": "World"
+            "maps": "World",
+            "welcomeload": 'Run'
         };
         // 获取对象名称
         var className = egret.getDefinitionByName(sceneName[e.resName]);
         var obj = new className();
         this.gameLayer.addChild(obj);
         this.views.push(obj);
+        // 添加自定义监听事件，
+        obj.addEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
     };
     return Main;
 }(eui.UILayer));

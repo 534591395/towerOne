@@ -44,6 +44,7 @@ class LoadResource extends egret.DisplayObjectContainer {
 
     // 场景资源加载条--开始加载--展开
     public async showLoadBar(resGroupName: string) {
+        console.log(resGroupName, this.loadBar);
         this.addChild(this.loadBar);
         this.loadBar.showLoadBar(resGroupName);
     }
