@@ -97,6 +97,7 @@ class Main extends eui.UILayer {
         if (obj) {
             obj.removeEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
         }
+        this.gameLayer.removeChildAt(0);
         const view = this.views.shift();
         if (view.destroy) {
             view.destroy();

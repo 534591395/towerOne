@@ -29,6 +29,8 @@ var LoadBar = (function (_super) {
     // resGroupName 要加载的资源组名称
     LoadBar.prototype.showLoadBar = function (resGroupName) {
         var _this = this;
+        this.barleft.width = 1;
+        this.barRight.width = 1;
         TweenMax.to(this.leftGroup, 0.3, { x: 0, ease: Cubic.easeOut });
         TweenMax.to(this.rightGroup, 0.3, { x: 400, ease: Cubic.easeOut, onComplete: function () {
                 // 触发加载

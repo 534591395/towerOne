@@ -27,6 +27,9 @@ class LoadBar extends eui.Component implements RES.PromiseTaskReporter {
     // 开始加载，合拢动画
     // resGroupName 要加载的资源组名称
     public showLoadBar(resGroupName: string):void {
+        this.barleft.width = 1;
+        this.barRight.width = 1;
+        
         TweenMax.to(this.leftGroup, 0.3, { x: 0, ease: Cubic.easeOut });
         TweenMax.to(this.rightGroup, 0.3, { x: 400, ease: Cubic.easeOut, onComplete: () => {
             // 触发加载

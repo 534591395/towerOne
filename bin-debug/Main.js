@@ -133,6 +133,7 @@ var Main = (function (_super) {
                         if (obj) {
                             obj.removeEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
                         }
+                        this.gameLayer.removeChildAt(0);
                         view = this.views.shift();
                         if (view.destroy) {
                             view.destroy();
