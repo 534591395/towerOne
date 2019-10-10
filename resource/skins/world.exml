@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+<e:Skin width="800" height="480" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Group width="100%" height="100%" x="0" y="0">
 		<e:Image width="100%" height="100%" x="0" y="0" source="map"/>
-		<e:Image id="backToIndex" width="59" height="59" x="71" y="407" source="backToIndex"/>
-		<e:Image id="heroIcon" width="91" height="83" x="648" source="heroIcon" y="383"/>
+		<e:Image id="backToIndex" width="59" height="59" x="71" y="480" source="backToIndex"/>
+		<e:Image id="heroIcon" width="91" height="83" x="648" source="heroIcon" y="480"/>
 		<e:Image id="flag01" width="36" height="51" x="283" y="332" source="flag0"/>
 	</e:Group>
 </e:Skin>

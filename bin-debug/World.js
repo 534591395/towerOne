@@ -20,11 +20,12 @@ var World = (function (_super) {
         SoundManager.playBgSound("mapbgsound");
         _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
-        // this.addEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
+        //this.addEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
     }
     World.prototype.onAddToStage = function () {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        //this.guanka();
+        //this.removeEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
+        this.guanka();
     };
     World.prototype.guanka = function () {
         TweenMax.to(this.backToIndex, 0.5, { delay: 1, y: 421, ease: Cubic.easeInOut });

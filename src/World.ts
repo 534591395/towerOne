@@ -14,12 +14,13 @@ class World extends eui.Component {
         SoundManager.playBgSound("mapbgsound");
       
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        // this.addEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
+        //this.addEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
     }
 
     private onAddToStage() {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        //this.guanka();
+        //this.removeEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
+        this.guanka();
     }
 
     private guanka():void {
