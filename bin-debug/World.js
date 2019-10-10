@@ -18,8 +18,18 @@ var World = (function (_super) {
         _this.skinName = "resource/skins/world.exml";
         // 播放背景音乐
         SoundManager.playBgSound("mapbgsound");
+        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
+        // this.addEventListener(eui.UIEvent.COMPLETE,this.onComplete,this);
     }
+    World.prototype.onAddToStage = function () {
+        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+        //this.guanka();
+    };
+    World.prototype.guanka = function () {
+        TweenMax.to(this.backToIndex, 0.5, { delay: 1, y: 421, ease: Cubic.easeInOut });
+        TweenMax.to(this.heroIcon, 0.5, { delay: 1, y: 397, ease: Cubic.easeInOut });
+    };
     return World;
 }(eui.Component));
 __reflect(World.prototype, "World");

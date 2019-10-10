@@ -19,6 +19,7 @@
 		"bin-debug/Run.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/World.js",
+		"bin-debug/Config/GuanKa.js",
 		"bin-debug/Main.js",
 		"bin-debug/Loader/LoadBar.js",
 		"bin-debug/Loader/LoadingUI.js",

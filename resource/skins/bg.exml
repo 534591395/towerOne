@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e:Skin width="800" height="480" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:tween="egret.tween.*">
+<e:Skin xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing" xmlns:tween="egret.tween.*">
 	<w:Declarations>
 		<tween:TweenGroup id="start">
 			<tween:TweenItem target="{btn}">
@@ -17,6 +17,9 @@
 
 		</tween:TweenGroup>
 	</w:Declarations>
-	<e:Image width="800" height="480" x="0" y="0" source="0ui_bg_jpg"/>
-	<e:Image id="btn" width="129" height="67" y="283" source="0ui_btn_png" horizontalCenter="0.5" anchorOffsetX="64.5"/>
+
+	<e:Group width="100%" height="100%" x="0" y="0">
+		<e:Image x="0" y="0" source="0ui_bg_jpg" scaleX="1" scaleY="1"/>
+		<e:Image id="btn" width="129" height="67" y="296" source="0ui_btn_png" horizontalCenter="0.5" anchorOffsetX="64.5" x="36" scaleX="1" scaleY="1"/>
+	</e:Group>
 </e:Skin>

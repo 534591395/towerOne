@@ -1,5 +1,8 @@
 /**
  * 游戏入口类
+ *
+ *
+ * iphonex 图片适配大小：横屏尺寸：2436px × 1125px(812pt × 375pt @3x)
  */
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;

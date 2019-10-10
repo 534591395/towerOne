@@ -1,5 +1,8 @@
 /**
  * 游戏入口类
+ * 
+ * 
+ * iphonex 图片适配大小：横屏尺寸：2436px × 1125px(812pt × 375pt @3x)
  */
 
 class Main extends eui.UILayer {
