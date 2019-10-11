@@ -50,9 +50,10 @@ class World extends eui.Component {
     // 初始化关卡旗帜属性
     private defalutFlag() {
         const arr = GuanKa.getData();
-        arr.map((item, i) => {
+        for (let i = 0; i< arr.length; i++) {
+            const item = arr[i];
             // flag 已在eui皮肤里定义
-            const flag: eui.Image = this[item.name]; 
+            const flag: eui.Image = this[item.name];
             if (flag) {
                 // 该关卡已通关后颜色变化
                 if (item.ispass) {
@@ -60,11 +61,15 @@ class World extends eui.Component {
                 }
                 // 开启触摸事件
                 flag.touchEnabled = true;
-                // 显示动画
+                // 显示旗帜动画
                 egret.Tween.get(flag).to({ alpha: 1, y: flag.y+30 },300 + i*0.1+1);
                 this.flagArr.push(flag);
             }
-        });
+            // 若当前关卡未通关，跳出循环-- 只显示当前关卡，即未通关的旗帜在界面上只显示一个
+            if (!item['ispass']) {
+                break;
+            }    
+        }
         this.addFlagsEvent();
     }
 
