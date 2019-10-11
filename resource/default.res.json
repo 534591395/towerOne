@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,Base02_png,Base03_png,buildTool_json,Boss01_json,Boss01_png,Boss02_json,Boss02_png,Monster01_json,Monster01_png,Monster02_json,Monster02_png,Monster03_json,Monster03_png,Monster04_json,Monster04_png,Monster05_json,Monster05_png,Monster06_json,Monster06_png,Monster07_json,Monster07_png,Monster08_json,Monster08_png,Monster09_json,Monster09_png,Monster10_json,Monster10_png,Monster11_json,Monster11_png,Monster12_json,Monster12_png,Monster13_json,Monster13_png,Monster14_json,Monster14_png,Monster15_json,Monster15_png,MagicWizard010203_json,MagicWizard010203_png,ShieldSoilder01_json,ShieldSoilder01_png,ZenYuan1_json,ZenYuan1_png,ZenYuan2_json,ZenYuan2_png,arrow_fire1_mp3,arrow_fire2_mp3,arrow_hit1_mp3,arrow_hit2_mp3,arrow_ready1_mp3,arrow_ready2_mp3,arrow_ready3_mp3,bo_start_mp3,building_mp3,explo_fireend1_mp3,explo_firestart1_mp3,explo_ready1_mp3,explo_ready2_mp3,explo_ready3_mp3,magic_fire1_mp3,magic_ready1_mp3,magic_ready2_mp3,magic_ready3_mp3,monster_die1_mp3,monster_die2_mp3,monster_die3_mp3,monster_die4_mp3,select_mp3,sell_tower_mp3,shield_fire1_mp3,shield_fire2_mp3,shield_fire3_mp3,shield_ready1_mp3,shield_ready2_mp3,shield_ready3_mp3,victory_mp3,ArrowShooter01_json,ArrowShooter01_png,ArrowShooter02_json,ArrowShooter02_png,ArrowShooter03_1_json,ArrowShooter03_1_png,ArrowShooter03_2_json,ArrowShooter03_2_png,ExploTower01_json,ExploTower01_png,ExploTower02_json,ExploTower02_png,ExploTower03_1_json,ExploTower03_1_png,towers_json,Arrow01_json,Arrow01_png,Arrow032_json,Arrow032_png,Explo01_json,Explo01_png,Explo02_json,Explo02_png,Explo03_1_json,Explo03_1_png,MagicBullet010203_json,MagicBullet010203_png,0ui_bg_jpg,backToMaps_png,lifeBar_png,lifeBarBg_png,lose_png,map1_jpg,map1_json,map2_jpg,map2_json,map3_jpg,map3_json,map4_jpg,map4_json,map5_jpg,map5_json,mb_png,NumFont_fnt,NumFont_png,NumFont0_png,NumFont2_fnt,NumFont2_png,NumFont3_fnt,NumFont3_png,NumFontda_png,pause_png,quitgame_png,stone1_json,stone1_png,tryagain_png,uiinfo_png,uiskill1_png,uiskill1off_png,uiskill2_png,uiskill2off_png,uiskillbg_png,uiskilloff_png,uiskillon_png,uptower_png,victory_png,0ui_btn_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,arrow_fire1_mp3,arrow_fire2_mp3,arrow_hit1_mp3,arrow_hit2_mp3,arrow_ready1_mp3,arrow_ready2_mp3,arrow_ready3_mp3,bo_start_mp3,building_mp3,explo_fireend1_mp3,explo_firestart1_mp3,explo_ready1_mp3,explo_ready2_mp3,explo_ready3_mp3,magic_fire1_mp3,magic_ready1_mp3,magic_ready2_mp3,magic_ready3_mp3,monster_die1_mp3,monster_die2_mp3,monster_die3_mp3,monster_die4_mp3,select_mp3,sell_tower_mp3,shield_fire1_mp3,shield_fire2_mp3,shield_fire3_mp3,shield_ready1_mp3,shield_ready2_mp3,shield_ready3_mp3,victory,0ui_bg_jpg,map1_jpg,map1_json,map2_jpg,map2_json,map3_jpg,map3_json,map4_jpg,map4_json,map5_jpg,map5_json,NumFont_png,NumFont0_png,NumFont2_png,NumFont3_png,NumFontda_png,pause_png,uptower_png,0ui_btn_png",
 			"name": "preload"
 		},
 		{
@@ -19,6 +19,22 @@
 		{
 			"keys": "map0,map0_json,map0bgSound,cuizi,men",
 			"name": "guanka01"
+		},
+		{
+			"keys": "buildTooljson,Base02,Base03,uiinfo,backToMaps,uiskillbg,uiskilloff,uiskillon,uiskill1,uiskill1off,uiskill2,uiskill2off,mb,victory,lose,tryagain,quitgame,NumFont,NumFont2,NumFont3,lifeBarBg,lifeBar,stone1png,stone1json",
+			"name": "uiLoad"
+		},
+		{
+			"keys": "Monster01json,Monster01png,Monster02json,Monster02png,Monster03json,Monster03png,Monster04json,Monster04png,Monster05json,Monster05png,Monster06json,Monster06png,Monster07json,Monster07png,Monster08json,Monster08png,Monster09json,Monster09png,Monster10json,Monster10png,Monster11json,Monster11png,Monster12json,Monster12png,Monster13json,Monster13png,Monster14json,Monster14png,Monster15json,Monster15png,Boss01json,Boss01png,Boss02json,Boss02png",
+			"name": "monsterLoad"
+		},
+		{
+			"keys": "towersjson,ExploTower031png,ExploTower02png,ExploTower01png,ArrowShooter032png,ArrowShooter031png,ArrowShooter02png,ArrowShooter01png,ArrowShooter01json,ArrowShooter02json,ArrowShooter031json,ArrowShooter032json,ExploTower01json,ExploTower02json,ExploTower031json,ShieldSoilder01png,ShieldSoilder01json,ZenYuan2png,ZenYuan1png,ZenYuan1json,ZenYuan2json,Arrow032png,Arrow01png,Arrow01json,Arrow032json,MagicBullet010203png,Explo031png,Explo02png,Explo01png,Explo01json,Explo02json,Explo031json,MagicBullet010203json,MagicWizard010203json,MagicWizard010203png",
+			"name": "towerLoad"
+		},
+		{
+			"keys": "victory",
+			"name": "soundLoad"
 		}
 	],
 	"resources": [
@@ -155,228 +171,228 @@
 		{
 			"url": "assets/game/build/Base02.png",
 			"type": "image",
-			"name": "Base02_png"
+			"name": "Base02"
 		},
 		{
 			"url": "assets/game/build/Base03.png",
 			"type": "image",
-			"name": "Base03_png"
+			"name": "Base03"
 		},
 		{
 			"url": "assets/game/build/buildTool.json",
 			"type": "sheet",
-			"name": "buildTool_json",
+			"name": "buildTooljson",
 			"subkeys": "buildbarbg,buildbartop,building1,building2,building3,building4,cashbg,dp01,dp03_1,dp03_2,empty01,gj01,gj03_1,gj03_2,lock,mf01,mf03_1,mf03_2,sell,sj,yuan,zd01,zd03_1,zd03_2"
 		},
 		{
 			"url": "assets/game/monsters/Boss01.json",
 			"type": "json",
-			"name": "Boss01_json"
+			"name": "Boss01json"
 		},
 		{
 			"url": "assets/game/monsters/Boss01.png",
 			"type": "image",
-			"name": "Boss01_png"
+			"name": "Boss01png"
 		},
 		{
 			"url": "assets/game/monsters/Boss02.json",
 			"type": "json",
-			"name": "Boss02_json"
+			"name": "Boss02json"
 		},
 		{
 			"url": "assets/game/monsters/Boss02.png",
 			"type": "image",
-			"name": "Boss02_png"
+			"name": "Boss02png"
 		},
 		{
 			"url": "assets/game/monsters/Monster01.json",
 			"type": "json",
-			"name": "Monster01_json"
+			"name": "Monster01json"
 		},
 		{
 			"url": "assets/game/monsters/Monster01.png",
 			"type": "image",
-			"name": "Monster01_png"
+			"name": "Monster01png"
 		},
 		{
 			"url": "assets/game/monsters/Monster02.json",
 			"type": "json",
-			"name": "Monster02_json"
+			"name": "Monster02json"
 		},
 		{
 			"url": "assets/game/monsters/Monster02.png",
 			"type": "image",
-			"name": "Monster02_png"
+			"name": "Monster02png"
 		},
 		{
 			"url": "assets/game/monsters/Monster03.json",
 			"type": "json",
-			"name": "Monster03_json"
+			"name": "Monster03json"
 		},
 		{
 			"url": "assets/game/monsters/Monster03.png",
 			"type": "image",
-			"name": "Monster03_png"
+			"name": "Monster03png"
 		},
 		{
 			"url": "assets/game/monsters/Monster04.json",
 			"type": "json",
-			"name": "Monster04_json"
+			"name": "Monster04json"
 		},
 		{
 			"url": "assets/game/monsters/Monster04.png",
 			"type": "image",
-			"name": "Monster04_png"
+			"name": "Monster04png"
 		},
 		{
 			"url": "assets/game/monsters/Monster05.json",
 			"type": "json",
-			"name": "Monster05_json"
+			"name": "Monster05json"
 		},
 		{
 			"url": "assets/game/monsters/Monster05.png",
 			"type": "image",
-			"name": "Monster05_png"
+			"name": "Monster05png"
 		},
 		{
 			"url": "assets/game/monsters/Monster06.json",
 			"type": "json",
-			"name": "Monster06_json"
+			"name": "Monster06json"
 		},
 		{
 			"url": "assets/game/monsters/Monster06.png",
 			"type": "image",
-			"name": "Monster06_png"
+			"name": "Monster06png"
 		},
 		{
 			"url": "assets/game/monsters/Monster07.json",
 			"type": "json",
-			"name": "Monster07_json"
+			"name": "Monster07json"
 		},
 		{
 			"url": "assets/game/monsters/Monster07.png",
 			"type": "image",
-			"name": "Monster07_png"
+			"name": "Monster07png"
 		},
 		{
 			"url": "assets/game/monsters/Monster08.json",
 			"type": "json",
-			"name": "Monster08_json"
+			"name": "Monster08json"
 		},
 		{
 			"url": "assets/game/monsters/Monster08.png",
 			"type": "image",
-			"name": "Monster08_png"
+			"name": "Monster08png"
 		},
 		{
 			"url": "assets/game/monsters/Monster09.json",
 			"type": "json",
-			"name": "Monster09_json"
+			"name": "Monster09json"
 		},
 		{
 			"url": "assets/game/monsters/Monster09.png",
 			"type": "image",
-			"name": "Monster09_png"
+			"name": "Monster09png"
 		},
 		{
 			"url": "assets/game/monsters/Monster10.json",
 			"type": "json",
-			"name": "Monster10_json"
+			"name": "Monster10json"
 		},
 		{
 			"url": "assets/game/monsters/Monster10.png",
 			"type": "image",
-			"name": "Monster10_png"
+			"name": "Monster10png"
 		},
 		{
 			"url": "assets/game/monsters/Monster11.json",
 			"type": "json",
-			"name": "Monster11_json"
+			"name": "Monster11json"
 		},
 		{
 			"url": "assets/game/monsters/Monster11.png",
 			"type": "image",
-			"name": "Monster11_png"
+			"name": "Monster11png"
 		},
 		{
 			"url": "assets/game/monsters/Monster12.json",
 			"type": "json",
-			"name": "Monster12_json"
+			"name": "Monster12json"
 		},
 		{
 			"url": "assets/game/monsters/Monster12.png",
 			"type": "image",
-			"name": "Monster12_png"
+			"name": "Monster12png"
 		},
 		{
 			"url": "assets/game/monsters/Monster13.json",
 			"type": "json",
-			"name": "Monster13_json"
+			"name": "Monster13json"
 		},
 		{
 			"url": "assets/game/monsters/Monster13.png",
 			"type": "image",
-			"name": "Monster13_png"
+			"name": "Monster13png"
 		},
 		{
 			"url": "assets/game/monsters/Monster14.json",
 			"type": "json",
-			"name": "Monster14_json"
+			"name": "Monster14json"
 		},
 		{
 			"url": "assets/game/monsters/Monster14.png",
 			"type": "image",
-			"name": "Monster14_png"
+			"name": "Monster14png"
 		},
 		{
 			"url": "assets/game/monsters/Monster15.json",
 			"type": "json",
-			"name": "Monster15_json"
+			"name": "Monster15json"
 		},
 		{
 			"url": "assets/game/monsters/Monster15.png",
 			"type": "image",
-			"name": "Monster15_png"
+			"name": "Monster15png"
 		},
 		{
 			"url": "assets/game/soilders/MagicWizard010203.json",
 			"type": "json",
-			"name": "MagicWizard010203_json"
+			"name": "MagicWizard010203json"
 		},
 		{
 			"url": "assets/game/soilders/MagicWizard010203.png",
 			"type": "image",
-			"name": "MagicWizard010203_png"
+			"name": "MagicWizard010203png"
 		},
 		{
 			"url": "assets/game/soilders/ShieldSoilder01.json",
 			"type": "json",
-			"name": "ShieldSoilder01_json"
+			"name": "ShieldSoilder01json"
 		},
 		{
 			"url": "assets/game/soilders/ShieldSoilder01.png",
 			"type": "image",
-			"name": "ShieldSoilder01_png"
+			"name": "ShieldSoilder01png"
 		},
 		{
 			"url": "assets/game/soilders/ZenYuan1.json",
 			"type": "json",
-			"name": "ZenYuan1_json"
+			"name": "ZenYuan1json"
 		},
 		{
 			"url": "assets/game/soilders/ZenYuan1.png",
 			"type": "image",
-			"name": "ZenYuan1_png"
+			"name": "ZenYuan1png"
 		},
 		{
 			"url": "assets/game/soilders/ZenYuan2.json",
 			"type": "json",
-			"name": "ZenYuan2_json"
+			"name": "ZenYuan2json"
 		},
 		{
 			"url": "assets/game/soilders/ZenYuan2.png",
 			"type": "image",
-			"name": "ZenYuan2_png"
+			"name": "ZenYuan2png"
 		},
 		{
 			"url": "assets/game/sound/arrow_fire1.mp3",
@@ -556,143 +572,143 @@
 		{
 			"url": "assets/game/sound/victory.mp3",
 			"type": "sound",
-			"name": "victory_mp3"
+			"name": "victory"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter01.json",
 			"type": "json",
-			"name": "ArrowShooter01_json"
+			"name": "ArrowShooter01json"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter01.png",
 			"type": "image",
-			"name": "ArrowShooter01_png"
+			"name": "ArrowShooter01png"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter02.json",
 			"type": "json",
-			"name": "ArrowShooter02_json"
+			"name": "ArrowShooter02json"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter02.png",
 			"type": "image",
-			"name": "ArrowShooter02_png"
+			"name": "ArrowShooter02png"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter03_1.json",
 			"type": "json",
-			"name": "ArrowShooter03_1_json"
+			"name": "ArrowShooter031json"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter03_1.png",
 			"type": "image",
-			"name": "ArrowShooter03_1_png"
+			"name": "ArrowShooter031png"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter03_2.json",
 			"type": "json",
-			"name": "ArrowShooter03_2_json"
+			"name": "ArrowShooter032json"
 		},
 		{
 			"url": "assets/game/towers/ArrowShooter03_2.png",
 			"type": "image",
-			"name": "ArrowShooter03_2_png"
+			"name": "ArrowShooter032png"
 		},
 		{
 			"url": "assets/game/towers/ExploTower01.json",
 			"type": "json",
-			"name": "ExploTower01_json"
+			"name": "ExploTower01json"
 		},
 		{
 			"url": "assets/game/towers/ExploTower01.png",
 			"type": "image",
-			"name": "ExploTower01_png"
+			"name": "ExploTower01png"
 		},
 		{
 			"url": "assets/game/towers/ExploTower02.json",
 			"type": "json",
-			"name": "ExploTower02_json"
+			"name": "ExploTower02json"
 		},
 		{
 			"url": "assets/game/towers/ExploTower02.png",
 			"type": "image",
-			"name": "ExploTower02_png"
+			"name": "ExploTower02png"
 		},
 		{
 			"url": "assets/game/towers/ExploTower03_1.json",
 			"type": "json",
-			"name": "ExploTower03_1_json"
+			"name": "ExploTower031json"
 		},
 		{
 			"url": "assets/game/towers/ExploTower03_1.png",
 			"type": "image",
-			"name": "ExploTower03_1_png"
+			"name": "ExploTower031png"
 		},
 		{
 			"url": "assets/game/towers/towers.json",
 			"type": "sheet",
-			"name": "towers_json",
+			"name": "towersjson",
 			"subkeys": "ArrowTower01,ArrowTower02,ArrowTower03_1,ArrowTower03_2,MagicTower01,MagicTower02,MagicTower03_1,MagicTower03_2,ShieldTower01,ShieldTower02,ShieldTower03_1,ShieldTower03_2"
 		},
 		{
 			"url": "assets/game/weapon/Arrow01.json",
 			"type": "json",
-			"name": "Arrow01_json"
+			"name": "Arrow01json"
 		},
 		{
 			"url": "assets/game/weapon/Arrow01.png",
 			"type": "image",
-			"name": "Arrow01_png"
+			"name": "Arrow01png"
 		},
 		{
 			"url": "assets/game/weapon/Arrow032.json",
 			"type": "json",
-			"name": "Arrow032_json"
+			"name": "Arrow032json"
 		},
 		{
 			"url": "assets/game/weapon/Arrow032.png",
 			"type": "image",
-			"name": "Arrow032_png"
+			"name": "Arrow032png"
 		},
 		{
 			"url": "assets/game/weapon/Explo01.json",
 			"type": "json",
-			"name": "Explo01_json"
+			"name": "Explo01json"
 		},
 		{
 			"url": "assets/game/weapon/Explo01.png",
 			"type": "image",
-			"name": "Explo01_png"
+			"name": "Explo01png"
 		},
 		{
 			"url": "assets/game/weapon/Explo02.json",
 			"type": "json",
-			"name": "Explo02_json"
+			"name": "Explo02json"
 		},
 		{
 			"url": "assets/game/weapon/Explo02.png",
 			"type": "image",
-			"name": "Explo02_png"
+			"name": "Explo02png"
 		},
 		{
 			"url": "assets/game/weapon/Explo03_1.json",
 			"type": "json",
-			"name": "Explo03_1_json"
+			"name": "Explo031json"
 		},
 		{
 			"url": "assets/game/weapon/Explo03_1.png",
 			"type": "image",
-			"name": "Explo03_1_png"
+			"name": "Explo031png"
 		},
 		{
 			"url": "assets/game/weapon/MagicBullet010203.json",
 			"type": "json",
-			"name": "MagicBullet010203_json"
+			"name": "MagicBullet010203json"
 		},
 		{
 			"url": "assets/game/weapon/MagicBullet010203.png",
 			"type": "image",
-			"name": "MagicBullet010203_png"
+			"name": "MagicBullet010203png"
 		},
 		{
 			"url": "assets/game/0ui_bg.jpg",
@@ -707,7 +723,7 @@
 		{
 			"url": "assets/game/backToMaps.png",
 			"type": "image",
-			"name": "backToMaps_png"
+			"name": "backToMaps"
 		},
 		{
 			"url": "assets/game/cuizi.png",
@@ -747,12 +763,12 @@
 		{
 			"url": "assets/game/lifeBar.png",
 			"type": "image",
-			"name": "lifeBar_png"
+			"name": "lifeBar"
 		},
 		{
 			"url": "assets/game/lifeBarBg.png",
 			"type": "image",
-			"name": "lifeBarBg_png"
+			"name": "lifeBarBg"
 		},
 		{
 			"url": "assets/game/loadbg.jpg",
@@ -772,7 +788,7 @@
 		{
 			"url": "assets/game/lose.png",
 			"type": "image",
-			"name": "lose_png"
+			"name": "lose"
 		},
 		{
 			"url": "assets/game/map.jpg",
@@ -842,7 +858,7 @@
 		{
 			"url": "assets/game/mb.png",
 			"type": "image",
-			"name": "mb_png"
+			"name": "mb"
 		},
 		{
 			"url": "assets/game/men.png",
@@ -852,7 +868,7 @@
 		{
 			"url": "assets/game/NumFont.fnt",
 			"type": "font",
-			"name": "NumFont_fnt"
+			"name": "NumFont"
 		},
 		{
 			"url": "assets/game/NumFont.png",
@@ -872,7 +888,7 @@
 		{
 			"url": "assets/game/NumFont2.fnt",
 			"type": "font",
-			"name": "NumFont2_fnt"
+			"name": "NumFont2"
 		},
 		{
 			"url": "assets/game/NumFont2.png",
@@ -882,7 +898,7 @@
 		{
 			"url": "assets/game/NumFont3.fnt",
 			"type": "font",
-			"name": "NumFont3_fnt"
+			"name": "NumFont3"
 		},
 		{
 			"url": "assets/game/NumFont3.png",
@@ -917,62 +933,62 @@
 		{
 			"url": "assets/game/quitgame.png",
 			"type": "image",
-			"name": "quitgame_png"
+			"name": "quitgame"
 		},
 		{
 			"url": "assets/game/stone1.json",
 			"type": "json",
-			"name": "stone1_json"
+			"name": "stone1json"
 		},
 		{
 			"url": "assets/game/stone1.png",
 			"type": "image",
-			"name": "stone1_png"
+			"name": "stone1png"
 		},
 		{
 			"url": "assets/game/tryagain.png",
 			"type": "image",
-			"name": "tryagain_png"
+			"name": "tryagain"
 		},
 		{
 			"url": "assets/game/uiinfo.png",
 			"type": "image",
-			"name": "uiinfo_png"
+			"name": "uiinfo"
 		},
 		{
 			"url": "assets/game/uiskill1.png",
 			"type": "image",
-			"name": "uiskill1_png"
+			"name": "uiskill1"
 		},
 		{
 			"url": "assets/game/uiskill1off.png",
 			"type": "image",
-			"name": "uiskill1off_png"
+			"name": "uiskill1off"
 		},
 		{
 			"url": "assets/game/uiskill2.png",
 			"type": "image",
-			"name": "uiskill2_png"
+			"name": "uiskill2"
 		},
 		{
 			"url": "assets/game/uiskill2off.png",
 			"type": "image",
-			"name": "uiskill2off_png"
+			"name": "uiskill2off"
 		},
 		{
 			"url": "assets/game/uiskillbg.png",
 			"type": "image",
-			"name": "uiskillbg_png"
+			"name": "uiskillbg"
 		},
 		{
 			"url": "assets/game/uiskilloff.png",
 			"type": "image",
-			"name": "uiskilloff_png"
+			"name": "uiskilloff"
 		},
 		{
 			"url": "assets/game/uiskillon.png",
 			"type": "image",
-			"name": "uiskillon_png"
+			"name": "uiskillon"
 		},
 		{
 			"url": "assets/game/uptower.png",
@@ -982,7 +998,7 @@
 		{
 			"url": "assets/game/victory.png",
 			"type": "image",
-			"name": "victory_png"
+			"name": "victory"
 		},
 		{
 			"url": "assets/game/welbg.jpg",

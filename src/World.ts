@@ -147,7 +147,14 @@ class World extends eui.Component {
 
     // 触发加载关卡资源
     private loadGuanka() {
-        this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, GuanKa.resourceNameArr[Main.choseNumber]));
+        if (Main.commonResourceMark) {
+            this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "uiLoad"));
+            Main.commonResourceMark = false;
+        } else {
+            this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, GuanKa.resourceNameArr[Main.choseNumber]));
+        }
+        // 停止播放背景音乐
+        SoundManager.stopBgSound();
     }
 
     // 关闭游戏模式选择框

@@ -148,13 +148,17 @@ var Main = (function (_super) {
     };
     // 根据当前加载的场景资源组名，添加相应场景，引导界面除外
     Main.prototype.addSence = function (e) {
+        var resName = e.resName;
         var sceneName = {
             "maps": "World",
             "welcomeload": 'Run',
             "guanka01": "Guanka01"
         };
+        if (resName === 'uiLoad') {
+            resName = GuanKa.resourceNameArr[Main.choseNumber];
+        }
         // 获取对象名称
-        var className = egret.getDefinitionByName(sceneName[e.resName]);
+        var className = egret.getDefinitionByName(sceneName[resName]);
         var obj = new className();
         this.gameLayer.addChild(obj);
         this.views.push(obj);
@@ -163,6 +167,8 @@ var Main = (function (_super) {
     };
     // 当前挑战的关卡模式   无尽模式 | 故事模式
     Main.wujin = false;
+    // 标记：是否第一次加载游戏元素通用资源（比如：敌人、箭塔、士兵等，防止重复触发加载），默认 第一次 true
+    Main.commonResourceMark = true;
     return Main;
 }(eui.UILayer));
 __reflect(Main.prototype, "Main");

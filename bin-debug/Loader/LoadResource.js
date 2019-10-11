@@ -129,9 +129,34 @@ var LoadResource = (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadGroup(e.resName, 0, this.loadBar)];
+                    case 0:
+                        if (!(e.resName === 'uiLoad')) return [3 /*break*/, 6];
+                        console.log('加载游戏关卡内部的ui资源');
+                        return [4 /*yield*/, this.loadGroup('uiLoad', 5, this.loadBar)];
                     case 1:
                         _a.sent();
+                        console.log('加载怪物资源');
+                        return [4 /*yield*/, this.loadGroup('monsterLoad', 4, this.loadBar)];
+                    case 2:
+                        _a.sent();
+                        console.log('加载塔类资源');
+                        return [4 /*yield*/, this.loadGroup('towerLoad', 3, this.loadBar)];
+                    case 3:
+                        _a.sent();
+                        console.log('加载音效资源');
+                        return [4 /*yield*/, this.loadGroup('soundLoad', 2, this.loadBar)];
+                    case 4:
+                        _a.sent();
+                        console.log('加载关卡资源');
+                        return [4 /*yield*/, this.loadGroup(GuanKa.resourceNameArr[Main.choseNumber], 1, this.loadBar)];
+                    case 5:
+                        _a.sent();
+                        return [3 /*break*/, 8];
+                    case 6: return [4 /*yield*/, this.loadGroup(e.resName, 0, this.loadBar)];
+                    case 7:
+                        _a.sent();
+                        _a.label = 8;
+                    case 8:
                         // 资源加载完毕后，触发动画
                         this.loadBar.hideLoader(e.resName);
                         return [2 /*return*/];

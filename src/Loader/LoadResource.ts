@@ -58,7 +58,27 @@ class LoadResource extends egret.DisplayObjectContainer {
 
     // 开始加载资源
     private async startLoadBar(e:MainEvent) {
-        await this.loadGroup(e.resName, 0, this.loadBar);
+        // 加载游戏元素通用资源（比如：敌人、箭塔、士兵等）判断
+        if (e.resName === 'uiLoad') {
+            console.log('加载游戏关卡内部的ui资源');
+            await this.loadGroup('uiLoad', 5, this.loadBar);
+
+            console.log('加载怪物资源');
+            await this.loadGroup('monsterLoad', 4, this.loadBar);
+
+            console.log('加载塔类资源');
+            await this.loadGroup('towerLoad', 3, this.loadBar);
+            
+            console.log('加载音效资源');  
+            await this.loadGroup('soundLoad', 2, this.loadBar);
+
+            console.log('加载关卡资源');  
+            await this.loadGroup(GuanKa.resourceNameArr[Main.choseNumber], 1, this.loadBar);
+            
+        } else {
+            await this.loadGroup(e.resName, 0, this.loadBar);
+        }
+        
         // 资源加载完毕后，触发动画
         this.loadBar.hideLoader(e.resName);
     }

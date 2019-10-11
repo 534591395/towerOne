@@ -18,6 +18,9 @@ class Main extends eui.UILayer {
 
     // 当前挑战的关卡模式   无尽模式 | 故事模式
     public static wujin: boolean = false;
+
+    // 标记：是否第一次加载游戏元素通用资源（比如：敌人、箭塔、士兵等，防止重复触发加载），默认 第一次 true
+    public static commonResourceMark: boolean = true;
     
     /**场景堆栈*/
     private views: any[] = [];
@@ -114,13 +117,18 @@ class Main extends eui.UILayer {
 
     // 根据当前加载的场景资源组名，添加相应场景，引导界面除外
     private addSence(e:MainEvent) {
+        let resName = e.resName;
         const sceneName: any = {
             "maps": "World",
             "welcomeload": 'Run',
             "guanka01": "Guanka01"
         };
+        if (resName === 'uiLoad') {
+            resName = GuanKa.resourceNameArr[Main.choseNumber];
+        }
+
         // 获取对象名称
-        const className = egret.getDefinitionByName(sceneName[e.resName]);
+        const className = egret.getDefinitionByName(sceneName[resName]);
         const obj = new className();
         this.gameLayer.addChild(obj);
         this.views.push(obj);
