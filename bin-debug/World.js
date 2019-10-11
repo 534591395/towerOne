@@ -15,6 +15,8 @@ var World = (function (_super) {
     __extends(World, _super);
     function World() {
         var _this = _super.call(this) || this;
+        // 关卡旗帜集合
+        _this.flagArr = [];
         _this.skinName = "resource/skins/world.exml";
         // 播放背景音乐
         SoundManager.playBgSound("mapbgsound");
@@ -30,6 +32,26 @@ var World = (function (_super) {
         TweenMax.to(this.heroIcon, 0.5, { delay: 1, y: 397, ease: Cubic.easeInOut });
         this.backToIndex.touchEnabled = true;
         this.backToIndex.addEventListener(egret.TouchEvent.TOUCH_TAP, this.backRun, this);
+        this.defalutFlag();
+    };
+    // 初始化关卡旗帜属性
+    World.prototype.defalutFlag = function () {
+        var _this = this;
+        var arr = GuanKa.getData();
+        arr.map(function (item, i) {
+            // 该关卡已通关后颜色变化
+            var flag = _this[item.name];
+            if (flag) {
+                if (item.ispass) {
+                    flag.source = RES.getRes("flag1");
+                }
+                flag.touchEnabled = true;
+                flag.addEventListener(egret.TouchEvent.TOUCH_TAP, _this.choseGuanka, _this);
+                _this.flagArr.push(flag);
+                // 显示动画
+                egret.Tween.get(flag).to({ alpha: 1, y: flag.y + 30 }, 300 + i * 0.1 + 1);
+            }
+        });
     };
     // 返回主界面
     World.prototype.backRun = function () {
@@ -37,6 +59,8 @@ var World = (function (_super) {
         this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "welcomeload"));
         SoundManager.stopBgSound();
     };
+    // 选择某个关卡
+    World.prototype.choseGuanka = function () { };
     return World;
 }(eui.Component));
 __reflect(World.prototype, "World");

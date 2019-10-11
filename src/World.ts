@@ -3,9 +3,11 @@
  */
 
 class World extends eui.Component {
-    private flag01: eui.Image;
     private backToIndex: eui.Image;
     private heroIcon: eui.Image;
+
+    // 关卡旗帜集合
+    private flagArr: any[] = [];
 
     public constructor() {
         super();
@@ -27,7 +29,27 @@ class World extends eui.Component {
 
         this.backToIndex.touchEnabled = true;
         this.backToIndex.addEventListener(egret.TouchEvent.TOUCH_TAP, this.backRun, this);
+        this.defalutFlag();
     }
+
+    // 初始化关卡旗帜属性
+    private defalutFlag() {
+        const arr = GuanKa.getData();
+        arr.map((item, i) => {
+            // 该关卡已通关后颜色变化
+            const flag: eui.Image = this[item.name]; 
+            if (flag) {
+                if (item.ispass) {
+                    flag.source = RES.getRes("flag1");
+                }
+                flag.touchEnabled = true;
+                flag.addEventListener(egret.TouchEvent.TOUCH_TAP, this.choseGuanka, this);
+                this.flagArr.push(flag);
+                // 显示动画
+                egret.Tween.get(flag).to({ alpha: 1, y: flag.y+30 },300 + i*0.1+1);
+            }
+        });
+    } 
 
     // 返回主界面
     private backRun():void {
@@ -36,5 +58,8 @@ class World extends eui.Component {
         this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar,"welcomeload"));
 
         SoundManager.stopBgSound();
-    } 
+    }
+
+    // 选择某个关卡
+    private choseGuanka() {} 
 }

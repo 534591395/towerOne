@@ -7,8 +7,16 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 var GuanKa = (function () {
     function GuanKa() {
     }
+    // 获取关卡状态
+    GuanKa.getData = function () {
+        return GuanKa.data;
+    };
     // 每个关卡的资源组名
     GuanKa.resourceNameArr = ["guanka01"];
+    // 关卡状态
+    GuanKa.data = [
+        { "ispass": false, "wujin": false, name: "flag01", level: 1 }
+    ];
     return GuanKa;
 }());
 __reflect(GuanKa.prototype, "GuanKa");
