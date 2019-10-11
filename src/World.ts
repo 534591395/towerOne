@@ -107,6 +107,8 @@ class World extends eui.Component {
         if (arr[this.choseNumber]["ispass"]) {
             this.wujinmoshi.touchEnabled = true;
             this.wujinmoshi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleWujin, this);
+        } else {
+            this.wujinmoshi.source = RES.getRes("wujinmoshi2");
         }
 
         // 故事模式按钮

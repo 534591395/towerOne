@@ -92,6 +92,9 @@ var World = (function (_super) {
             this.wujinmoshi.touchEnabled = true;
             this.wujinmoshi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleWujin, this);
         }
+        else {
+            this.wujinmoshi.source = RES.getRes("wujinmoshi2");
+        }
         // 故事模式按钮
         this.gushimoshi.touchEnabled = true;
         this.gushimoshi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleGushi, this);
