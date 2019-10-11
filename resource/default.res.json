@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,arrow_fire1_mp3,arrow_fire2_mp3,arrow_hit1_mp3,arrow_hit2_mp3,arrow_ready1_mp3,arrow_ready2_mp3,arrow_ready3_mp3,bo_start_mp3,building_mp3,explo_fireend1_mp3,explo_firestart1_mp3,explo_ready1_mp3,explo_ready2_mp3,explo_ready3_mp3,magic_fire1_mp3,magic_ready1_mp3,magic_ready2_mp3,magic_ready3_mp3,monster_die1_mp3,monster_die2_mp3,monster_die3_mp3,monster_die4_mp3,select_mp3,sell_tower_mp3,shield_fire1_mp3,shield_fire2_mp3,shield_fire3_mp3,shield_ready1_mp3,shield_ready2_mp3,shield_ready3_mp3,victory,0ui_bg_jpg,map1_jpg,map1_json,map2_jpg,map2_json,map3_jpg,map3_json,map4_jpg,map4_json,map5_jpg,map5_json,NumFont_png,NumFont0_png,NumFont2_png,NumFont3_png,NumFontda_png,pause_png,uptower_png,0ui_btn_png",
+			"keys": "checkbox_select_disabled_png,checkbox_select_down_png,checkbox_select_up_png,checkbox_unselect_png,selected_png,border_png,header_png,radiobutton_select_disabled_png,radiobutton_select_down_png,radiobutton_select_up_png,radiobutton_unselect_png,roundthumb_png,thumb_png,track_png,tracklight_png,handle_png,off_png,on_png,button_down_png,button_up_png,thumb_pb_png,track_pb_png,track_sb_png,bg_jpg,egret_icon_png,description_json,arrow_fire1_mp3,arrow_fire2_mp3,arrow_hit1_mp3,arrow_hit2_mp3,arrow_ready1_mp3,arrow_ready2_mp3,arrow_ready3_mp3,bo_start,building,explo_fireend1_mp3,explo_firestart1_mp3,explo_ready1_mp3,explo_ready2_mp3,explo_ready3_mp3,magic_fire1_mp3,magic_ready1_mp3,magic_ready2_mp3,magic_ready3_mp3,monster_die1_mp3,monster_die2_mp3,monster_die3_mp3,monster_die4_mp3,select,sell_tower_mp3,shield_fire1_mp3,shield_fire2_mp3,shield_fire3_mp3,shield_ready1_mp3,shield_ready2_mp3,shield_ready3_mp3,0ui_bg_jpg,map1_jpg,map1_json,map2_jpg,map2_json,map3_jpg,map3_json,map4_jpg,map4_json,map5_jpg,map5_json,NumFont_png,NumFont0_png,NumFont2_png,NumFont3_png,NumFontda_png,pause_png,uptower_png,0ui_btn_png",
 			"name": "preload"
 		},
 		{
@@ -21,7 +21,7 @@
 			"name": "guanka01"
 		},
 		{
-			"keys": "buildTooljson,Base02,Base03,uiinfo,backToMaps,uiskillbg,uiskilloff,uiskillon,uiskill1,uiskill1off,uiskill2,uiskill2off,mb,victory,lose,tryagain,quitgame,NumFont,NumFont2,NumFont3,lifeBarBg,lifeBar,stone1png,stone1json",
+			"keys": "buildTooljson,Base02,Base03,uiinfo,backToMaps,uiskillbg,uiskilloff,uiskillon,uiskill1,uiskill1off,uiskill2,uiskill2off,mb,lose,tryagain,quitgame,NumFont,NumFont2,NumFont3,lifeBarBg,lifeBar,stone1png,stone1json",
 			"name": "uiLoad"
 		},
 		{
@@ -33,7 +33,7 @@
 			"name": "towerLoad"
 		},
 		{
-			"keys": "victory",
+			"keys": "bo_start,victory,building,select",
 			"name": "soundLoad"
 		}
 	],
@@ -432,12 +432,12 @@
 		{
 			"url": "assets/game/sound/bo_start.mp3",
 			"type": "sound",
-			"name": "bo_start_mp3"
+			"name": "bo_start"
 		},
 		{
 			"url": "assets/game/sound/building.mp3",
 			"type": "sound",
-			"name": "building_mp3"
+			"name": "building"
 		},
 		{
 			"url": "assets/game/sound/explo_fireend1.mp3",
@@ -532,7 +532,7 @@
 		{
 			"url": "assets/game/sound/select.mp3",
 			"type": "sound",
-			"name": "select_mp3"
+			"name": "select"
 		},
 		{
 			"url": "assets/game/sound/sell_tower.mp3",
