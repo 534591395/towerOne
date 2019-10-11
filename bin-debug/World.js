@@ -30,7 +30,7 @@ var World = (function (_super) {
     // 开始处理关卡信息
     World.prototype.guanka = function () {
         TweenMax.to(this.backToIndex, 0.5, { delay: 1, y: 421, ease: Cubic.easeInOut });
-        TweenMax.to(this.heroIcon, 0.5, { delay: 1, y: 397, ease: Cubic.easeInOut });
+        //TweenMax.to(this.heroIcon, 0.5, {delay: 1, y: 397, ease: Cubic.easeInOut});
         this.backToIndex.touchEnabled = true;
         this.backToIndex.addEventListener(egret.TouchEvent.TOUCH_TAP, this.backRun, this);
         this.defalutFlag();
@@ -82,7 +82,7 @@ var World = (function (_super) {
     };
     // 选择某个关卡
     World.prototype.choseGuanka = function (e) {
-        this.choseNumber = this.flagArr.indexOf(e.currentTarget);
+        Main.choseNumber = this.flagArr.indexOf(e.currentTarget);
         // 取消所有旗帜的监听（禁止再选择，防止误操作）
         this.removeFlagsEvent();
         // 显示游戏模式选择面板 -- 无尽模式和故事模式
@@ -92,7 +92,7 @@ var World = (function (_super) {
     World.prototype.showChosePannel = function () {
         var arr = GuanKa.getData();
         // 若当前选择的关卡故事模式通关, 可选择无尽模式 
-        if (arr[this.choseNumber]["ispass"]) {
+        if (arr[Main.choseNumber]["ispass"]) {
             this.wujinmoshi.touchEnabled = true;
             this.wujinmoshi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleWujin, this);
         }
@@ -106,17 +106,25 @@ var World = (function (_super) {
         this.closeBtn.touchEnabled = true;
         this.closeBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleClose, this);
         // 当前显示游戏关卡数字ui
-        this.choseNumberLabel.text = (this.choseNumber + 1).toString();
+        this.choseNumberLabel.text = (Main.choseNumber + 1).toString();
         // 无尽模式最高通关记录ui
-        this.wujinMaxRoundLabel.text = GuanKa.getData()[this.choseNumber]["wujinMaxRound"];
+        this.wujinMaxRoundLabel.text = GuanKa.getData()[Main.choseNumber]["wujinMaxRound"];
         // 游戏模式选择框显示动画效果
         TweenMax.to(this.chosePannel, 0.3, { alpha: 1, scaleX: 1, scaleY: 1, ease: Back.easeOut });
     };
     // 进入无尽模式
     World.prototype.handleWujin = function () {
+        Main.wujin = true;
+        this.loadGuanka();
     };
     // 进入故事模式
     World.prototype.handleGushi = function () {
+        Main.wujin = false;
+        this.loadGuanka();
+    };
+    // 触发加载关卡资源
+    World.prototype.loadGuanka = function () {
+        this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, GuanKa.resourceNameArr[Main.choseNumber]));
     };
     // 关闭游戏模式选择框
     World.prototype.handleClose = function () {
@@ -131,6 +139,13 @@ var World = (function (_super) {
         TweenMax.to(this.chosePannel, 0.3, { alpha: 0, scaleX: 0.1, scaleY: 0.1, ease: Back.easeIn, onComplete: function () {
                 _this.addFlagsEvent();
             } });
+    };
+    // 
+    World.prototype.destroy = function () {
+        RES.destroyRes("map");
+        // 清除该类下所有补间动画
+        TweenMax.killChildTweensOf(this);
+        this.removeFlagsEvent();
     };
     return World;
 }(eui.Component));

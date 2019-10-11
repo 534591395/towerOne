@@ -13,6 +13,12 @@ class Main extends eui.UILayer {
     // 资源加载类
     private loadResource: LoadResource;
     
+    // 当前挑战的关卡编号， 通过该变量值获取当前加载关卡资源组名称：resourceName = GuanKa.resourceNameArr[choseNumber];
+    public static choseNumber: number;
+
+    // 当前挑战的关卡模式   无尽模式 | 故事模式
+    public static wujin: boolean = false;
+    
     /**场景堆栈*/
     private views: any[] = [];
 
@@ -110,7 +116,8 @@ class Main extends eui.UILayer {
     private addSence(e:MainEvent) {
         const sceneName: any = {
             "maps": "World",
-            "welcomeload": 'Run'
+            "welcomeload": 'Run',
+            "guanka01": "Guanka01"
         };
         // 获取对象名称
         const className = egret.getDefinitionByName(sceneName[e.resName]);

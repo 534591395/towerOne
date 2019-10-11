@@ -150,7 +150,8 @@ var Main = (function (_super) {
     Main.prototype.addSence = function (e) {
         var sceneName = {
             "maps": "World",
-            "welcomeload": 'Run'
+            "welcomeload": 'Run',
+            "guanka01": "Guanka01"
         };
         // 获取对象名称
         var className = egret.getDefinitionByName(sceneName[e.resName]);
@@ -160,6 +161,8 @@ var Main = (function (_super) {
         // 添加自定义监听事件，
         obj.addEventListener(MainEvent.OpenLoadBar, this.showLoadBar, this);
     };
+    // 当前挑战的关卡模式   无尽模式 | 故事模式
+    Main.wujin = false;
     return Main;
 }(eui.UILayer));
 __reflect(Main.prototype, "Main");
