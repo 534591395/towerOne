@@ -5,6 +5,20 @@
 class World extends eui.Component {
     private backToIndex: eui.Image;
     private heroIcon: eui.Image;
+    // 无尽模式按钮
+    private wujinmoshi: eui.Image;
+    // 故事模式按钮
+    private gushimoshi: eui.Image;
+    // 关闭游戏模式选择框按钮
+    private closeBtn: eui.Image;
+    // 游戏模式选择框
+    private chosePannel: eui.Image;
+    // 无尽模式最高通关记录
+    private wujinMaxRoundLabel: eui.Label;
+    // 当前显示游戏关卡数字ui
+    private choseNumberLabel: eui.Label;
+    // 当前挑战的关卡编号， 通过该变量值获取当前加载关卡资源组名称：resourceName = GuanKa.resourceNameArr[choseNumber];
+    private choseNumber: number;
 
     // 关卡旗帜集合
     private flagArr: any[] = [];
@@ -22,7 +36,8 @@ class World extends eui.Component {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         this.guanka();
     }
-
+    
+    // 开始处理关卡信息
     private guanka():void {
         TweenMax.to(this.backToIndex, 0.5, {delay: 1, y: 421, ease: Cubic.easeInOut});
         TweenMax.to(this.heroIcon, 0.5, {delay: 1, y: 397, ease: Cubic.easeInOut});
@@ -36,20 +51,36 @@ class World extends eui.Component {
     private defalutFlag() {
         const arr = GuanKa.getData();
         arr.map((item, i) => {
-            // 该关卡已通关后颜色变化
+            // flag 已在eui皮肤里定义
             const flag: eui.Image = this[item.name]; 
             if (flag) {
+                // 该关卡已通关后颜色变化
                 if (item.ispass) {
                     flag.source = RES.getRes("flag1");
                 }
+                // 开启触摸事件
                 flag.touchEnabled = true;
-                flag.addEventListener(egret.TouchEvent.TOUCH_TAP, this.choseGuanka, this);
-                this.flagArr.push(flag);
                 // 显示动画
                 egret.Tween.get(flag).to({ alpha: 1, y: flag.y+30 },300 + i*0.1+1);
+                this.flagArr.push(flag);
             }
         });
-    } 
+        this.addFlagsEvent();
+    }
+
+    // 给每个旗帜添加点击监听事件
+    private addFlagsEvent() {
+        this.flagArr.map((flag, i) => {
+            flag.addEventListener(egret.TouchEvent.TOUCH_TAP, this.choseGuanka, this);
+        });
+    }
+
+    // 移除每个旗帜的点击监听事件 
+    private removeFlagsEvent() {
+        this.flagArr.map((flag, i) => {
+            flag.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.choseGuanka, this);
+        });
+    }
 
     // 返回主界面
     private backRun():void {
@@ -61,5 +92,62 @@ class World extends eui.Component {
     }
 
     // 选择某个关卡
-    private choseGuanka() {} 
+    private choseGuanka(e:egret.TouchEvent) {
+        this.choseNumber = this.flagArr.indexOf(e.currentTarget);
+        // 取消所有旗帜的监听（禁止再选择，防止误操作）
+        this.removeFlagsEvent();
+        // 显示游戏模式选择面板 -- 无尽模式和故事模式
+        this.showChosePannel();
+    } 
+
+    // 游戏模式选择面板
+    private showChosePannel() {
+        const arr = GuanKa.getData();
+        // 若当前选择的关卡故事模式通关, 可选择无尽模式 
+        if (arr[this.choseNumber]["ispass"]) {
+            this.wujinmoshi.touchEnabled = true;
+            this.wujinmoshi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleWujin, this);
+        }
+
+        // 故事模式按钮
+        this.gushimoshi.touchEnabled = true;
+        this.gushimoshi.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleGushi, this);
+        
+        // 关闭按钮
+        this.closeBtn.touchEnabled = true;
+        this.closeBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleClose, this);
+
+        // 当前显示游戏关卡数字ui
+        this.choseNumberLabel.text = (this.choseNumber + 1).toString();
+
+        // 无尽模式最高通关记录ui
+        this.wujinMaxRoundLabel.text = GuanKa.getData()[this.choseNumber]["wujinMaxRound"];
+
+        // 游戏模式选择框显示动画效果
+        TweenMax.to(this.chosePannel, 0.3, {alpha: 1, scaleX: 1, scaleY: 1, ease: Back.easeOut});
+    }
+
+    // 进入无尽模式
+    private handleWujin() {
+
+    }
+
+    // 进入故事模式
+    private handleGushi() {
+
+    }
+
+    // 关闭游戏模式选择框
+    private handleClose() {
+        // 清除所有监听事件，防止再次显示选择框后添加多次事件
+        this.closeBtn.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.handleClose, this);
+        this.gushimoshi.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.handleGushi, this);
+        if(this.wujinmoshi.hasEventListener(egret.TouchEvent.TOUCH_TAP)) {
+            this.wujinmoshi.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.handleWujin, this);
+        }
+        // 关闭动画效果
+        TweenMax.to(this.chosePannel, 0.3, {alpha: 0, scaleX: 0.1, scaleY: 0.1, ease: Back.easeIn, onComplete: () => {
+            this.addFlagsEvent();
+        }});
+    }
 }

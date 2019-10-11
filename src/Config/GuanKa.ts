@@ -8,7 +8,7 @@ class GuanKa {
 
     // 关卡状态
     public static data: any[] = [
-        {"ispass": false, "wujin": false, name: "flag01", level: 1}
+        {"ispass": false, "wujin": false, name: "flag01", wujinMaxRound: 0}
     ];
 
     // 获取关卡状态
