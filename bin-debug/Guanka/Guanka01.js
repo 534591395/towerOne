@@ -17,7 +17,10 @@ var Guanka01 = (function (_super) {
         var _this = _super.call(this) || this;
         console.log("游戏关卡一");
         _this.backgroundImage.texture = Utiles.createBitmapByName("map0").texture;
+        // 设置地基坐标集合，当前手动设置
+        _this.foundationPosiotionArr = [[484, 266], [436, 316], [354, 316], [314, 266], [354, 206], [436, 206], [634, 316], [394, 436], [228, 141]];
         _this.createUI();
+        _this.createFoundation(Foundation01);
         return _this;
     }
     return Guanka01;
