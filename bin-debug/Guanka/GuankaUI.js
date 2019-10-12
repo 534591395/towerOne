@@ -29,6 +29,18 @@ var GuankaUI = (function (_super) {
         // 允许该事件冒泡
         this.dispatchEvent(new MainEvent(MainEvent.QuitGuanka, null, true));
     };
+    // 设置生命
+    GuankaUI.prototype.setLife = function (num) {
+        this.lifeLeftTxt.text = num.toString();
+    };
+    // 设置金币数量
+    GuankaUI.prototype.setGold = function (num) {
+        this.goldTxt.text = num.toString();
+    };
+    // 显示轮次
+    GuankaUI.prototype.setRound = function (currentRound, totalRound) {
+        this.roundTxt.text = currentRound.toString() + "/" + totalRound.toString();
+    };
     return GuankaUI;
 }(eui.Component));
 __reflect(GuankaUI.prototype, "GuankaUI");

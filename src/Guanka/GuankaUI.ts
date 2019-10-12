@@ -6,6 +6,12 @@
 class GuankaUI extends eui.Component {
      // 点击返回到世界地图页
      private backToWorldBtn: eui.Image;
+     // 显示生命
+     private lifeLeftTxt: eui.BitmapLabel;
+     // 显示金币
+     private goldTxt: eui.BitmapLabel;
+     // 显示轮次
+     private roundTxt: eui.BitmapLabel;
 
     constructor() {
         super();
@@ -24,5 +30,20 @@ class GuankaUI extends eui.Component {
     private handleBackToWorld() {
         // 允许该事件冒泡
         this.dispatchEvent(new MainEvent(MainEvent.QuitGuanka, null, true));
+    }
+
+    // 设置生命
+    public setLife(num:number) {
+        this.lifeLeftTxt.text = num.toString();
+    }
+
+    // 设置金币数量
+    public setGold(num:number) {
+        this.goldTxt.text = num.toString();
+    }
+
+    // 显示轮次
+    public setRound(currentRound:number, totalRound:number) {
+        this.roundTxt.text = currentRound.toString() + "/" + totalRound.toString();
     }
 }
