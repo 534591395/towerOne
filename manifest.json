@@ -23,6 +23,7 @@
 		"bin-debug/Events/MainEvent.js",
 		"bin-debug/Main.js",
 		"bin-debug/AssetAdapter.js",
+		"bin-debug/Guanka/GuankaUI.js",
 		"bin-debug/Loader/LoadBar.js",
 		"bin-debug/Loader/LoadingUI.js",
 		"bin-debug/Loader/LoadResource.js",

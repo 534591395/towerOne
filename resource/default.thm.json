@@ -31,6 +31,7 @@
 		"resource/eui_skins/VScrollBarSkin.exml",
 		"resource/eui_skins/VSliderSkin.exml",
 		"resource/skins/bg.exml",
+		"resource/skins/guankaUI.exml",
 		"resource/skins/loadbar.exml",
 		"resource/skins/loading.exml",
 		"resource/skins/world.exml"

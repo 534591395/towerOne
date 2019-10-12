@@ -16,6 +16,8 @@ var Guanka01 = (function (_super) {
     function Guanka01() {
         var _this = _super.call(this) || this;
         console.log("游戏关卡一");
+        _this.backgroundImage.texture = Utiles.createBitmapByName("map0").texture;
+        _this.createUI();
         return _this;
     }
     return Guanka01;

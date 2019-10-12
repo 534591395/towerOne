@@ -12,6 +12,8 @@ class MainEvent extends egret.Event {
 
     public static LoadAnimateComplete:string = '资源加载完成，动画播放结束';
 
+    public static QuitGuanka: string = '退出关卡';
+
     private _resName: string = ""; 
 
     public constructor(type:string, resName:string="", bubbles:boolean=false, cancelable:boolean=false) {

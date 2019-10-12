@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin width="800" height="480" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="100%" x="0" y="0" height="100%">
+		<e:Group id="topLeftGroup" width="162" height="54" x="0" y="0">
+			<e:Image width="100%" height="100%" x="0" y="0" source="uiinfo"/>
+			<e:BitmapLabel id="lifeLeftTxt" width="33" height="18" x="43" y="6" font="NumFont" anchorOffsetX="0" anchorOffsetY="0" letterSpacing="-1"/>
+			<e:BitmapLabel id="goldTxt" width="46" height="15" x="97" y="7" font="NumFont" anchorOffsetX="0" anchorOffsetY="0" letterSpacing="-1"/>
+			<e:BitmapLabel id="roundTxt" width="56" height="15" x="80" y="29" anchorOffsetX="0" anchorOffsetY="0" font="NumFont3" letterSpacing="-1"/>
+		</e:Group>
+		<e:Image id="backToWorldBtn" width="42" height="36" x="740" y="10" source="backToMaps" touchEnabled="true"/>
+		<e:Group id="bottomLeftGroup" anchorOffsetY="0" bottom="-14" left="0">
+			<e:Image width="100%" height="100%" x="0" y="0" source="uiskillbg"/>
+		</e:Group>
+	</e:Group>
+</e:Skin>

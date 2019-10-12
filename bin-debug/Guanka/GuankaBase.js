@@ -14,8 +14,24 @@ r.prototype = e.prototype, t.prototype = new r();
 var GuankaBase = (function (_super) {
     __extends(GuankaBase, _super);
     function GuankaBase() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        // 背景图片
+        _this.backgroundImage = new egret.Bitmap();
+        _this.addChild(_this.backgroundImage);
+        _this.uiLayer = new egret.DisplayObjectContainer();
+        _this.addChild(_this.uiLayer);
+        return _this;
     }
+    // 生成UI特效层、提示层
+    GuankaBase.prototype.createUI = function () {
+        this.guankaUI = new GuankaUI();
+        this.uiLayer.addChild(this.guankaUI);
+        this.uiLayer.addEventListener(MainEvent.QuitGuanka, this.handleBackToWorld, this);
+    };
+    // 退出关卡，回到事件地图界面
+    GuankaBase.prototype.handleBackToWorld = function () {
+        this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "maps"));
+    };
     return GuankaBase;
 }(eui.Component));
 __reflect(GuankaBase.prototype, "GuankaBase");
