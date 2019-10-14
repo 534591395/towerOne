@@ -15,6 +15,7 @@ var Foundation01 = (function (_super) {
     __extends(Foundation01, _super);
     function Foundation01() {
         var _this = _super.call(this) || this;
+        _this.cacheAsBitmap = true;
         _this.addChild(Utiles.createBitmapByName('empty01'));
         return _this;
     }

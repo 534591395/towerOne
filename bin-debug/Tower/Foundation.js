@@ -16,9 +16,19 @@ var Foundation = (function (_super) {
     function Foundation() {
         return _super.call(this) || this;
     }
-    Foundation.prototype.selectItem = function () { };
-    Foundation.prototype.deselectItem = function () { };
-    Foundation.prototype.reselectItem = function () { };
+    // 选中
+    Foundation.prototype.selectItem = function () {
+        this.dispatchEvent(new TowerEvent(TowerEvent.ShowTool, this));
+    };
+    // 取消
+    Foundation.prototype.deselectItem = function () {
+        this.dispatchEvent(new TowerEvent(TowerEvent.HideTool, this));
+    };
+    // 重置
+    Foundation.prototype.reselectItem = function () {
+        this.dispatchEvent(new TowerEvent(TowerEvent.HideTool, this));
+        Group.dispose();
+    };
     return Foundation;
 }(egret.DisplayObjectContainer));
 __reflect(Foundation.prototype, "Foundation", ["InnerGroupItem"]);

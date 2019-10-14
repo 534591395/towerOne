@@ -12,6 +12,9 @@ class GuankaUI extends eui.Component {
      private goldTxt: eui.BitmapLabel;
      // 显示轮次
      private roundTxt: eui.BitmapLabel;
+     
+     // 背景图片（地图）
+     public backgroundImage: eui.Image;
 
     constructor() {
         super();

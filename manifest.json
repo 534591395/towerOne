@@ -21,6 +21,7 @@
 		"bin-debug/World.js",
 		"bin-debug/Config/GuanKa.js",
 		"bin-debug/Events/MainEvent.js",
+		"bin-debug/Events/TowerEvent.js",
 		"bin-debug/Guanka/Guanka01.js",
 		"bin-debug/AssetAdapter.js",
 		"bin-debug/Main.js",
@@ -30,6 +31,7 @@
 		"bin-debug/skins/Bg.js",
 		"bin-debug/Platform.js",
 		"bin-debug/Tower/Foundation01.js",
+		"bin-debug/Utils/Group.js",
 		"bin-debug/Utils/InnerGroupItem.js",
 		"bin-debug/Utils/SoundManager.js",
 		"bin-debug/Utils/Utils.js"
