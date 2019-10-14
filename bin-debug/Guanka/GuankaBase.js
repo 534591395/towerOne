@@ -19,12 +19,16 @@ var GuankaBase = (function (_super) {
         _this.foundationPosiotionArr = [];
         // 地基实例集合
         _this.foundationArr = [];
+        // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
         // UI特效层、提示层
         _this.uiLayer = new egret.DisplayObjectContainer();
         _this.addChild(_this.uiLayer);
         // 地基层
         _this.foundationLayer = new egret.DisplayObjectContainer();
         _this.addChild(_this.foundationLayer);
+        // 建造工具层
+        _this.toolLayer = new egret.DisplayObjectContainer();
+        _this.addChild(_this.toolLayer);
         return _this;
     }
     // 生成UI特效层、提示层
@@ -45,6 +49,7 @@ var GuankaBase = (function (_super) {
     GuankaBase.prototype.createFoundation = function (classFactory) {
         var _this = this;
         this.foundationPosiotionArr.map(function (item, i) {
+            // 地基
             var foundation = new classFactory();
             foundation.x = item[0];
             foundation.y = item[1];
@@ -65,8 +70,16 @@ var GuankaBase = (function (_super) {
     };
     // 显示建造防御塔的选项工具ui
     GuankaBase.prototype.showTool = function (e) {
+        // touchObj: 某个地基、某个防御塔
         var touchObj = e.currentTarget;
+        this.tool = new BuildTool(touchObj, this.gold);
+        this.toolLayer.addChild(this.tool);
+        this.tool.addEventListener(ToolEvent.BuildStart, this.buildStart, this);
         this.selectObj = touchObj;
+    };
+    // 开始建筑
+    GuankaBase.prototype.buildStart = function (e) {
+        alert('开始建筑了');
     };
     // 隐藏建造防御塔的选项工具ui
     GuankaBase.prototype.hideTool = function () {

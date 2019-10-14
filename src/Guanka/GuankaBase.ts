@@ -9,8 +9,15 @@ class GuankaBase extends eui.Component {
     protected uiLayer: egret.DisplayObjectContainer;
     // 地基层
     protected foundationLayer: egret.DisplayObjectContainer;
+    // 建造工具层
+    protected toolLayer: egret.DisplayObjectContainer;
+    
     // 关卡UI对象
     protected guankaUI: GuankaUI;
+    // 防御塔建造工具类
+    protected tool: BuildTool;
+
+
     // 地基坐标集合
     protected foundationPosiotionArr: number[][] = [];
     // 地基实例集合
@@ -19,9 +26,14 @@ class GuankaBase extends eui.Component {
     // 选中的地基|塔
     protected selectObj:any;
 
+    // 金币数
+    protected gold: number;
+
 
     constructor() {
         super();
+
+        // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
 
         // UI特效层、提示层
         this.uiLayer = new egret.DisplayObjectContainer();
@@ -30,6 +42,10 @@ class GuankaBase extends eui.Component {
         // 地基层
         this.foundationLayer = new egret.DisplayObjectContainer();
         this.addChild(this.foundationLayer);
+
+        // 建造工具层
+        this.toolLayer = new egret.DisplayObjectContainer();
+        this.addChild(this.toolLayer);
     }
 
     // 生成UI特效层、提示层
@@ -55,6 +71,7 @@ class GuankaBase extends eui.Component {
     // 创建地基，标记可以造箭塔的位置
     protected createFoundation(classFactory:any) {
         this.foundationPosiotionArr.map((item,i) => {
+            // 地基
             let foundation = new classFactory();
             foundation.x = item[0];
             foundation.y = item[1];
@@ -77,8 +94,19 @@ class GuankaBase extends eui.Component {
 
     // 显示建造防御塔的选项工具ui
     private showTool(e: TowerEvent) {
+        // touchObj: 某个地基、某个防御塔
         const touchObj = e.currentTarget;
+          
+        this.tool = new BuildTool(touchObj, this.gold);
+        this.toolLayer.addChild(this.tool);
+        this.tool.addEventListener(ToolEvent.BuildStart, this.buildStart, this);
+
         this.selectObj = touchObj;
+    }
+
+    // 开始建筑
+    private buildStart(e: ToolEvent) {
+        alert('开始建筑了');
     }
 
     // 隐藏建造防御塔的选项工具ui
