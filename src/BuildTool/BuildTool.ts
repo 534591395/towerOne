@@ -25,19 +25,27 @@ class BuildTool extends eui.Component {
     private createTools(obj: any) {
         // 选中的是地基类
         if (obj instanceof Foundation01) {
+            // 箭塔
             this.addIcon("ArrowTower01",  this.topLeftGroup);
+            // 盾塔
+            this.addIcon("ShieldTower01",  this.topRightGroup);
+            // 魔法塔
+            this.addIcon("MagicTower01", this.bottomLeftGroup);
+            // 炮塔
+            this.addIcon("ExplodeTower01", this.bottomRightGroup);
         }
     }
 
     private addIcon(type: string, direction: eui.Group) {
         const icon = new BuildIcon(type, this.gold);
-        this.addChild(icon);
+        direction.addChild(icon);
+        icon.touchEnabled = true;
         icon.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleIconTouch, this);
     }
 
     // 点击建筑icon事件，触发自定义事件
     private handleIconTouch(e: egret.TouchEvent) {
-
+        alert('xx')
     }
 
     // 隐藏工具

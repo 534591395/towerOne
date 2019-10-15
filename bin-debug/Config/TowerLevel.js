@@ -10,7 +10,14 @@ var TowerLevel = (function () {
     function TowerLevel() {
     }
     TowerLevel.data = {
-        "ArrowTower01": { "className": "ArrowTower01", "res": "gj01", "price": 60 }
+        // 箭塔
+        "ArrowTower01": { "className": "ArrowTower01", "res": "gj01", "price": 60 },
+        // 盾塔
+        "ShieldTower01": { "className": "ShieldTower01", "res": "dp01", "price": 70 },
+        // 魔法塔
+        "MagicTower01": { "className": "MagicTower01", "res": "mf01", "price": 100 },
+        // 炮塔（爆炸）
+        "ExplodeTower01": { "className": "ExplodeTower01", "res": "zd01", "price": 125 }
     };
     return TowerLevel;
 }());

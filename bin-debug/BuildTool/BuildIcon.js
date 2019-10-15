@@ -22,6 +22,26 @@ var BuildIcon = (function (_super) {
         _this.price = towerConfig.price;
         // 添加图片资源图标
         _this.addChild(Utiles.createBitmapByName(towerConfig.res));
+        // 底部显示价格的UI
+        var priceBitmap = Utiles.createBitmapByName("cashbg");
+        priceBitmap.x = 8;
+        priceBitmap.y = 32;
+        _this.addChild(priceBitmap);
+        //text
+        var txt = new egret.BitmapText();
+        var bf;
+        if (_this.gold >= _this.price) {
+            bf = RES.getRes("NumFont");
+        }
+        else {
+            bf = RES.getRes("NumFont2");
+        }
+        txt.font = bf;
+        txt.letterSpacing = -1;
+        txt.text = _this.price.toString();
+        txt.x = (30 - txt.width) / 2 + 8;
+        txt.y = 32;
+        _this.addChild(txt);
         return _this;
     }
     return BuildIcon;
