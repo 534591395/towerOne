@@ -19,6 +19,8 @@ var BuildTool = (function (_super) {
         ;
         // 当前关卡拥有的金币
         _this.gold = gold;
+        _this.width = 164;
+        _this.height = 162;
         _this.createTools(obj);
         return _this;
     }
@@ -35,6 +37,10 @@ var BuildTool = (function (_super) {
     };
     // 点击建筑icon事件，触发自定义事件
     BuildTool.prototype.handleIconTouch = function (e) {
+    };
+    // 隐藏工具
+    BuildTool.prototype.hide = function () {
+        this.parent.removeChild(this);
     };
     return BuildTool;
 }(eui.Component));

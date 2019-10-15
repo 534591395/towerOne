@@ -16,6 +16,8 @@ class BuildTool extends eui.Component {
         this.skinName = "resource/skins/buildTool.exml";;
         // 当前关卡拥有的金币
         this.gold = gold;
+        this.width = 164;
+        this.height = 162;
 
         this.createTools(obj);
     }
@@ -35,6 +37,11 @@ class BuildTool extends eui.Component {
 
     // 点击建筑icon事件，触发自定义事件
     private handleIconTouch(e: egret.TouchEvent) {
-        
+
+    }
+
+    // 隐藏工具
+    public hide():void {
+        this.parent.removeChild(this);
     }
 }

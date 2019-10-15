@@ -73,6 +73,13 @@ var GuankaBase = (function (_super) {
         // touchObj: 某个地基、某个防御塔
         var touchObj = e.currentTarget;
         this.tool = new BuildTool(touchObj, this.gold);
+        /**
+         * 公式推导：
+         * this.tool的中点坐标移到touchObj的中点坐标， 先求出 touchObj的中点坐标--(touchObj.x + touchObj.width/2)，赋值给this.tool（记为坐标A(Ax, Ay) = (this.tool.x, this.tool.y)），然后求出this.tool的中点坐标记为坐标B(Bx, By) = (Ax+(this.tool.width/2), Ay+(this.tool.height/2)) ；要将中点B移到坐标A，移动距离A'(A'x, A'y) = (Bx-Ax, By-Ay) = (this.tool.width/2, this.tool.height/2);
+         * 故最终this.tool的坐标为：( Ax- A'x, Ay- A'y )
+         */
+        this.tool.x = (touchObj.x + touchObj.width / 2) - this.tool.width / 2;
+        this.tool.y = (touchObj.y + touchObj.height / 2) - this.tool.height / 2;
         this.toolLayer.addChild(this.tool);
         this.tool.addEventListener(ToolEvent.BuildStart, this.buildStart, this);
         this.selectObj = touchObj;
@@ -83,6 +90,12 @@ var GuankaBase = (function (_super) {
     };
     // 隐藏建造防御塔的选项工具ui
     GuankaBase.prototype.hideTool = function () {
+        if (this.tool === null) {
+            return;
+        }
+        this.tool.removeEventListener(ToolEvent.BuildStart, this.buildStart, this);
+        this.tool.hide();
+        this.tool = null;
     };
     return GuankaBase;
 }(eui.Component));
