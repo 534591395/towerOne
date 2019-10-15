@@ -15,5 +15,18 @@ class Guanka01 extends GuankaBase {
         this.backgroundImage.source = Utiles.createBitmapByName("map0").texture;
          
         this.createFoundation(Foundation01);
+
+        this.default();
+    }
+    
+    // 初始化数据
+    public default() {
+        this.gold = 250;
+        this.guankaUI.setGold(this.gold);
+        this.life = 20;
+        this.guankaUI.setLife(this.life);
+
+        //播放背景音乐
+        //SoundManager.playBgSound("map0bg");
     }
 }

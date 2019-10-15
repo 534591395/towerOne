@@ -30,6 +30,7 @@ var BuildIcon = (function (_super) {
         //text
         var txt = new egret.BitmapText();
         var bf;
+        // 如果用户当前关卡拥有的金币数大于建筑建造的价格，显示可创建颜色
         if (_this.gold >= _this.price) {
             bf = RES.getRes("NumFont");
         }

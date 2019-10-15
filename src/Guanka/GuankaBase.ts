@@ -28,6 +28,8 @@ class GuankaBase extends eui.Component {
 
     // 金币数
     protected gold: number;
+    // 生命数
+    protected life: number;
 
 
     constructor() {
@@ -106,9 +108,7 @@ class GuankaBase extends eui.Component {
         this.tool.x = (touchObj.x + touchObj.width/2) - this.tool.width/2;
         this.tool.y = (touchObj.y + touchObj.height/2) - this.tool.height/2;
         this.toolLayer.addChild(this.tool);
-        // this.tool.x =  - this.tool.width/2 -touchObj.width/2;
-        // this.tool.y = - this.tool.height/2 -touchObj.height/2;
-        // touchObj.addChild(this.tool);
+
         this.tool.addEventListener(ToolEvent.BuildStart, this.buildStart, this);
 
         this.selectObj = touchObj;

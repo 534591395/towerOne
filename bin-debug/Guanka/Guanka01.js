@@ -21,8 +21,18 @@ var Guanka01 = (function (_super) {
         _this.createUI();
         _this.backgroundImage.source = Utiles.createBitmapByName("map0").texture;
         _this.createFoundation(Foundation01);
+        _this.default();
         return _this;
     }
+    // 初始化数据
+    Guanka01.prototype.default = function () {
+        this.gold = 250;
+        this.guankaUI.setGold(this.gold);
+        this.life = 20;
+        this.guankaUI.setLife(this.life);
+        //播放背景音乐
+        //SoundManager.playBgSound("map0bg");
+    };
     return Guanka01;
 }(GuankaBase));
 __reflect(Guanka01.prototype, "Guanka01");

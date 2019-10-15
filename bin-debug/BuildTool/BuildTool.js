@@ -45,7 +45,12 @@ var BuildTool = (function (_super) {
     };
     // 点击建筑icon事件，触发自定义事件
     BuildTool.prototype.handleIconTouch = function (e) {
-        alert('xx');
+        // 该建筑建造的价格
+        var price = e.currentTarget.price;
+        // 判断用户当前关卡拥有的金币数大于建筑建造的价格
+        if (this.gold >= price) {
+            this.dispatchEvent(new ToolEvent(ToolEvent.BuildStart, e.currentTarget.className, price));
+        }
     };
     // 隐藏工具
     BuildTool.prototype.hide = function () {

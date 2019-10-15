@@ -36,7 +36,8 @@ class BuildIcon extends egret.DisplayObjectContainer {
         //text
         const txt = new egret.BitmapText();
         
-        let bf:egret.BitmapFont
+        let bf:egret.BitmapFont;
+        // 如果用户当前关卡拥有的金币数大于建筑建造的价格，显示可创建颜色
         if(this.gold>=this.price) {
             bf = RES.getRes("NumFont");
         } else {

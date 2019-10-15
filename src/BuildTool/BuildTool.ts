@@ -45,7 +45,12 @@ class BuildTool extends eui.Component {
 
     // 点击建筑icon事件，触发自定义事件
     private handleIconTouch(e: egret.TouchEvent) {
-        alert('xx')
+        // 该建筑建造的价格
+        const price = e.currentTarget.price;
+        // 判断用户当前关卡拥有的金币数大于建筑建造的价格
+        if (this.gold >= price) {
+            this.dispatchEvent(new ToolEvent(ToolEvent.BuildStart, e.currentTarget.className, price));
+        }
     }
 
     // 隐藏工具
