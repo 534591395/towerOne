@@ -12,7 +12,7 @@ var TowerLevel = (function () {
     TowerLevel.data = {
         // 箭塔
         "ArrowTower01": { "className": "ArrowTower01", "res": "gj01", "price": 60 },
-        // 盾塔
+        // 盾塔--士兵小队
         "ShieldTower01": { "className": "ShieldTower01", "res": "dp01", "price": 70 },
         // 魔法塔
         "MagicTower01": { "className": "MagicTower01", "res": "mf01", "price": 100 },

@@ -3,6 +3,9 @@
  */
 
 class Foundation extends egret.DisplayObjectContainer implements InnerGroupItem {
+   // 地基的索引
+   public index: number; 
+
     public constructor() {
         super();
     }

@@ -5,10 +5,15 @@
 class GuankaBase extends eui.Component {
     // 地图位图
     public backgroundImage: eui.Image;
+    
     // UI特效层、提示层
     protected uiLayer: egret.DisplayObjectContainer;
     // 地基层
     protected foundationLayer: egret.DisplayObjectContainer;
+    /**怪物层、士兵层、英雄层、塔层(层级排序)*/
+    public objLayer: egret.DisplayObjectContainer;    
+    // 武器层-- 弓箭、炮弹
+    public weaponLayer: egret.DisplayObjectContainer;
     // 建造工具层
     protected toolLayer: egret.DisplayObjectContainer;
     
@@ -20,8 +25,12 @@ class GuankaBase extends eui.Component {
 
     // 地基坐标集合
     protected foundationPosiotionArr: number[][] = [];
+
+
     // 地基实例集合
     protected foundationArr: Foundation[] = [];
+    // 塔实例集合
+    protected towerArr: any[] = [];
 
     // 选中的地基|塔
     protected selectObj:any;
@@ -44,6 +53,14 @@ class GuankaBase extends eui.Component {
         // 地基层
         this.foundationLayer = new egret.DisplayObjectContainer();
         this.addChild(this.foundationLayer);
+
+        // 怪物层、士兵层、英雄层、塔层(层级排序)
+        this.objLayer = new egret.DisplayObjectContainer();
+        this.addChild(this.objLayer);
+
+        // 添加武器层
+        this.weaponLayer = new egret.DisplayObjectContainer();
+        this.addChild(this.weaponLayer);
 
         // 建造工具层
         this.toolLayer = new egret.DisplayObjectContainer();
@@ -89,7 +106,7 @@ class GuankaBase extends eui.Component {
         });
     }
 
-    // 地基被点击
+    // 地基\塔被点击
     private foundationOrTowerTouch(e: egret.TouchEvent) { 
         Group.selectItem(e.currentTarget);
     }
@@ -114,9 +131,22 @@ class GuankaBase extends eui.Component {
         this.selectObj = touchObj;
     }
 
-    // 开始建筑
+    // 开始建筑---说明：升级塔无需等待
     private buildStart(e: ToolEvent) {
-        alert('开始建筑了');
+        // 防御塔类别名称
+        const towerName = e.className;
+        // 新建防御塔
+        if (towerName === 'ArrowTower01') {
+            this.buildTower(towerName);
+        }
+
+        // 移除建筑工具ui
+        Group.dispose();
+        this.hideTool();
+
+        // 移除上一个选中的塔|地基 -- 查看：this.createFoundation | this.buildTower
+        this.selectObj.addEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
+        this.selectObj = null;
     }
 
     // 隐藏建造防御塔的选项工具ui
@@ -127,5 +157,30 @@ class GuankaBase extends eui.Component {
         this.tool.removeEventListener(ToolEvent.BuildStart, this.buildStart, this);
         this.tool.hide();
         this.tool = null;
+    }
+
+    // 创建防御塔
+    private buildTower(towerName) {
+        // 获取防御塔类
+        const towerClassName = egret.getDefinitionByName(towerName);
+        const tower = new towerClassName();
+
+        // 防御塔所属基地类
+        const foundationClassName = egret.getQualifiedSuperclassName(tower);
+        if (foundationClassName === 'ArrowTowerFoundation') {
+            // 放置子类的容器为游戏场景的武器层
+            tower.parentContentLayer = this.weaponLayer;
+        }
+
+        this.objLayer.addChild(tower);
+        this.towerArr.push(tower); 
+        // (this.selectObj.y + this.selectObj.height/2) - tower.height;
+        tower.x = this.selectObj.x;
+        tower.y = this.selectObj.y - this.selectObj.height + 15;
+
+        tower.touchEnabled = true;
+        tower.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.foundationOrTowerTouch,this);
+        tower.addEventListener(TowerEvent.ShowTool,this.showTool,this);
+        tower.addEventListener(TowerEvent.HideTool,this.hideTool,this);
     }
 }

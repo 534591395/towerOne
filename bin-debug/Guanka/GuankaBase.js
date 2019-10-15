@@ -19,6 +19,8 @@ var GuankaBase = (function (_super) {
         _this.foundationPosiotionArr = [];
         // 地基实例集合
         _this.foundationArr = [];
+        // 塔实例集合
+        _this.towerArr = [];
         // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
         // UI特效层、提示层
         _this.uiLayer = new egret.DisplayObjectContainer();
@@ -26,6 +28,12 @@ var GuankaBase = (function (_super) {
         // 地基层
         _this.foundationLayer = new egret.DisplayObjectContainer();
         _this.addChild(_this.foundationLayer);
+        // 怪物层、士兵层、英雄层、塔层(层级排序)
+        _this.objLayer = new egret.DisplayObjectContainer();
+        _this.addChild(_this.objLayer);
+        // 添加武器层
+        _this.weaponLayer = new egret.DisplayObjectContainer();
+        _this.addChild(_this.weaponLayer);
         // 建造工具层
         _this.toolLayer = new egret.DisplayObjectContainer();
         _this.addChild(_this.toolLayer);
@@ -64,7 +72,7 @@ var GuankaBase = (function (_super) {
             foundation.addEventListener(TowerEvent.HideTool, _this.hideTool, _this);
         });
     };
-    // 地基被点击
+    // 地基\塔被点击
     GuankaBase.prototype.foundationOrTowerTouch = function (e) {
         Group.selectItem(e.currentTarget);
     };
@@ -84,9 +92,20 @@ var GuankaBase = (function (_super) {
         this.tool.addEventListener(ToolEvent.BuildStart, this.buildStart, this);
         this.selectObj = touchObj;
     };
-    // 开始建筑
+    // 开始建筑---说明：升级塔无需等待
     GuankaBase.prototype.buildStart = function (e) {
-        alert('开始建筑了');
+        // 防御塔类别名称
+        var towerName = e.className;
+        // 新建防御塔
+        if (towerName === 'ArrowTower01') {
+            this.buildTower(towerName);
+        }
+        // 移除建筑工具ui
+        Group.dispose();
+        this.hideTool();
+        // 移除上一个选中的塔|地基 -- 查看：this.createFoundation | this.buildTower
+        this.selectObj.addEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
+        this.selectObj = null;
     };
     // 隐藏建造防御塔的选项工具ui
     GuankaBase.prototype.hideTool = function () {
@@ -96,6 +115,27 @@ var GuankaBase = (function (_super) {
         this.tool.removeEventListener(ToolEvent.BuildStart, this.buildStart, this);
         this.tool.hide();
         this.tool = null;
+    };
+    // 创建防御塔
+    GuankaBase.prototype.buildTower = function (towerName) {
+        // 获取防御塔类
+        var towerClassName = egret.getDefinitionByName(towerName);
+        var tower = new towerClassName();
+        // 防御塔所属基地类
+        var foundationClassName = egret.getQualifiedSuperclassName(tower);
+        if (foundationClassName === 'ArrowTowerFoundation') {
+            // 放置子类的容器为游戏场景的武器层
+            tower.parentContentLayer = this.weaponLayer;
+        }
+        this.objLayer.addChild(tower);
+        this.towerArr.push(tower);
+        // (this.selectObj.y + this.selectObj.height/2) - tower.height;
+        tower.x = this.selectObj.x;
+        tower.y = this.selectObj.y - this.selectObj.height + 15;
+        tower.touchEnabled = true;
+        tower.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.foundationOrTowerTouch, this);
+        tower.addEventListener(TowerEvent.ShowTool, this.showTool, this);
+        tower.addEventListener(TowerEvent.HideTool, this.hideTool, this);
     };
     return GuankaBase;
 }(eui.Component));

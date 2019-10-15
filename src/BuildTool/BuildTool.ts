@@ -27,7 +27,7 @@ class BuildTool extends eui.Component {
         if (obj instanceof Foundation01) {
             // 箭塔
             this.addIcon("ArrowTower01",  this.topLeftGroup);
-            // 盾塔
+            // 盾塔--士兵小队
             this.addIcon("ShieldTower01",  this.topRightGroup);
             // 魔法塔
             this.addIcon("MagicTower01", this.bottomLeftGroup);

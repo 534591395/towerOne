@@ -31,7 +31,7 @@ var Guanka01 = (function (_super) {
         this.life = 20;
         this.guankaUI.setLife(this.life);
         //播放背景音乐
-        //SoundManager.playBgSound("map0bg");
+        SoundManager.playBgSound("map0bgSound");
     };
     return Guanka01;
 }(GuankaBase));

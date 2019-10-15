@@ -27,6 +27,6 @@ class Guanka01 extends GuankaBase {
         this.guankaUI.setLife(this.life);
 
         //播放背景音乐
-        //SoundManager.playBgSound("map0bg");
+        SoundManager.playBgSound("map0bgSound");
     }
 }
