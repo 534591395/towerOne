@@ -165,6 +165,16 @@ class GuankaBase extends eui.Component {
 
         // 移除上一个选中的塔|地基 -- 查看：this.createFoundation | this.buildTower
         this.selectObj.addEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
+        // 排除地基--地基不从舞台上删除（地基重复使用，故无需删除）
+        if (egret.getQualifiedSuperclassName(this.selectObj) !== "Foundation") {
+            // 删除塔
+            this.objLayer.removeChild(this.selectObj);
+            let index = this.towerArr.indexOf(this.selectObj);
+            if (index > -1) {
+                this.towerArr.splice(index, 1);
+            }
+            this.selectObj.destroy();
+        }
         this.selectObj = null;
     }
 

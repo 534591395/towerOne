@@ -10,4 +10,9 @@ class TowerFoundation extends Foundation {
     public constructor() {
         super();
     }
+
+    // 销毁
+    public destory() {
+        
+    }
 }

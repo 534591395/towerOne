@@ -16,6 +16,9 @@ var TowerFoundation = (function (_super) {
     function TowerFoundation() {
         return _super.call(this) || this;
     }
+    // 销毁
+    TowerFoundation.prototype.destory = function () {
+    };
     return TowerFoundation;
 }(Foundation));
 __reflect(TowerFoundation.prototype, "TowerFoundation");
