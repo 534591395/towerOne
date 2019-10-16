@@ -14,11 +14,12 @@
 	],
 	"game": [
 		"bin-debug/Tower/Foundation.js",
+		"bin-debug/Elements.js",
 		"bin-debug/Tower/TowerFoundation.js",
+		"bin-debug/Weapon/ArrowBase.js",
 		"bin-debug/Guanka/GuankaBase.js",
 		"bin-debug/Soliders/ArrowShooterBase.js",
 		"bin-debug/Tower/ArrowTowerBase.js",
-		"bin-debug/Guanka/GuankaUI.js",
 		"bin-debug/BuildTool/BuildIcon.js",
 		"bin-debug/BuildTool/BuildTool.js",
 		"bin-debug/BuildTool/BuildWait.js",
@@ -29,8 +30,8 @@
 		"bin-debug/Events/TowerEvent.js",
 		"bin-debug/Guanka/Guanka01.js",
 		"bin-debug/AssetAdapter.js",
+		"bin-debug/Guanka/GuankaUI.js",
 		"bin-debug/Main.js",
-		"bin-debug/Loader/LoadBar.js",
 		"bin-debug/Loader/LoadingUI.js",
 		"bin-debug/Loader/LoadResource.js",
 		"bin-debug/skins/Bg.js",
@@ -43,7 +44,10 @@
 		"bin-debug/World.js",
 		"bin-debug/Utils/Group.js",
 		"bin-debug/Utils/InnerGroupItem.js",
+		"bin-debug/Utils/ObjectPool.js",
 		"bin-debug/Utils/SoundManager.js",
-		"bin-debug/Utils/Utils.js"
+		"bin-debug/Utils/Utils.js",
+		"bin-debug/Weapon/Arrow01.js",
+		"bin-debug/Loader/LoadBar.js"
 	]
 }

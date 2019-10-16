@@ -17,7 +17,7 @@ var ArrowShooterBase = (function (_super) {
         return _super.call(this) || this;
     }
     // 帧率执行回调
-    ArrowShooterBase.prototype.onEnterFrame = function () {
+    ArrowShooterBase.prototype.onEnterFrame = function (advancedTime) {
         // 当前播放帧标签是结束标签，结束动画帧播放
         if (this.currentLabel === this.endLabel) {
             this.gotoAndStop(this.idleLabel);

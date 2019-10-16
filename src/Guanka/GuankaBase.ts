@@ -80,6 +80,17 @@ class GuankaBase extends eui.Component {
         this.uiLayer.addEventListener(MainEvent.QuitGuanka, this.handleBackToWorld, this);
     }
 
+    // 实时刷新，子类中执行
+    protected onEnterFrame(timeStamp:number) {
+        this.enterFrameTowers(timeStamp);
+    }
+
+    private enterFrameTowers(timeStamp:number) {
+        this.towerArr.map(tower => {
+            tower.onEnterFrame(timeStamp);
+        });
+    }
+
     // 退出关卡，回到事件地图界面
     private handleBackToWorld() {
         this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "maps"));
@@ -219,23 +230,29 @@ class GuankaBase extends eui.Component {
         const towerClassName = egret.getDefinitionByName(towerName);
         const tower = new towerClassName();
 
+        tower.x = tower.sx =  towerObj.x;
+        tower.y = tower.sy =  towerObj.y - towerObj.towerHeight + 15;
+        tower.index = towerObj.index;
+
+        
         // 防御塔所属基地类
         const foundationClassName = egret.getQualifiedSuperclassName(tower);
         if (foundationClassName === 'ArrowTowerFoundation') {
             // 放置子类的容器为游戏场景的武器层
             tower.parentContentLayer = this.weaponLayer;
         }
+        
 
         this.objLayer.addChild(tower);
         this.towerArr.push(tower); 
-
-        tower.x = towerObj.x;
-        tower.y = towerObj.y - towerObj.towerHeight + 15;
-        tower.index = towerObj.index;
 
         tower.touchEnabled = true;
         tower.addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.foundationOrTowerTouch,this);
         tower.addEventListener(TowerEvent.ShowTool,this.showTool,this);
         tower.addEventListener(TowerEvent.HideTool,this.hideTool,this);
+    }
+
+    public destroy() {
+
     }
 }

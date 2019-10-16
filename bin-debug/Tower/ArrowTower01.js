@@ -27,9 +27,38 @@ var ArrowTower01 = (function (_super) {
         _this.addChild(_this.shooter02);
         return _this;
     }
-    // 帧率执行回调方法
-    ArrowTower01.prototype.onEnterFrame = function () {
-        _super.prototype.onEnterFrame.call(this);
+    // 帧率执行回调方法，实时刷新
+    ArrowTower01.prototype.onEnterFrame = function (timeStamp) {
+        _super.prototype.onEnterFrame.call(this, timeStamp);
+        this.shooter01.onEnterFrame(timeStamp);
+        this.shooter02.onEnterFrame(timeStamp);
+        // 确定敌人方向
+        this.direct = "downRight";
+        // 播放射击音效
+        // 两个射手轮流射击
+        // 弓箭发射（产生点）的坐标点
+        var p;
+        if (this.firststrike === "L") {
+            this.shooter01.file(this.direct);
+            this.firststrike = "R";
+            p = new egret.Point(this.sx - 5, this.sy - 46);
+        }
+        else if (this.firststrike === "R") {
+            this.shooter02.file(this.direct);
+            this.firststrike = "L";
+            p = new egret.Point(this.sx + 5, this.sy - 46);
+        }
+        //利用对象池产生弓箭对象并进行碰撞检测
+        // this.weapon = <Arrow01>ObjectPool.getInstance().createObject(Arrow01);
+        // //this.weapon.damage = 4 * GuankaBase.instance.hardxs2;
+        // this.weapon.damage = 4;
+        // this.target = {
+        //     x: 304,
+        //     y: 361,
+        //     offy: 10
+        // };
+        //this.weapon.init(p,this.target,this.target.offy);
+        //this.parentContentLayer.addChild(this.weapon);
     };
     return ArrowTower01;
 }(ArrowTowerFoundation));

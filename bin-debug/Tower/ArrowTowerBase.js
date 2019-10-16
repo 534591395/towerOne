@@ -14,10 +14,13 @@ r.prototype = e.prototype, t.prototype = new r();
 var ArrowTowerFoundation = (function (_super) {
     __extends(ArrowTowerFoundation, _super);
     function ArrowTowerFoundation() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        // 先左边攻击还是先右边攻击
+        _this.firststrike = "R";
+        return _this;
     }
     // 帧率执行回调方法
-    ArrowTowerFoundation.prototype.onEnterFrame = function () {
+    ArrowTowerFoundation.prototype.onEnterFrame = function (timeStamp) {
     };
     return ArrowTowerFoundation;
 }(TowerFoundation));

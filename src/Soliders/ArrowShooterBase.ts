@@ -16,7 +16,7 @@ class ArrowShooterBase extends egret.MovieClip {
     }
 
     // 帧率执行回调
-    public onEnterFrame() {
+    public onEnterFrame(advancedTime? :number) {
         // 当前播放帧标签是结束标签，结束动画帧播放
         if (this.currentLabel === this.endLabel) {
             this.gotoAndStop(this.idleLabel);
