@@ -16,6 +16,9 @@ var ArrowTowerFoundation = (function (_super) {
     function ArrowTowerFoundation() {
         return _super.call(this) || this;
     }
+    // 帧率执行回调方法
+    ArrowTowerFoundation.prototype.onEnterFrame = function () {
+    };
     return ArrowTowerFoundation;
 }(TowerFoundation));
 __reflect(ArrowTowerFoundation.prototype, "ArrowTowerFoundation");

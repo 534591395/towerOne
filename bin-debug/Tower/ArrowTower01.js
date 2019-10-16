@@ -16,8 +16,21 @@ var ArrowTower01 = (function (_super) {
     function ArrowTower01() {
         var _this = _super.call(this) || this;
         _this.addChild(Utiles.createBitmapByName("ArrowTower01"));
+        // 加入弓箭手
+        _this.shooter01 = new ArrowShooter01();
+        _this.shooter01.x = 36;
+        _this.shooter01.y = 15;
+        _this.addChild(_this.shooter01);
+        _this.shooter02 = new ArrowShooter01();
+        _this.shooter02.x = 50;
+        _this.shooter02.y = 15;
+        _this.addChild(_this.shooter02);
         return _this;
     }
+    // 帧率执行回调方法
+    ArrowTower01.prototype.onEnterFrame = function () {
+        _super.prototype.onEnterFrame.call(this);
+    };
     return ArrowTower01;
 }(ArrowTowerFoundation));
 __reflect(ArrowTower01.prototype, "ArrowTower01");
