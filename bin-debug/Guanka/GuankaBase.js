@@ -21,6 +21,8 @@ var GuankaBase = (function (_super) {
         _this.foundationArr = [];
         // 塔实例集合
         _this.towerArr = [];
+        // 建筑队列--由于建筑异步执行（等待建筑动画执行完毕），故需要一个建筑队列
+        _this.buildQuene = [];
         // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
         // UI特效层、提示层
         _this.uiLayer = new egret.DisplayObjectContainer();
@@ -98,7 +100,24 @@ var GuankaBase = (function (_super) {
         var towerName = e.className;
         // 新建防御塔
         if (towerName === 'ArrowTower01') {
-            this.buildTower(towerName);
+            // 播放修建动画
+            var buildWait = new BuildWait(towerName, this.selectObj.index);
+            buildWait.x = this.selectObj.x;
+            buildWait.y = this.selectObj.y - 25;
+            this.objLayer.addChild(buildWait);
+            buildWait.addEventListener(ToolEvent.BuildComplete, this.buildComplete, this);
+            // 扣除建筑费用
+            this.gold -= e.price;
+            this.guankaUI.setGold(this.gold);
+            // 由于建筑异步执行，故需要放入建筑队列
+            this.buildQuene.push({
+                className: towerName,
+                x: this.selectObj.x,
+                y: this.selectObj.y,
+                towerWidth: this.selectObj.width,
+                towerHeight: this.selectObj.height,
+                index: this.selectObj.index
+            });
         }
         // 移除建筑工具ui
         Group.dispose();
@@ -106,6 +125,29 @@ var GuankaBase = (function (_super) {
         // 移除上一个选中的塔|地基 -- 查看：this.createFoundation | this.buildTower
         this.selectObj.addEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
         this.selectObj = null;
+    };
+    // 建筑完成
+    GuankaBase.prototype.buildComplete = function (e) {
+        // 从舞台上删除建筑动画
+        var waitBuild = e.currentTarget;
+        var index = waitBuild.index;
+        waitBuild.removeEventListener(ToolEvent.BuildComplete, this.buildComplete, this);
+        this.objLayer.removeChild(waitBuild);
+        // 移除建筑队列
+        var arr = [];
+        var tower;
+        this.buildQuene.map(function (build) {
+            if (build.index === index) {
+                tower = build;
+            }
+            else {
+                arr.push(build);
+            }
+        });
+        this.buildQuene = arr;
+        if (tower) {
+            this.buildTower(tower, tower.className);
+        }
     };
     // 隐藏建造防御塔的选项工具ui
     GuankaBase.prototype.hideTool = function () {
@@ -117,7 +159,7 @@ var GuankaBase = (function (_super) {
         this.tool = null;
     };
     // 创建防御塔
-    GuankaBase.prototype.buildTower = function (towerName) {
+    GuankaBase.prototype.buildTower = function (towerObj, towerName) {
         // 获取防御塔类
         var towerClassName = egret.getDefinitionByName(towerName);
         var tower = new towerClassName();
@@ -129,9 +171,9 @@ var GuankaBase = (function (_super) {
         }
         this.objLayer.addChild(tower);
         this.towerArr.push(tower);
-        // (this.selectObj.y + this.selectObj.height/2) - tower.height;
-        tower.x = this.selectObj.x;
-        tower.y = this.selectObj.y - this.selectObj.height + 15;
+        tower.x = towerObj.x;
+        tower.y = towerObj.y - towerObj.towerHeight + 15;
+        tower.index = towerObj.index;
         tower.touchEnabled = true;
         tower.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.foundationOrTowerTouch, this);
         tower.addEventListener(TowerEvent.ShowTool, this.showTool, this);

@@ -21,6 +21,7 @@
 		"bin-debug/World.js",
 		"bin-debug/BuildTool/BuildIcon.js",
 		"bin-debug/BuildTool/BuildTool.js",
+		"bin-debug/BuildTool/BuildWait.js",
 		"bin-debug/Config/GuanKa.js",
 		"bin-debug/Config/TowerLevel.js",
 		"bin-debug/Events/MainEvent.js",
