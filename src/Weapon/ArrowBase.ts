@@ -35,7 +35,8 @@ class ArrowBase extends Elements {
     public constructor() {
         super();
     }
-
+    
+    // 公式说明：y轴自由落体h的高度计算公式-- h = (gt^2)/2 ; 距离公式-- s = vt;
     /**计算双轴速度*/
     public setTarget(x: number,y: number): void {
         this.pos = new egret.Point(x,y);

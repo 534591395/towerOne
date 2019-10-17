@@ -3,12 +3,30 @@
  */
 
 class Guanka01 extends GuankaBase {
+    // 怪物行走路径点
+    private roadArr1:number[][] = [];
+    private roadArr2: number[][] = [];
+
     public constructor() {
         super();
         console.log("游戏关卡一");
 
         // 设置地基坐标集合，当前手动设置
         this.foundationPosiotionArr = [[484,266],[436,316],[354,316],[314,266],[354,206],[436,206],[634,316],[394,436],[228,141]];
+
+        this.roadArr1 = [[812,241],[584,241],[484,141],[304,141],[214,241],[24,241]];
+        this.roadArr2 = [[812,263],[584,263],[484,363],[304,363],[214,263],[24,263]];
+        this.roadArr.push(this.roadArr1);
+        this.roadArr.push(this.roadArr2);
+        this.enemyData = [
+            {"type":"Monster01","count":10,"life":10,"maxSpeed":0.4,"damage":2,"value":10},
+            {"type":"Monster02","count":10,"life":10,"maxSpeed":0.8,"damage":2,"value":10},
+            {"type":"Monster03","count":15,"life":15,"maxSpeed":0.4,"damage":4,"value":15},
+            {"type":"Monster04","count":15,"life":20,"maxSpeed":0.7,"damage":4,"value":15},
+            {"type":"Monster05","count":20,"life":25,"maxSpeed":0.4,"damage":8,"value":20},
+            {"type":"Monster06","count":20,"life":30,"maxSpeed":0.4,"damage":8,"value":20},
+            {"type":"Boss01","count":2,"life":300,"maxSpeed":0.4,"damage":16,"value":500}
+        ];
 
         this.createUI();
 
@@ -17,6 +35,12 @@ class Guanka01 extends GuankaBase {
         this.createFoundation(Foundation01);
 
         this.default();
+
+        //门
+        var bm: egret.Bitmap = Utiles.createBitmapByName("men");
+        bm.x = -33;
+        bm.y = 106;
+        this.weaponLayer.addChild(bm);
     }
     
     // 初始化数据
@@ -25,6 +49,13 @@ class Guanka01 extends GuankaBase {
         this.guankaUI.setGold(this.gold);
         this.life = 20;
         this.guankaUI.setLife(this.life);
+        this.allRound = this.enemyData.length;
+        // 区分故事（剧情）模式还是无尽模式（说明：故事模式通关后开启无尽模式）
+        if( Main.wujin ) {
+            this.guankaUI.setRound(0, 0);
+        } else {
+            this.guankaUI.setRound(0, this.allRound);
+        }
 
         //播放背景音乐
         SoundManager.playBgSound("map0bgSound");
@@ -36,5 +67,10 @@ class Guanka01 extends GuankaBase {
     protected onEnterFrame(timeStamp:number):boolean {
         super.onEnterFrame(timeStamp);
         return false;
+    }
+
+    public destroy() {
+        super.destroy();
+        RES.destroyRes(GuanKa.resourceNameArr[Main.choseNumber]);
     }
 }

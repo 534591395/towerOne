@@ -23,6 +23,26 @@ var GuankaBase = (function (_super) {
         _this.towerArr = [];
         // 建筑队列--由于建筑异步执行（等待建筑动画执行完毕），故需要一个建筑队列
         _this.buildQuene = [];
+        // 怪物行走路径点数组
+        _this.roadArr = [];
+        // 当前行走路径点
+        _this.curRoadArr = [];
+        // 所有波敌人数据 （类型、数量、生命、速度、攻击力、价值）
+        _this.enemyData = [];
+        // 轮次难度系数基数
+        _this.hardxs = 1;
+        // 无尽模式难度累加系数
+        _this.perxs = 1;
+        // 轮次进行中
+        _this.rounding = false;
+        // 到下一轮次的间隔时间
+        _this.delayToNext = 1000;
+        // 到下一轮次的时间累计（帧率变动累计），判断是否进入下一轮的判断需要，当 delayToNextSum >= delayToNext 时，表示到了下一轮的时间。
+        _this.delayToNextSum = 0;
+        // 怪物产生平均间隔 -- 怪物不是一次是产生的，有间隔（出场间隔）
+        _this.meanTime = 500;
+        // 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物
+        _this.otime = 0;
         // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
         // UI特效层、提示层
         _this.uiLayer = new egret.DisplayObjectContainer();

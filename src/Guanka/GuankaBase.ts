@@ -34,6 +34,14 @@ class GuankaBase extends eui.Component {
     // 建筑队列--由于建筑异步执行（等待建筑动画执行完毕），故需要一个建筑队列
     protected buildQuene: any[] = [];
 
+    // 怪物行走路径点数组
+    protected roadArr: number[][][] = [];
+    // 当前行走路径点
+    protected curRoadArr: number[][] = [];
+
+    // 所有波敌人数据 （类型、数量、生命、速度、攻击力、价值）
+    protected enemyData: any[] = [];
+
     // 选中的地基|塔
     protected selectObj:any;
 
@@ -42,6 +50,37 @@ class GuankaBase extends eui.Component {
     // 生命数
     protected life: number;
 
+    // 轮次难度系数基数
+    public hardxs: number = 1;
+    // 无尽模式难度累加系数
+    public perxs: number = 1;
+
+    // 总轮次（怪物进攻波次）
+    protected allRound: number;
+    // 当前怪物进攻的轮次（波次）
+    protected currentRound: number;
+    // 当前轮次进攻怪物类别
+    protected roundMonsterType: string; 
+    // 当前轮次剩余怪物数量
+    protected roundMosterLeft: number;
+    // 当前轮次敌人生命
+    protected roundLife: number;
+    // 当前轮次敌人移动速度
+    protected roundSpeed: number;
+    // 当前轮次敌人攻击力
+    protected roundDamage: number;
+    // 当前轮次敌人死亡玩家获取的金币
+    protected roundValue: number;
+    // 轮次进行中
+    protected rounding: boolean = false;
+    // 到下一轮次的间隔时间
+    protected delayToNext: number = 1000;
+    // 到下一轮次的时间累计（帧率变动累计），判断是否进入下一轮的判断需要，当 delayToNextSum >= delayToNext 时，表示到了下一轮的时间。
+    protected delayToNextSum: number = 0;
+    // 怪物产生平均间隔 -- 怪物不是一次是产生的，有间隔（出场间隔）
+    protected meanTime: number = 500;
+    // 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物
+    protected otime: number = 0;
 
     constructor() {
         super();
@@ -234,7 +273,7 @@ class GuankaBase extends eui.Component {
         tower.y = tower.sy =  towerObj.y - towerObj.towerHeight + 15;
         tower.index = towerObj.index;
 
-        
+
         // 防御塔所属基地类
         const foundationClassName = egret.getQualifiedSuperclassName(tower);
         if (foundationClassName === 'ArrowTowerFoundation') {

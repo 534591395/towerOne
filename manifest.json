@@ -25,13 +25,14 @@
 		"bin-debug/BuildTool/BuildWait.js",
 		"bin-debug/Config/GuanKa.js",
 		"bin-debug/Config/TowerLevel.js",
+		"bin-debug/Enemy/MonsterBase.js",
 		"bin-debug/Events/MainEvent.js",
 		"bin-debug/Events/ToolEvent.js",
 		"bin-debug/Events/TowerEvent.js",
 		"bin-debug/Guanka/Guanka01.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/Guanka/GuankaUI.js",
 		"bin-debug/Main.js",
+		"bin-debug/Loader/LoadBar.js",
 		"bin-debug/Loader/LoadingUI.js",
 		"bin-debug/Loader/LoadResource.js",
 		"bin-debug/skins/Bg.js",
@@ -48,6 +49,6 @@
 		"bin-debug/Utils/SoundManager.js",
 		"bin-debug/Utils/Utils.js",
 		"bin-debug/Weapon/Arrow01.js",
-		"bin-debug/Loader/LoadBar.js"
+		"bin-debug/Guanka/GuankaUI.js"
 	]
 }

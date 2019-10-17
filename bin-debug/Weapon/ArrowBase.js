@@ -27,6 +27,7 @@ var ArrowBase = (function (_super) {
         _this.g = 1; //重力
         return _this;
     }
+    // 公式说明：y轴自由落体h的高度计算公式-- h = (gt^2)/2 ; 距离公式-- s = vt;
     /**计算双轴速度*/
     ArrowBase.prototype.setTarget = function (x, y) {
         this.pos = new egret.Point(x, y);
