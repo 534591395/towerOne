@@ -47,11 +47,18 @@ var Guanka01 = (function (_super) {
     }
     // 初始化数据
     Guanka01.prototype.default = function () {
+        this.wujinRoundSum = 0;
+        this.currentRound = -1;
+        this.roundMosterLeft = -1;
+        this.delayToNextSum = 0;
+        this.otime = 0;
+        this.rounding = false;
+        this.hardxs = 1;
         this.gold = 250;
-        this.guankaUI.setGold(this.gold);
         this.life = 20;
-        this.guankaUI.setLife(this.life);
         this.allRound = this.enemyData.length;
+        this.guankaUI.setGold(this.gold);
+        this.guankaUI.setLife(this.life);
         // 区分故事（剧情）模式还是无尽模式（说明：故事模式通关后开启无尽模式）
         if (Main.wujin) {
             this.guankaUI.setRound(0, 0);

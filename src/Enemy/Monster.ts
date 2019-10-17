@@ -1,8 +1,8 @@
 /**
- * 怪物基类
+ * 怪物类
  */
 
-class MonsterBase extends VectorElements {
+class Monster extends MonsterBase {
     public constructor() {
         super();
     }

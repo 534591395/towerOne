@@ -33,6 +33,8 @@ class GuankaBase extends eui.Component {
     protected towerArr: any[] = [];
     // 建筑队列--由于建筑异步执行（等待建筑动画执行完毕），故需要一个建筑队列
     protected buildQuene: any[] = [];
+    // 敌人(怪物)集合
+    protected enemyArr: any[] = []; 
 
     // 怪物行走路径点数组
     protected roadArr: number[][][] = [];
@@ -50,6 +52,9 @@ class GuankaBase extends eui.Component {
     // 生命数
     protected life: number;
 
+    // 无尽模式累计轮次 -- 记录最佳通关需要
+    protected wujinRoundSum: number;
+
     // 轮次难度系数基数
     public hardxs: number = 1;
     // 无尽模式难度累加系数
@@ -57,14 +62,14 @@ class GuankaBase extends eui.Component {
 
     // 总轮次（怪物进攻波次）
     protected allRound: number;
-    // 当前怪物进攻的轮次（波次）
-    protected currentRound: number;
+    // 当前怪物进攻的轮次（波次），因为 0值是有意义的，故默认值为-1
+    protected currentRound: number = -1;
     // 当前轮次进攻怪物类别
     protected roundMonsterType: string; 
     // 当前轮次剩余怪物数量
     protected roundMosterLeft: number;
     // 当前轮次敌人生命
-    protected roundLife: number;
+    protected roundLife: number = -1;
     // 当前轮次敌人移动速度
     protected roundSpeed: number;
     // 当前轮次敌人攻击力
@@ -122,8 +127,10 @@ class GuankaBase extends eui.Component {
     // 实时刷新，子类中执行
     protected onEnterFrame(timeStamp:number) {
         this.enterFrameTowers(timeStamp);
+        // 创建怪物轮次
+        this.createEnemies(timeStamp);
     }
-
+    // 刷新塔
     private enterFrameTowers(timeStamp:number) {
         this.towerArr.map(tower => {
             tower.onEnterFrame(timeStamp);
@@ -156,6 +163,68 @@ class GuankaBase extends eui.Component {
             foundation.addEventListener(TowerEvent.ShowTool, this.showTool, this);
             foundation.addEventListener(TowerEvent.HideTool, this.hideTool, this);
         });
+    }
+    
+    // 创建怪物轮次（一波一波的怪物）
+    protected createEnemies(timeStamp) {
+        // 若当前轮次在进行中，产生怪物
+        if (this.rounding) {
+            // 若当前轮次需产生的怪物剩余数量为0，则不再产生怪物
+            if (this.roundMosterLeft === 0) {
+                return;
+            }
+            // 累加时间，直到下一个怪物产生平均间隔
+            this.otime += timeStamp;
+            // 还没达到下一个怪物产生时间
+            if (this.otime < this.meanTime) {
+                return;
+            }
+            // 产生了一个怪物，累计时间清零
+            this.otime = 0;
+            // 添加一个怪物到场景里
+            this.addMosters(this.roundMonsterType, this.curRoadArr);
+            // 剩余怪物数减掉一个
+            this.roundMosterLeft = -1;
+        }
+        // 重新设置怪物产生条件 
+        else {
+            // 累加时间，直到下一轮次开始时间
+            this.delayToNextSum += timeStamp;
+            if (this.delayToNextSum >= this.delayToNext) {
+                // 清空时间累计相关字段
+                this.delayToNextSum = 0;
+                this.otime = 0;
+                // 更新当前轮次
+                this.currentRound ++;
+                // 若当前轮次更新后值小于总轮次，进入下一个轮次
+                if (this.currentRound < this.allRound) {
+                    // 标记修改：当前有轮次在进行中
+                    this.rounding = true;
+                    // 怪物数据
+                    let monsterData = this.enemyData[this.currentRound];
+                    // 当前轮次怪物种类（说明：每轮次出现的怪物种类是相同的）
+                    this.roundMonsterType = monsterData["type"];
+                    // 剩余怪物数量（即：当前轮次出现的怪物总数）
+                    this.roundMosterLeft = monsterData["count"];
+                    // 当前轮次每个怪物生命值， 乘以当前关卡的难度系数(控制怪物血量)
+                    this.roundLife = monsterData["life"] * this.hardxs;
+                    // 当前轮次怪物攻击力， 乘以当前关卡的难度系数(控制怪物攻击力-- 我方防御塔会生成士兵，怪物攻击我方的士兵)
+                    this.roundDamage = monsterData["damage"] * this.hardxs;
+                    // 怪物死亡后玩家能获取到的金币数
+                    this.roundValue = monsterData["value"];
+
+                    // currentRound值+1说明-- currentRound默认从-1开始。我们显示轮次从1开始 
+                    if (Main.wujin) {
+                        this.guankaUI.setRound(this.currentRound + 1 + this.wujinRoundSum, this.currentRound + 1 + this.wujinRoundSum);
+                    } else {
+                        this.guankaUI.setRound(this.currentRound + 1, this.allRound);
+                    }
+
+                    // 播放开始一轮的音效
+                    SoundManager.playEffect("bo_start");
+                }
+            }  
+        }
     }
 
     // 地基\塔被点击
@@ -251,6 +320,13 @@ class GuankaBase extends eui.Component {
         if (tower) {
             this.buildTower(tower, tower.className);
         }
+    }
+
+    // 创建一个怪物到场景里
+    private addMosters(classFactory: string, roadArr: number[][]) {
+        const monster = <Monster>ObjectPool.getInstance().createObject(Monster);
+        this.objLayer.addChild(monster);
+        this.enemyArr.push(monster);
     }
 
     // 隐藏建造防御塔的选项工具ui
