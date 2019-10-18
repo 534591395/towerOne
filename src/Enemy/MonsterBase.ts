@@ -73,4 +73,15 @@ class MonsterBase extends VectorElements {
             }
         }
     }
+
+    // 实时刷新
+    public onEnterFrame(advancedTime :number) {
+        // 累加时间-用来判断是否到了怪物攻击的时间
+        this.timesum += advancedTime;
+        // 刷新怪物状态
+        this.fsm.onEnterFrame(advancedTime);
+        // 移动（向量）
+        super.onEnterFrame(advancedTime);
+
+    }
 }

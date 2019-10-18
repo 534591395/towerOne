@@ -34,8 +34,8 @@
 		"bin-debug/FSM/StateMachine.js",
 		"bin-debug/Guanka/Guanka01.js",
 		"bin-debug/Platform.js",
+		"bin-debug/Guanka/GuankaUI.js",
 		"bin-debug/Run.js",
-		"bin-debug/Loader/LoadBar.js",
 		"bin-debug/Loader/LoadingUI.js",
 		"bin-debug/Loader/LoadResource.js",
 		"bin-debug/skins/Bg.js",
@@ -54,7 +54,8 @@
 		"bin-debug/Utils/ObjectPool.js",
 		"bin-debug/Utils/SoundManager.js",
 		"bin-debug/Utils/Utils.js",
+		"bin-debug/Utils/Vector2D.js",
 		"bin-debug/Weapon/Arrow01.js",
-		"bin-debug/Guanka/GuankaUI.js"
+		"bin-debug/Loader/LoadBar.js"
 	]
 }

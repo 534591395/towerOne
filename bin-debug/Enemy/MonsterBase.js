@@ -58,6 +58,15 @@ var MonsterBase = (function (_super) {
             }
         }
     };
+    // 实时刷新
+    MonsterBase.prototype.onEnterFrame = function (advancedTime) {
+        // 累加时间-用来判断是否到了怪物攻击的时间
+        this.timesum += advancedTime;
+        // 刷新怪物状态
+        this.fsm.onEnterFrame(advancedTime);
+        // 移动（向量）
+        _super.prototype.onEnterFrame.call(this, advancedTime);
+    };
     return MonsterBase;
 }(VectorElements));
 __reflect(MonsterBase.prototype, "MonsterBase");
