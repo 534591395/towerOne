@@ -3,6 +3,10 @@
  */
 
 class VectorElements extends Elements {
+
+    // 申明状态机
+    protected fsm: StateMachine;
+
     public constructor() {
         super();
     }

@@ -14,7 +14,10 @@ r.prototype = e.prototype, t.prototype = new r();
 var Monster = (function (_super) {
     __extends(Monster, _super);
     function Monster() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        _this.view = new egret.MovieClip();
+        _this.addChild(_this.view);
+        return _this;
     }
     return Monster;
 }(MonsterBase));

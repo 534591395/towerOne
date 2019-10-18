@@ -34,7 +34,9 @@ class GuankaBase extends eui.Component {
     // 建筑队列--由于建筑异步执行（等待建筑动画执行完毕），故需要一个建筑队列
     protected buildQuene: any[] = [];
     // 敌人(怪物)集合
-    protected enemyArr: any[] = []; 
+    protected enemyArr: any[] = [];
+    // 怪物层、士兵层、英雄层、塔层的child对象集合
+    protected objArr: any[] = []; 
 
     // 怪物行走路径点数组
     protected roadArr: number[][][] = [];
@@ -215,6 +217,7 @@ class GuankaBase extends eui.Component {
 
                     // currentRound值+1说明-- currentRound默认从-1开始。我们显示轮次从1开始 
                     if (Main.wujin) {
+                        // 
                         this.guankaUI.setRound(this.currentRound + 1 + this.wujinRoundSum, this.currentRound + 1 + this.wujinRoundSum);
                     } else {
                         this.guankaUI.setRound(this.currentRound + 1, this.allRound);

@@ -25,6 +25,8 @@ var GuankaBase = (function (_super) {
         _this.buildQuene = [];
         // 敌人(怪物)集合
         _this.enemyArr = [];
+        // 怪物层、士兵层、英雄层、塔层的child对象集合
+        _this.objArr = [];
         // 怪物行走路径点数组
         _this.roadArr = [];
         // 当前行走路径点
@@ -160,6 +162,7 @@ var GuankaBase = (function (_super) {
                     this.roundValue = monsterData["value"];
                     // currentRound值+1说明-- currentRound默认从-1开始。我们显示轮次从1开始 
                     if (Main.wujin) {
+                        // 
                         this.guankaUI.setRound(this.currentRound + 1 + this.wujinRoundSum, this.currentRound + 1 + this.wujinRoundSum);
                     }
                     else {
