@@ -133,8 +133,7 @@ class MonsterBase extends VectorElements {
         if(this.target!=null){
             this.fsm.changeState(stateType.idleState);
         }
-        // ?
-        this.checkLast(this.stateLabel);
+        this.checkLast(this.stateLabel, this.view.currentFrame);
     } 
 
     /**闲置中*/
@@ -240,20 +239,23 @@ class MonsterBase extends VectorElements {
         let label = '';
         const labels = movieClipData.labels || [];
         labels.map((item, i) => {
+            if (i === labels.length-1) {
+                if (nextFrame >= item.frame && nextFrame <= movieClipData.numFrames) {
+                    label = item.name;
+                }
+            } else
             if (labels[i+1]) {
                 if (nextFrame >= item.frame && nextFrame < labels[i+1].frame) {
                     label = item.name;
                 }
-            } else {
-                label = item.name;
             }
         });
         return label;
     }
 
     /**循环播放检查*/
-    private checkLast(str:string){
-        const nextFrameNum:number = this.view.currentFrame+1;
+    private checkLast(str:string, currentFrame: number){
+        const nextFrameNum:number = currentFrame+1;
         const movieClipData = this.view.movieClipData;
         const mz: string = this.getFrameLable(movieClipData, nextFrameNum);
         //const mz: string = movieClipData.getKeyFrameData(nextFrameNum).name;

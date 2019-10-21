@@ -113,8 +113,7 @@ var MonsterBase = (function (_super) {
         if (this.target != null) {
             this.fsm.changeState(stateType.idleState);
         }
-        // ?
-        this.checkLast(this.stateLabel);
+        this.checkLast(this.stateLabel, this.view.currentFrame);
     };
     /**闲置中*/
     MonsterBase.prototype.idling = function () {
@@ -209,20 +208,22 @@ var MonsterBase = (function (_super) {
         var label = '';
         var labels = movieClipData.labels || [];
         labels.map(function (item, i) {
-            if (labels[i + 1]) {
-                if (nextFrame >= item.frame && nextFrame < labels[i + 1].frame) {
+            if (i === labels.length - 1) {
+                if (nextFrame >= item.frame && nextFrame <= movieClipData.numFrames) {
                     label = item.name;
                 }
             }
-            else {
-                label = item.name;
+            else if (labels[i + 1]) {
+                if (nextFrame >= item.frame && nextFrame < labels[i + 1].frame) {
+                    label = item.name;
+                }
             }
         });
         return label;
     };
     /**循环播放检查*/
-    MonsterBase.prototype.checkLast = function (str) {
-        var nextFrameNum = this.view.currentFrame + 1;
+    MonsterBase.prototype.checkLast = function (str, currentFrame) {
+        var nextFrameNum = currentFrame + 1;
         var movieClipData = this.view.movieClipData;
         var mz = this.getFrameLable(movieClipData, nextFrameNum);
         //const mz: string = movieClipData.getKeyFrameData(nextFrameNum).name;
