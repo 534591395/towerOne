@@ -204,6 +204,7 @@ var MonsterBase = (function (_super) {
             this.stateLabel = "walkingUp";
         }
     };
+    // 根据播放帧序列号获取帧lable
     MonsterBase.prototype.getFrameLable = function (movieClipData, nextFrame) {
         var label = '';
         var labels = movieClipData.labels || [];
@@ -226,7 +227,6 @@ var MonsterBase = (function (_super) {
         var nextFrameNum = currentFrame + 1;
         var movieClipData = this.view.movieClipData;
         var mz = this.getFrameLable(movieClipData, nextFrameNum);
-        //const mz: string = movieClipData.getKeyFrameData(nextFrameNum).name;
         if (mz != str) {
             this.view.gotoAndPlay(str);
         }
@@ -235,7 +235,7 @@ var MonsterBase = (function (_super) {
     MonsterBase.prototype.checkLastEnd = function (curLabel) {
         var nextFrameNum = this.view.currentFrame + 1;
         var movieClipData = this.view.movieClipData;
-        var label = movieClipData.getKeyFrameData(nextFrameNum).name;
+        var label = this.getFrameLable(movieClipData, nextFrameNum);
         if (label != curLabel || this.view.currentFrame >= this.view.totalFrames) {
             this.view.stop();
             if (this.currentState == stateType.fightState) {

@@ -14,11 +14,21 @@ r.prototype = e.prototype, t.prototype = new r();
 var TowerFoundation = (function (_super) {
     __extends(TowerFoundation, _super);
     function TowerFoundation() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        /**敌人集合 */
+        _this.targets = [];
+        /**进入射程的敌人集合(涉及排序 优先攻击距离终点最近者)*/
+        _this.atargets = [];
+        /**射程范围最大半径*/
+        _this.maxRadius = 140;
+        /**射程范围最小半径*/
+        _this.minRadius = 100;
+        return _this;
     }
     // 销毁
     TowerFoundation.prototype.destory = function () {
     };
+    TowerFoundation.prototype.onEnterFrame = function (timeStamp) { };
     return TowerFoundation;
 }(Foundation));
 __reflect(TowerFoundation.prototype, "TowerFoundation");

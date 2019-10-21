@@ -49,16 +49,16 @@ var ArrowTower01 = (function (_super) {
             p = new egret.Point(this.sx + 5, this.sy - 46);
         }
         //利用对象池产生弓箭对象并进行碰撞检测
-        // this.weapon = <Arrow01>ObjectPool.getInstance().createObject(Arrow01);
-        // //this.weapon.damage = 4 * GuankaBase.instance.hardxs2;
-        // this.weapon.damage = 4;
+        this.weapon = ObjectPool.getInstance().createObject(Arrow01);
+        // //this.weapon.damage = 4 * GuankaBase.hardxs;
+        this.weapon.damage = 4;
         // this.target = {
         //     x: 304,
         //     y: 361,
         //     offy: 10
         // };
-        //this.weapon.init(p,this.target,this.target.offy);
-        //this.parentContentLayer.addChild(this.weapon);
+        this.weapon.init(p, this.target, this.target.offy);
+        this.parentContentLayer.addChild(this.weapon);
     };
     return ArrowTower01;
 }(ArrowTowerFoundation));

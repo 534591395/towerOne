@@ -234,7 +234,8 @@ class MonsterBase extends VectorElements {
             this.stateLabel = "walkingUp";
         }
     }
-
+    
+    // 根据播放帧序列号获取帧lable
     private getFrameLable(movieClipData: egret.MovieClipData, nextFrame: number) {
         let label = '';
         const labels = movieClipData.labels || [];
@@ -258,7 +259,6 @@ class MonsterBase extends VectorElements {
         const nextFrameNum:number = currentFrame+1;
         const movieClipData = this.view.movieClipData;
         const mz: string = this.getFrameLable(movieClipData, nextFrameNum);
-        //const mz: string = movieClipData.getKeyFrameData(nextFrameNum).name;
         if( mz != str){
             this.view.gotoAndPlay(str);
         }
@@ -268,7 +268,7 @@ class MonsterBase extends VectorElements {
     private checkLastEnd(curLabel:string){
         const nextFrameNum:number = this.view.currentFrame+1;
         const movieClipData = this.view.movieClipData;
-        const label: string = movieClipData.getKeyFrameData(nextFrameNum).name;
+        const label: string = this.getFrameLable(movieClipData, nextFrameNum);
         if( label != curLabel || this.view.currentFrame>=this.view.totalFrames){
             this.view.stop();
             if(this.currentState == stateType.fightState){
