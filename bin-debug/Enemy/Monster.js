@@ -19,6 +19,21 @@ var Monster = (function (_super) {
         _this.addChild(_this.view);
         return _this;
     }
+    /**创建*/
+    Monster.prototype.onCreate = function () {
+        //数据初始化
+        this.positionArr = [];
+        this.pathIndex = 0;
+        //状态初始化
+        this.timesum = 0;
+        this.lifeBar.reset();
+        this.canClear = false;
+        this.beKill = false;
+        this.beAttack = false;
+        this.target = null;
+        this.fsm.changeState(stateType.idleState);
+        this.currentState = stateType.idleState;
+    };
     /**添加纹理 初始化数据*/
     Monster.prototype.addTexture = function (tietu) {
         //获取贴图

@@ -51,6 +51,7 @@ var GuankaBase = (function (_super) {
         _this.meanTime = 500;
         /** 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物 */
         _this.otime = 0;
+        _this.time = 0;
         // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
         // UI特效层、提示层
         _this.uiLayer = new egret.DisplayObjectContainer();
@@ -79,11 +80,15 @@ var GuankaBase = (function (_super) {
     };
     // 实时刷新，子类中执行
     GuankaBase.prototype.onEnterFrame = function (timeStamp) {
+        var now = timeStamp;
+        var time = this.time;
+        var pass = now - time;
+        this.time = now;
         //判断敌人是否死亡或逃脱，更新敌人数组
         this.removeEnemies();
         // 创建怪物轮次
-        this.createEnemies(timeStamp);
-        this.enterFrameTowers(timeStamp);
+        this.createEnemies(pass);
+        this.enterFrameTowers(pass);
     };
     // 刷新塔
     GuankaBase.prototype.enterFrameTowers = function (timeStamp) {
@@ -171,7 +176,7 @@ var GuankaBase = (function (_super) {
         //停止背景音乐
         SoundManager.stopBgSound();
         //暂停心跳控制器
-        egret.Ticker.getInstance().unregister(this.onEnterFrame, this);
+        //egret.Ticker.getInstance().unregister(this.onEnterFrame,this);
         //清空对象池
         ObjectPool.getInstance().destroyAllObject();
     };
@@ -195,7 +200,7 @@ var GuankaBase = (function (_super) {
         });
     };
     // 创建怪物轮次（一波一波的怪物）
-    GuankaBase.prototype.createEnemies = function (timeStamp) {
+    GuankaBase.prototype.createEnemies = function (pass) {
         // 若当前轮次在进行中，产生怪物
         if (this.rounding) {
             // 若当前轮次需产生的怪物剩余数量为0，则不再产生怪物
@@ -203,25 +208,25 @@ var GuankaBase = (function (_super) {
                 return;
             }
             // 累加时间，直到下一个怪物产生平均间隔
-            this.otime += timeStamp;
-            //路径
-            if (this.roundMosterLeft > 0 && this.otime >= this.meanTime - 50) {
-                this.curRoadArr = this.roadArr[this.roundMosterLeft % this.roadArr.length];
-            }
+            this.otime += pass;
+            // //路径
+            // if(this.roundMosterLeft>0 && this.otime >= this.meanTime-50) {
+            //     this.curRoadArr = this.roadArr[this.roundMosterLeft % this.roadArr.length];
+            // }
             // 还没达到下一个怪物产生时间
             if (this.otime < this.meanTime) {
                 return;
             }
+            // 产生了一个怪物，累计时间清零
+            this.otime = 0;
             // 添加一个怪物到场景里
             this.addMosters(this.roundMonsterType, this.curRoadArr);
             // 剩余怪物数减掉一个
             this.roundMosterLeft -= 1;
-            // 产生了一个怪物，累计时间清零
-            this.otime = 0;
         }
         else {
             // 累加时间，直到下一轮次开始时间
-            this.delayToNextSum += timeStamp;
+            this.delayToNextSum += pass;
             if (this.delayToNextSum >= this.delayToNext) {
                 // 清空时间累计相关字段
                 this.delayToNextSum = 0;

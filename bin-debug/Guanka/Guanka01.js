@@ -68,11 +68,16 @@ var Guanka01 = (function (_super) {
         }
         //播放背景音乐
         SoundManager.playBgSound("map0bgSound");
+        this.time = egret.getTimer();
         // 添加心跳监测, startTick函数的参数，第一个参数即它的回调函数，要求有返回值，如果返回为true将在回调函数执行完成之后立即重绘，为false则不会重绘
         egret.startTick(this.onEnterFrame, this);
     };
     Guanka01.prototype.onEnterFrame = function (timeStamp) {
         _super.prototype.onEnterFrame.call(this, timeStamp);
+        //路径
+        if (this.rounding && this.roundMosterLeft > 0 && this.otime >= this.meanTime - 50) {
+            this.curRoadArr = this.roadArr[this.roundMosterLeft % this.roadArr.length];
+        }
         return false;
     };
     /**再次尝试*/

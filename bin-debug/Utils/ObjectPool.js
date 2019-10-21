@@ -9,21 +9,29 @@ var __reflect = (this && this.__reflect) || function (p, c, t) {
 */
 var ObjectPool = (function () {
     function ObjectPool() {
+        this.time = 0;
         this._isPause = false;
         /**对象池*/
         this._pool = {};
         /**所有显示在舞台上的显示对象数组*/
         this._list = [];
-        egret.Ticker.getInstance().register(this.onEnterFrame, this);
+        this.time = egret.getTimer();
+        egret.startTick(this.onEnterFrame, this);
+        //egret.Ticker.getInstance().register(this.onEnterFrame, this);
     }
     /**事实刷新对象池中对象*/
-    ObjectPool.prototype.onEnterFrame = function (advancedTime) {
+    ObjectPool.prototype.onEnterFrame = function (timeStamp) {
+        var now = timeStamp;
+        var time = this.time;
+        var pass = now - time;
+        this.time = now;
         //if (Main.isPause)return;
         var list = this._list.concat();
         for (var i = 0, length = list.length; i < length; i++) {
             var obj = list[i];
-            obj.onEnterFrame(advancedTime);
+            obj.onEnterFrame(pass);
         }
+        return false;
     };
     ObjectPool.prototype.pauseEnterFrame = function () {
         this._isPause = true;

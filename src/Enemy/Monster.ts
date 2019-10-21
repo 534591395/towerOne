@@ -10,6 +10,24 @@ class Monster extends MonsterBase {
         this.addChild(this.view);
     }
 
+    /**创建*/
+    public onCreate():void {
+        //数据初始化
+        this.positionArr = [];
+        this.pathIndex = 0;
+        
+        //状态初始化
+        this.timesum = 0;
+        this.lifeBar.reset();
+        this.canClear = false;
+        this.beKill = false;
+        this.beAttack = false;
+        this.target = null;
+        
+        this.fsm.changeState(stateType.idleState);
+        this.currentState = stateType.idleState;
+    }
+
 	/**添加纹理 初始化数据*/
     public addTexture(tietu:string){
         //获取贴图

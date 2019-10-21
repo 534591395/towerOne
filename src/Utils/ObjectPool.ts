@@ -5,17 +5,25 @@
 *
 */
 class ObjectPool {
+    protected time:number = 0;
     constructor() {
-        egret.Ticker.getInstance().register(this.onEnterFrame, this);
+        this.time = egret.getTimer();
+        egret.startTick(this.onEnterFrame, this);
+        //egret.Ticker.getInstance().register(this.onEnterFrame, this);
     }
     /**事实刷新对象池中对象*/
-    private onEnterFrame(advancedTime:number):void {
+    private onEnterFrame(timeStamp:number):boolean {
+        const now = timeStamp;
+        const time = this.time;
+        const pass = now - time;
+        this.time = now;
         //if (Main.isPause)return;
         var list = this._list.concat();
         for (var i = 0 , length = list.length; i < length; i++) {
             var obj = list[i];
-            obj.onEnterFrame(advancedTime);
+            obj.onEnterFrame(pass);
         }
+        return false;
     }
     
     private _isPause:boolean = false;
