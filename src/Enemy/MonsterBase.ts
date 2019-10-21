@@ -236,11 +236,27 @@ class MonsterBase extends VectorElements {
         }
     }
 
+    private getFrameLable(movieClipData: egret.MovieClipData, nextFrame: number) {
+        let label = '';
+        const labels = movieClipData.labels || [];
+        labels.map((item, i) => {
+            if (labels[i+1]) {
+                if (nextFrame >= item.frame && nextFrame < labels[i+1].frame) {
+                    label = item.name;
+                }
+            } else {
+                label = item.name;
+            }
+        });
+        return label;
+    }
+
     /**循环播放检查*/
     private checkLast(str:string){
         const nextFrameNum:number = this.view.currentFrame+1;
         const movieClipData = this.view.movieClipData;
-        const mz: string = movieClipData.getKeyFrameData(nextFrameNum).name;
+        const mz: string = this.getFrameLable(movieClipData, nextFrameNum);
+        //const mz: string = movieClipData.getKeyFrameData(nextFrameNum).name;
         if( mz != str){
             this.view.gotoAndPlay(str);
         }
