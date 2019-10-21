@@ -78,6 +78,30 @@ class Guanka01 extends GuankaBase {
         return false;
     }
 
+    /**再次尝试*/
+    protected tryAgainHandle(e: MainEvent) {
+        let i: number;
+        //清除所有对象
+        while(this.objLayer.numChildren>0){
+            this.objLayer.removeChildAt(0);
+        }
+        //清除工具
+        while(this.toolLayer.numChildren>0){
+            this.toolLayer.removeChildAt(0);
+        }
+        //恢复地基侦听
+        for(i = 0;i < this.foundationArr.length;i++) {
+            this.foundationArr[i].addEventListener(egret.TouchEvent.TOUCH_BEGIN,this.foundationOrTowerTouch,this);
+        }
+        //数组清零
+        this.towerArr = [];
+        this.objArr = [];
+        this.enemyArr = [];
+        this.buildQuene = [];
+        //初始化各种数据
+        this.default();
+    }
+
     public destroy() {
         super.destroy();
         RES.destroyRes(GuanKa.resourceNameArr[Main.choseNumber]);

@@ -89,6 +89,11 @@ var Main = (function (_super) {
                     case 1:
                         _a.sent();
                         this.createGameScene();
+                        //const result = await RES.getResAsync("description_json")
+                        return [4 /*yield*/, platform.login()];
+                    case 2:
+                        //const result = await RES.getResAsync("description_json")
+                        _a.sent();
                         return [2 /*return*/];
                 }
             });

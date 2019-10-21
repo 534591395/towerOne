@@ -26,7 +26,6 @@ class GuankaBase extends eui.Component {
     // 地基坐标集合
     protected foundationPosiotionArr: number[][] = [];
 
-
     // 地基实例集合
     protected foundationArr: Foundation[] = [];
     // 塔实例集合
@@ -68,7 +67,7 @@ class GuankaBase extends eui.Component {
     protected currentRound: number = -1;
     // 当前轮次进攻怪物类别
     protected roundMonsterType: string; 
-    // 当前轮次剩余怪物数量
+    /** 当前轮次剩余怪物数量 */
     protected roundMosterLeft: number;
     // 当前轮次敌人生命
     protected roundLife: number = -1;
@@ -78,15 +77,15 @@ class GuankaBase extends eui.Component {
     protected roundDamage: number;
     // 当前轮次敌人死亡玩家获取的金币
     protected roundValue: number;
-    // 轮次进行中
+    /** 轮次进行中 */
     protected rounding: boolean = false;
     // 到下一轮次的间隔时间
     protected delayToNext: number = 1000;
-    // 到下一轮次的时间累计（帧率变动累计），判断是否进入下一轮的判断需要，当 delayToNextSum >= delayToNext 时，表示到了下一轮的时间。
+    /** 到下一轮次的时间累计（帧率变动累计），判断是否进入下一轮的判断需要，当 delayToNextSum >= delayToNext 时，表示到了下一轮的时间。*/
     protected delayToNextSum: number = 0;
-    // 怪物产生平均间隔 -- 怪物不是一次是产生的，有间隔（出场间隔）
+    /** 怪物产生平均间隔 -- 怪物不是一次是产生的，有间隔（出场间隔）*/
     protected meanTime: number = 500;
-    // 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物
+    /** 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物 */
     protected otime: number = 0;
 
     constructor() {
@@ -128,15 +127,65 @@ class GuankaBase extends eui.Component {
 
     // 实时刷新，子类中执行
     protected onEnterFrame(timeStamp:number) {
-        this.enterFrameTowers(timeStamp);
+        //判断敌人是否死亡或逃脱，更新敌人数组
+        this.removeEnemies();
         // 创建怪物轮次
         this.createEnemies(timeStamp);
+        this.enterFrameTowers(timeStamp);
     }
     // 刷新塔
     private enterFrameTowers(timeStamp:number) {
         this.towerArr.map(tower => {
             tower.onEnterFrame(timeStamp);
         });
+    }
+
+    /**回收敌人*/
+    protected removeEnemies() {
+        let i: number;
+        for(i = 0;i < this.enemyArr.length;i++) {
+            let tar = this.enemyArr[i];
+            if(tar.canClear) {
+                this.enemyArr.splice(i,1);
+                //如果属于被杀死则增加金币、否则则减掉本方剩余生命
+                if(tar.beKill) {
+                    this.gold += tar.value;
+                    this.guankaUI.setGold(this.gold);
+                } else {
+                    this.life -= 1;
+                    this.guankaUI.setLife(this.life);
+                    //如果life == 0 则游戏结束
+                    if(this.life == 0)
+                        this.lose();
+                }                                           
+                //波数量为0时表示当前波完成
+                if(this.rounding && this.enemyArr.length == 0) {
+                    //最后一波
+                    if(this.currentRound == this.allRound - 1) {
+                        //判断无尽模式
+                        if(Main.wujin){
+                            this.currentRound = -1;
+                            this.wujinRoundSum += this.allRound;
+                            this.hardxs += this.perxs;
+                            this.rounding = false;
+                        }else{
+                            //胜利
+                            if(this.life > 0)
+                                this.victory();
+                        }
+                    } else {
+                        //每波难度
+                        this.rounding = false;
+                    }
+                }
+            }
+        }
+        for(i = 0;i < this.objArr.length;i++) {
+            var tar = this.objArr[i];
+            if(tar.canClear) {
+                this.objArr.splice(i,1);
+            }
+        }
     }
 
     // 退出关卡，回到事件地图界面
@@ -146,6 +195,38 @@ class GuankaBase extends eui.Component {
 
     private bgTouch(e: egret.TouchEvent) {
         
+    }
+
+    /**再次尝试*/
+    protected tryAgainHandle(e: MainEvent) {}
+    
+    /**关卡胜利*/
+    protected victory() {
+        this.clear();
+       // this.guankaUI.showVictory();
+        //更新关卡通关数据、塔升级数据
+        //StorageSetting.setGuankaPass(Main.curIdx);
+        //StorageSetting.setTowerUpgrade(Main.curIdx);
+    }
+            
+    /**关卡失败*/
+    protected lose() {
+        this.clear();
+       // this.guankaUI.showLose();
+        //更新关卡数据
+        //if(Main.wujin){
+            //StorageSetting.setGuankaWujin(Main.curIdx,this.boSum+this.curBo);
+        //}
+    }
+
+    /**清除*/
+    public clear() {
+        //停止背景音乐
+        SoundManager.stopBgSound();
+        //暂停心跳控制器
+        egret.Ticker.getInstance().unregister(this.onEnterFrame,this);
+        //清空对象池
+        ObjectPool.getInstance().destroyAllObject();
     }
 
     // 创建地基，标记可以造箭塔的位置
@@ -169,6 +250,7 @@ class GuankaBase extends eui.Component {
     
     // 创建怪物轮次（一波一波的怪物）
     protected createEnemies(timeStamp) {
+
         // 若当前轮次在进行中，产生怪物
         if (this.rounding) {
             // 若当前轮次需产生的怪物剩余数量为0，则不再产生怪物
@@ -177,16 +259,20 @@ class GuankaBase extends eui.Component {
             }
             // 累加时间，直到下一个怪物产生平均间隔
             this.otime += timeStamp;
+            //路径
+            if(this.roundMosterLeft>0 && this.otime >= this.meanTime-50) {
+                this.curRoadArr = this.roadArr[this.roundMosterLeft % this.roadArr.length];
+            }
             // 还没达到下一个怪物产生时间
             if (this.otime < this.meanTime) {
                 return;
             }
-            // 产生了一个怪物，累计时间清零
-            this.otime = 0;
             // 添加一个怪物到场景里
             this.addMosters(this.roundMonsterType, this.curRoadArr);
             // 剩余怪物数减掉一个
-            this.roundMosterLeft = -1;
+            this.roundMosterLeft -= 1;
+            // 产生了一个怪物，累计时间清零
+            this.otime = 0;
         }
         // 重新设置怪物产生条件 
         else {
@@ -214,6 +300,8 @@ class GuankaBase extends eui.Component {
                     this.roundDamage = monsterData["damage"] * this.hardxs;
                     // 怪物死亡后玩家能获取到的金币数
                     this.roundValue = monsterData["value"];
+                    // 攻击速度
+                    this.roundSpeed = monsterData["maxSpeed"];
 
                     // currentRound值+1说明-- currentRound默认从-1开始。我们显示轮次从1开始 
                     if (Main.wujin) {
@@ -231,7 +319,7 @@ class GuankaBase extends eui.Component {
     }
 
     // 地基\塔被点击
-    private foundationOrTowerTouch(e: egret.TouchEvent) { 
+    protected foundationOrTowerTouch(e: egret.TouchEvent) { 
         Group.selectItem(e.currentTarget);
     }
 
@@ -328,6 +416,8 @@ class GuankaBase extends eui.Component {
     // 创建一个怪物到场景里
     private addMosters(classFactory: string, roadArr: number[][]) {
         const monster = <Monster>ObjectPool.getInstance().createObject(Monster);
+        monster.addTexture(classFactory);
+        monster.init(roadArr,this.roundMosterLeft,this.roundSpeed,this.roundDamage,this.roundValue);
         this.objLayer.addChild(monster);
         this.enemyArr.push(monster);
     }

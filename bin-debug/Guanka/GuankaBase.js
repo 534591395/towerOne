@@ -41,15 +41,15 @@ var GuankaBase = (function (_super) {
         _this.currentRound = -1;
         // 当前轮次敌人生命
         _this.roundLife = -1;
-        // 轮次进行中
+        /** 轮次进行中 */
         _this.rounding = false;
         // 到下一轮次的间隔时间
         _this.delayToNext = 1000;
-        // 到下一轮次的时间累计（帧率变动累计），判断是否进入下一轮的判断需要，当 delayToNextSum >= delayToNext 时，表示到了下一轮的时间。
+        /** 到下一轮次的时间累计（帧率变动累计），判断是否进入下一轮的判断需要，当 delayToNextSum >= delayToNext 时，表示到了下一轮的时间。*/
         _this.delayToNextSum = 0;
-        // 怪物产生平均间隔 -- 怪物不是一次是产生的，有间隔（出场间隔）
+        /** 怪物产生平均间隔 -- 怪物不是一次是产生的，有间隔（出场间隔）*/
         _this.meanTime = 500;
-        // 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物
+        /** 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物 */
         _this.otime = 0;
         // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
         // UI特效层、提示层
@@ -79,9 +79,11 @@ var GuankaBase = (function (_super) {
     };
     // 实时刷新，子类中执行
     GuankaBase.prototype.onEnterFrame = function (timeStamp) {
-        this.enterFrameTowers(timeStamp);
+        //判断敌人是否死亡或逃脱，更新敌人数组
+        this.removeEnemies();
         // 创建怪物轮次
         this.createEnemies(timeStamp);
+        this.enterFrameTowers(timeStamp);
     };
     // 刷新塔
     GuankaBase.prototype.enterFrameTowers = function (timeStamp) {
@@ -89,11 +91,89 @@ var GuankaBase = (function (_super) {
             tower.onEnterFrame(timeStamp);
         });
     };
+    /**回收敌人*/
+    GuankaBase.prototype.removeEnemies = function () {
+        var i;
+        for (i = 0; i < this.enemyArr.length; i++) {
+            var tar_1 = this.enemyArr[i];
+            if (tar_1.canClear) {
+                this.enemyArr.splice(i, 1);
+                //如果属于被杀死则增加金币、否则则减掉本方剩余生命
+                if (tar_1.beKill) {
+                    this.gold += tar_1.value;
+                    this.guankaUI.setGold(this.gold);
+                }
+                else {
+                    this.life -= 1;
+                    this.guankaUI.setLife(this.life);
+                    //如果life == 0 则游戏结束
+                    if (this.life == 0)
+                        this.lose();
+                }
+                //波数量为0时表示当前波完成
+                if (this.rounding && this.enemyArr.length == 0) {
+                    //最后一波
+                    if (this.currentRound == this.allRound - 1) {
+                        //判断无尽模式
+                        if (Main.wujin) {
+                            this.currentRound = -1;
+                            this.wujinRoundSum += this.allRound;
+                            this.hardxs += this.perxs;
+                            this.rounding = false;
+                        }
+                        else {
+                            //胜利
+                            if (this.life > 0)
+                                this.victory();
+                        }
+                    }
+                    else {
+                        //每波难度
+                        this.rounding = false;
+                    }
+                }
+            }
+        }
+        for (i = 0; i < this.objArr.length; i++) {
+            var tar = this.objArr[i];
+            if (tar.canClear) {
+                this.objArr.splice(i, 1);
+            }
+        }
+    };
     // 退出关卡，回到事件地图界面
     GuankaBase.prototype.handleBackToWorld = function () {
         this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "maps"));
     };
     GuankaBase.prototype.bgTouch = function (e) {
+    };
+    /**再次尝试*/
+    GuankaBase.prototype.tryAgainHandle = function (e) { };
+    /**关卡胜利*/
+    GuankaBase.prototype.victory = function () {
+        this.clear();
+        // this.guankaUI.showVictory();
+        //更新关卡通关数据、塔升级数据
+        //StorageSetting.setGuankaPass(Main.curIdx);
+        //StorageSetting.setTowerUpgrade(Main.curIdx);
+    };
+    /**关卡失败*/
+    GuankaBase.prototype.lose = function () {
+        this.clear();
+        // this.guankaUI.showLose();
+        //更新关卡数据
+        //if(Main.wujin){
+        //StorageSetting.setGuankaWujin(Main.curIdx,this.boSum+this.curBo);
+        //}
+    };
+    /**清除*/
+    GuankaBase.prototype.clear = function () {
+        //停止背景音乐
+        SoundManager.stopBgSound();
+        //暂停心跳控制器
+        egret.Ticker.getInstance().unregister(this.onEnterFrame, this);
+        //清空对象池
+        ObjectPool.getInstance().destroyAllObject();
     };
     // 创建地基，标记可以造箭塔的位置
     GuankaBase.prototype.createFoundation = function (classFactory) {
@@ -124,16 +204,20 @@ var GuankaBase = (function (_super) {
             }
             // 累加时间，直到下一个怪物产生平均间隔
             this.otime += timeStamp;
+            //路径
+            if (this.roundMosterLeft > 0 && this.otime >= this.meanTime - 50) {
+                this.curRoadArr = this.roadArr[this.roundMosterLeft % this.roadArr.length];
+            }
             // 还没达到下一个怪物产生时间
             if (this.otime < this.meanTime) {
                 return;
             }
-            // 产生了一个怪物，累计时间清零
-            this.otime = 0;
             // 添加一个怪物到场景里
             this.addMosters(this.roundMonsterType, this.curRoadArr);
             // 剩余怪物数减掉一个
-            this.roundMosterLeft = -1;
+            this.roundMosterLeft -= 1;
+            // 产生了一个怪物，累计时间清零
+            this.otime = 0;
         }
         else {
             // 累加时间，直到下一轮次开始时间
@@ -160,6 +244,8 @@ var GuankaBase = (function (_super) {
                     this.roundDamage = monsterData["damage"] * this.hardxs;
                     // 怪物死亡后玩家能获取到的金币数
                     this.roundValue = monsterData["value"];
+                    // 攻击速度
+                    this.roundSpeed = monsterData["maxSpeed"];
                     // currentRound值+1说明-- currentRound默认从-1开始。我们显示轮次从1开始 
                     if (Main.wujin) {
                         // 
@@ -262,6 +348,8 @@ var GuankaBase = (function (_super) {
     // 创建一个怪物到场景里
     GuankaBase.prototype.addMosters = function (classFactory, roadArr) {
         var monster = ObjectPool.getInstance().createObject(Monster);
+        monster.addTexture(classFactory);
+        monster.init(roadArr, this.roundMosterLeft, this.roundSpeed, this.roundDamage, this.roundValue);
         this.objLayer.addChild(monster);
         this.enemyArr.push(monster);
     };
