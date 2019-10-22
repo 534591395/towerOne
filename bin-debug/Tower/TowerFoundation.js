@@ -29,6 +29,9 @@ var TowerFoundation = (function (_super) {
     TowerFoundation.prototype.destory = function () {
     };
     TowerFoundation.prototype.onEnterFrame = function (timeStamp) { };
+    // 初始化
+    TowerFoundation.prototype.init = function () {
+    };
     return TowerFoundation;
 }(Foundation));
 __reflect(TowerFoundation.prototype, "TowerFoundation");

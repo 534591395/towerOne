@@ -40,11 +40,41 @@ var ArrowTowerFoundation = (function (_super) {
     // 帧率执行回调方法
     ArrowTowerFoundation.prototype.onEnterFrame = function (timeStamp) {
         var _this = this;
-        // 进入攻击范围的敌人
+        // 进入攻击范围的敌人，没有攻击对象的敌人
         this.atargets = [];
         this.targets.map(function (item) {
             if (item.target === null) {
                 var isIn = Utiles.containsXY(item.x, item.y, _this.sx, _this.sy - 22, _this.maxRadius, _this.ratioY);
+                var index = _this.atargets.indexOf(item);
+                if (isIn && item.hp > 0) {
+                    if (index === -1) {
+                        _this.atargets.push(item);
+                    }
+                }
+                else {
+                    // 已经不在该塔的攻击范围内
+                    if (index > -1) {
+                        _this.atargets.splice(index, 1);
+                    }
+                }
+            }
+        });
+        //排序、敌人的攻击对象不为null时则排到末尾
+        this.targets.map(function (item) {
+            if (item.target !== null) {
+                var isIn = Utiles.containsXY(item.x, item.y, _this.sx, _this.sy - 22, _this.maxRadius, _this.ratioY);
+                var index = _this.atargets.indexOf(item);
+                if (isIn && item.hp > 0) {
+                    if (index === -1) {
+                        _this.atargets.push(item);
+                    }
+                }
+                else {
+                    // 已经不在该塔的攻击范围内
+                    if (index > -1) {
+                        _this.atargets.splice(index, 1);
+                    }
+                }
             }
         });
     };

@@ -107,10 +107,12 @@ var ArrowBase = (function (_super) {
             else {
                 this.isHit = true; //击中敌人效果
                 //播放音效
-                if (Math.random() > 0.4)
+                if (Math.random() > 0.4) {
                     SoundManager.playEffect("arrow_hit2");
-                else
+                }
+                else {
                     SoundManager.playEffect("arrow_hit1");
+                }
             }
             this.follow = false;
             //}

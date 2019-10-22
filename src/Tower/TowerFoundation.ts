@@ -34,4 +34,9 @@ class TowerFoundation extends Foundation {
     }
 
     public onEnterFrame(timeStamp:number) {}
+
+    // 初始化
+    public init() {
+        
+    }
 }

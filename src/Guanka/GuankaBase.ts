@@ -447,6 +447,7 @@ class GuankaBase extends eui.Component {
         tower.x = tower.sx =  towerObj.x;
         tower.y = tower.sy =  towerObj.y - towerObj.towerHeight + 15;
         tower.index = towerObj.index;
+        tower.targets = this.enemyArr;
 
 
         // 防御塔所属基地类
