@@ -5,5 +5,11 @@
 class ShieldTower01 extends ShieldTowerBase {
     public constructor() {
         super();
+
+        this.minRadius = 100;
+        this.maxRadius = 140;
+        this.ratioY = this.minRadius / this.maxRadius;
+
+        this.addChild(Utiles.createBitmapByName("ShieldTower01"));
     }
 }

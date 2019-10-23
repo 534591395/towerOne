@@ -158,7 +158,22 @@ var GuankaBase = (function (_super) {
     GuankaBase.prototype.handleBackToWorld = function () {
         this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "maps"));
     };
+    /** 点击背景图片 */
     GuankaBase.prototype.bgTouch = function (e) {
+        // 获取当前选择的对象，若无对象不用做操作
+        var select = Group.selectedItem;
+        if (select === null) {
+            return;
+        }
+        var selectParentClassName = egret.getQualifiedSuperclassName(select);
+        // 建筑基类
+        var arr1 = ["Foundation", "ArrowTowerBase", "ShieldTowerBase"];
+        // 隐藏工具
+        if (arr1.indexOf(selectParentClassName) > -1) {
+            this.hideTool();
+        }
+        // 清除选择项
+        Group.dispose();
     };
     /**再次尝试*/
     GuankaBase.prototype.tryAgainHandle = function (e) { };

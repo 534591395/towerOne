@@ -207,9 +207,23 @@ class GuankaBase extends eui.Component {
     private handleBackToWorld() {
         this.dispatchEvent(new MainEvent(MainEvent.OpenLoadBar, "maps"));
     }
-
+    
+    /** 点击背景图片 */
     private bgTouch(e: egret.TouchEvent) {
-        
+        // 获取当前选择的对象，若无对象不用做操作
+        const select = Group.selectedItem;
+        if (select === null) {
+            return;
+        }
+        const selectParentClassName = egret.getQualifiedSuperclassName(select);
+        // 建筑基类
+        const arr1 = ["Foundation", "ArrowTowerBase", "ShieldTowerBase"];
+         // 隐藏工具
+        if (arr1.indexOf(selectParentClassName) > -1) {
+            this.hideTool();
+        }
+        // 清除选择项
+        Group.dispose();
     }
 
     /**再次尝试*/

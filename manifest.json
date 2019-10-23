@@ -39,14 +39,13 @@
 		"bin-debug/Loader/LoadingUI.js",
 		"bin-debug/Loader/LoadResource.js",
 		"bin-debug/skins/Bg.js",
-		"bin-debug/Soliders/ArrowShooter01.js",
 		"bin-debug/Run.js",
+		"bin-debug/Soliders/ArrowShooter02.js",
 		"bin-debug/Soliders/ArrowShooter031.js",
 		"bin-debug/Soliders/ArrowShooter032.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/Soliders/ShieldSoldier01.js",
 		"bin-debug/AssetAdapter.js",
-		"bin-debug/Soliders/ShieldSoliderBase.js",
 		"bin-debug/Soliders/ZhaohuanSoliderBase.js",
 		"bin-debug/Tower/ArrowTower01.js",
 		"bin-debug/Tower/ArrowTower02.js",
@@ -66,6 +65,6 @@
 		"bin-debug/Utils/Utils.js",
 		"bin-debug/Utils/Vector2D.js",
 		"bin-debug/Weapon/Arrow01.js",
-		"bin-debug/Soliders/ArrowShooter02.js"
+		"bin-debug/Soliders/ArrowShooter01.js"
 	]
 }

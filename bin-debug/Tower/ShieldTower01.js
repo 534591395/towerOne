@@ -14,7 +14,12 @@ r.prototype = e.prototype, t.prototype = new r();
 var ShieldTower01 = (function (_super) {
     __extends(ShieldTower01, _super);
     function ShieldTower01() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        _this.minRadius = 100;
+        _this.maxRadius = 140;
+        _this.ratioY = _this.minRadius / _this.maxRadius;
+        _this.addChild(Utiles.createBitmapByName("ShieldTower01"));
+        return _this;
     }
     return ShieldTower01;
 }(ShieldTowerBase));
