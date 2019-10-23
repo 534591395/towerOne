@@ -386,11 +386,11 @@ class GuankaBase extends eui.Component {
         } else 
         // 卖出-- 塔价钱的一半（折价）
         if (towerName === "SellTower") {
-            this.gold += Math.round(TowerLevel.data[towerName].price / 2);
+            this.gold += Math.round(TowerLevel.data[egret.getQualifiedClassName(this.selectObj)].price / 2);
             this.guankaUI.setGold(this.gold);
 
             // 恢复监听
-            this.towerArr[this.selectObj.index].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
+            this.foundationArr[this.selectObj.index].addEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
             //卖掉音效
             //SoundManager.playEffect("sell_tower");
         } 
@@ -507,6 +507,6 @@ class GuankaBase extends eui.Component {
     }
 
     public destroy() {
-
+        ObjectPool.getInstance()._pool = {};
     }
 }

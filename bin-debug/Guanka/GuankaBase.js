@@ -322,10 +322,10 @@ var GuankaBase = (function (_super) {
         else 
         // 卖出-- 塔价钱的一半（折价）
         if (towerName === "SellTower") {
-            this.gold += Math.round(TowerLevel.data[towerName].price / 2);
+            this.gold += Math.round(TowerLevel.data[egret.getQualifiedClassName(this.selectObj)].price / 2);
             this.guankaUI.setGold(this.gold);
             // 恢复监听
-            this.towerArr[this.selectObj.index].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
+            this.foundationArr[this.selectObj.index].addEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
             //卖掉音效
             //SoundManager.playEffect("sell_tower");
         }
@@ -428,6 +428,7 @@ var GuankaBase = (function (_super) {
         tower.addEventListener(TowerEvent.HideTool, this.hideTool, this);
     };
     GuankaBase.prototype.destroy = function () {
+        ObjectPool.getInstance()._pool = {};
     };
     return GuankaBase;
 }(eui.Component));
