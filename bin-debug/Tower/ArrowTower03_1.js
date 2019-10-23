@@ -24,11 +24,11 @@ var ArrowTower03_1 = (function (_super) {
         // 加入弓箭手
         _this.shooter01 = new ArrowShooter01();
         _this.shooter01.x = 36;
-        _this.shooter01.y = 15;
+        _this.shooter01.y = 5;
         _this.addChild(_this.shooter01);
         _this.shooter02 = new ArrowShooter01();
         _this.shooter02.x = 50;
-        _this.shooter02.y = 15;
+        _this.shooter02.y = 5;
         _this.addChild(_this.shooter02);
         // 延迟攻击时间
         _this.fireDelay = 1000;

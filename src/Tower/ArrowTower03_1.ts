@@ -26,12 +26,12 @@ class ArrowTower03_1 extends ArrowTowerFoundation {
         // 加入弓箭手
         this.shooter01 = new ArrowShooter01();
         this.shooter01.x = 36;
-        this.shooter01.y = 15;
+        this.shooter01.y = 5;
         this.addChild(this.shooter01);
         
         this.shooter02 = new ArrowShooter01();
         this.shooter02.x = 50;
-        this.shooter02.y = 15;
+        this.shooter02.y = 5;
         this.addChild(this.shooter02);
 
         // 延迟攻击时间
