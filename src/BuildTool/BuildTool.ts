@@ -36,10 +36,20 @@ class BuildTool extends eui.Component {
             // 炮塔
             this.addIcon("ExplodeTower01", this.bottomRightGroup);
         } else
-        // 选中的是箭塔
+        // 选中的是一级箭塔
         if (obj instanceof ArrowTower01) {
             // 若选中的箭塔等级范围是 1-2之间，显示普通升级icon
+            // 升级到2级的icon
             this.addIcon("ArrowTower02", this.topMiddleGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup); 
+        }else 
+        // 选择的是二级箭塔
+        if (obj instanceof ArrowTower02) {
+            this.addIcon("ArrowTower03_1", this.topLeftGroup);
+            this.addIcon("ArrowTower03_2", this.topRightGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup);
+        } else {
+            // 只有卖出icon
             this.addIcon("SellTower", this.bottomMiddleGroup); 
         }
     }
