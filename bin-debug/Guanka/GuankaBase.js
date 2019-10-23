@@ -319,6 +319,16 @@ var GuankaBase = (function (_super) {
                 index: this.selectObj.index
             });
         }
+        else 
+        // 卖出-- 塔价钱的一半（折价）
+        if (towerName === "SellTower") {
+            this.gold += Math.round(TowerLevel.data[towerName].price / 2);
+            this.guankaUI.setGold(this.gold);
+            // 恢复监听
+            this.towerArr[this.selectObj.index].removeEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
+            //卖掉音效
+            //SoundManager.playEffect("sell_tower");
+        }
         else {
             // 升级建筑
             // 此时 this.selectObj 指向当前需升级的塔。
@@ -395,7 +405,12 @@ var GuankaBase = (function (_super) {
         var towerClassName = egret.getDefinitionByName(towerName);
         var tower = new towerClassName();
         tower.x = tower.sx = towerObj.x;
-        tower.y = tower.sy = towerObj.y - towerObj.towerHeight + 15;
+        if (towerObj.towerHeight) {
+            tower.y = tower.sy = towerObj.y - towerObj.towerHeight + 15;
+        }
+        else {
+            tower.y = tower.sy = towerObj.y;
+        }
         tower.index = towerObj.index;
         tower.targets = this.enemyArr;
         // 防御塔所属基地类
