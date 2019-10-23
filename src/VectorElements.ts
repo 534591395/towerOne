@@ -13,7 +13,7 @@ class VectorElements extends Elements {
     // 当前对象的状态--比如：移动、死亡、休闲等
     protected currentState: stateType;
 
-    // 路径集合
+    /** 路径集合 */
     protected positionArr: Vector2D[] = [];
     // 最大移动速度
     protected maxSpeed: number;

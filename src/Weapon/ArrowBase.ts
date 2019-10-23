@@ -9,7 +9,7 @@ class ArrowBase extends Elements {
     public isMiss: boolean = false;
     // 是否跟踪目标
     public follow: boolean = false;
-    // 触发攻击时候的起始坐标（产生点）
+    /** 触发攻击时候的起始坐标（产生点）*/
     public p: egret.Point;
     // 单一目标
     public target: any;
@@ -30,13 +30,15 @@ class ArrowBase extends Elements {
     protected t1:number = 20;
     protected g:number = 1;//重力
     protected angel:number;//夹角
+    /**目标位置 */
     protected pos: egret.Point;
 
     public constructor() {
         super();
     }
     
-    // 公式说明：y轴自由落体h的高度计算公式-- h = (gt^2)/2 ; 距离公式-- s = vt;
+    // 公式说明：y轴自由落体h的高度计算公式-- h = (gt^2)/2 ; 距离公式-- s = vt; 求实际运行距离（非位移）；
+    // 参考：：http://note.youdao.com/noteshare?id=5ea278d1f8e3de02e6cf5637e3052818&sub=9514F035D01E4CA3A136C860A112BB55
     /**计算双轴速度*/
     public setTarget(x: number,y: number): void {
         this.pos = new egret.Point(x,y);
@@ -102,39 +104,32 @@ class ArrowBase extends Elements {
         if(this.angle >= 0 && this.angle <= 180)
             return;
         //
-        var disx: number = this.x - this.target.x < 0 ? this.target.x - this.x : this.x - this.target.x;
-        var disy: number = this.y - this.target.y-this.offy < 0 ? this.target.y-this.offy - this.y : this.y - this.target.y-this.offy;
-        if(disx <= 1 && disy <= 1) {//精确到1个像素内
-            //if(HitTest.hitTestRect(this,this.target)) {
-                this.target.hp -= this.damage;
-                //console.log(this.target.hp);
-                
-                //在上一次攻击时已经死亡则插地
-                if(this.target.hp<=-this.damage){
-                    this.isMiss = true;//插地效果
-                    this.rotation = 270;
-                    //x,y坐标随机偏移几像素
-                    var dx: number = 2 - Math.random() * 4;
-                    var dy: number = Math.random() * 6+4;
-                    this.x += dx;
-                    this.y += dy;
-                }
-                //else if(this.target.hp <= 0) {
-                    //this.target.canClear = true;//
-                    //this.isHit = true;//击中敌人效果
-                //}
-                else{
-                    this.isHit = true;//击中敌人效果
-                    //播放音效
-                    if(Math.random() > 0.4) {
-                        SoundManager.playEffect("arrow_hit2");
-                    } else {
-                        SoundManager.playEffect("arrow_hit1");
-                    }  
-                }
-                
-                this.follow = false;
-            //}
+        let disx: number = this.x - this.target.x < 0 ? this.target.x - this.x : this.x - this.target.x;
+        let disy: number = this.y - this.target.y-this.offy < 0 ? this.target.y-this.offy - this.y : this.y - this.target.y-this.offy;
+        //精确到1个像素内
+        if(disx <= 1 && disy <= 1) {
+            this.target.hp -= this.damage;
+            
+            //在上一次攻击时已经死亡则插地
+            if(this.target.hp<=-this.damage){
+                this.isMiss = true;//插地效果
+                this.rotation = 270;
+                //x,y坐标随机偏移几像素
+                let dx: number = 2 - Math.random() * 4;
+                let dy: number = Math.random() * 6+4;
+                this.x += dx;
+                this.y += dy;
+            } else{
+                this.isHit = true;//击中敌人效果
+                //播放音效
+                if(Math.random() > 0.4) {
+                    //SoundManager.playEffect("arrow_hit2");
+                } else {
+                    //SoundManager.playEffect("arrow_hit1");
+                }  
+            }
+            
+            this.follow = false;
         }
     }
 }

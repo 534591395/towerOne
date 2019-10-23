@@ -41,6 +41,9 @@ var GuankaUI = (function (_super) {
     GuankaUI.prototype.setRound = function (currentRound, totalRound) {
         this.roundTxt.text = currentRound.toString() + "/" + totalRound.toString();
     };
+    // 实时刷新
+    GuankaUI.prototype.onEnterFrame = function (timeStamp) {
+    };
     return GuankaUI;
 }(eui.Component));
 __reflect(GuankaUI.prototype, "GuankaUI");

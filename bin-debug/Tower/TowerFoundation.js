@@ -26,7 +26,7 @@ var TowerFoundation = (function (_super) {
         return _this;
     }
     // 销毁
-    TowerFoundation.prototype.destory = function () {
+    TowerFoundation.prototype.destroy = function () {
     };
     TowerFoundation.prototype.onEnterFrame = function (timeStamp) { };
     // 初始化

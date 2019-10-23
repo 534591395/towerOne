@@ -22,6 +22,9 @@ var BuildIcon = (function (_super) {
         _this.price = towerConfig.price;
         // 添加图片资源图标
         _this.addChild(Utiles.createBitmapByName(towerConfig.res));
+        if (towerName === "SellTower" || towerName === "LockTower") {
+            return _this;
+        }
         // 底部显示价格的UI
         var priceBitmap = Utiles.createBitmapByName("cashbg");
         priceBitmap.x = 8;

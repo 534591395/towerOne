@@ -29,7 +29,7 @@ class TowerFoundation extends Foundation {
     }
 
     // 销毁
-    public destory() {
+    public destroy() {
         
     }
 

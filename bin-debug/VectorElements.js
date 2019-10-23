@@ -19,7 +19,7 @@ var VectorElements = (function (_super) {
     __extends(VectorElements, _super);
     function VectorElements() {
         var _this = _super.call(this) || this;
-        // 路径集合
+        /** 路径集合 */
         _this.positionArr = [];
         /** 移动角度--播放对应动画帧需要 */
         _this.angle = 0;

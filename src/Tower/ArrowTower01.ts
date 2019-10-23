@@ -11,9 +11,13 @@ class ArrowTower01 extends ArrowTowerFoundation {
     // 武器
     private weapon: Arrow01;
 
+    private damage: number = 4;
 
     public constructor() {
         super();
+        this.minRadius = 100;
+        this.maxRadius = 140;
+        this.ratioY = this.minRadius / this.maxRadius;
 
         this.addChild(Utiles.createBitmapByName("ArrowTower01"));
 
@@ -89,7 +93,7 @@ class ArrowTower01 extends ArrowTowerFoundation {
 
         //利用对象池产生弓箭对象并进行碰撞检测
         this.weapon = <Arrow01>ObjectPool.getInstance().createObject(Arrow01);
-        this.weapon.damage = 4;
+        this.weapon.damage = this.damage;
         this.weapon.init(p,this.target,this.target.offy);
         this.parentContentLayer.addChild(this.weapon);
     }

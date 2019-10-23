@@ -25,7 +25,7 @@ var GuankaBase = (function (_super) {
         _this.buildQuene = [];
         // 敌人(怪物)集合
         _this.enemyArr = [];
-        // 怪物层、士兵层、英雄层、塔层的child对象集合
+        // 怪物层、士兵层、英雄层、塔层的child对象集合， 显示排序需要（比如塔的显示序列）
         _this.objArr = [];
         // 怪物行走路径点数组
         _this.roadArr = [];
@@ -89,6 +89,14 @@ var GuankaBase = (function (_super) {
         // 创建怪物轮次
         this.createEnemies(pass);
         this.enterFrameTowers(pass);
+        //实时刷新排序数组(根据y轴改变对象层级) ?
+        this.objArr = Utiles.sortarr(this.objArr);
+        for (var i = 0; i < this.objArr.length; i++) {
+            var obj = this.objArr[i];
+            if (this.objLayer.contains(obj))
+                this.objLayer.setChildIndex(obj, i);
+        }
+        return false;
     };
     // 刷新塔
     GuankaBase.prototype.enterFrameTowers = function (timeStamp) {
@@ -176,7 +184,7 @@ var GuankaBase = (function (_super) {
         //停止背景音乐
         SoundManager.stopBgSound();
         //暂停心跳控制器
-        //egret.Ticker.getInstance().unregister(this.onEnterFrame,this);
+        egret.stopTick(this.onEnterFrame, this);
         //清空对象池
         ObjectPool.getInstance().destroyAllObject();
     };
@@ -282,6 +290,7 @@ var GuankaBase = (function (_super) {
         this.tool.x = (touchObj.x + touchObj.width / 2) - this.tool.width / 2;
         this.tool.y = (touchObj.y + touchObj.height / 2) - this.tool.height / 2;
         this.toolLayer.addChild(this.tool);
+        // 监听点击工具图标
         this.tool.addEventListener(ToolEvent.BuildStart, this.buildStart, this);
         this.selectObj = touchObj;
     };
@@ -310,11 +319,20 @@ var GuankaBase = (function (_super) {
                 index: this.selectObj.index
             });
         }
+        else {
+            // 升级建筑
+            // 此时 this.selectObj 指向当前需升级的塔。
+            this.buildTower(this.selectObj, towerName);
+            // 扣除金币
+            this.gold -= e.price;
+            // 更新
+            this.guankaUI.setGold(this.gold);
+        }
         // 移除建筑工具ui
         Group.dispose();
         this.hideTool();
         // 移除上一个选中的塔|地基 -- 查看：this.createFoundation | this.buildTower
-        this.selectObj.addEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
+        this.selectObj.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.foundationOrTowerTouch, this);
         // 排除地基--地基不从舞台上删除（地基重复使用，故无需删除）
         if (egret.getQualifiedSuperclassName(this.selectObj) !== "Foundation") {
             // 删除塔
@@ -322,6 +340,10 @@ var GuankaBase = (function (_super) {
             var index = this.towerArr.indexOf(this.selectObj);
             if (index > -1) {
                 this.towerArr.splice(index, 1);
+            }
+            index = this.objArr.indexOf(this.selectObj);
+            if (index > -1) {
+                this.objArr.splice(index, 1);
             }
             this.selectObj.destroy();
         }
@@ -384,6 +406,7 @@ var GuankaBase = (function (_super) {
         }
         this.objLayer.addChild(tower);
         this.towerArr.push(tower);
+        this.objArr.push(tower);
         tower.touchEnabled = true;
         tower.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.foundationOrTowerTouch, this);
         tower.addEventListener(TowerEvent.ShowTool, this.showTool, this);

@@ -36,6 +36,13 @@ var BuildTool = (function (_super) {
             // 炮塔
             this.addIcon("ExplodeTower01", this.bottomRightGroup);
         }
+        else 
+        // 选中的是箭塔
+        if (obj instanceof ArrowTower01) {
+            // 若选中的箭塔等级范围是 1-2之间，显示普通升级icon
+            this.addIcon("ArrowTower02", this.topMiddleGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup);
+        }
     };
     BuildTool.prototype.addIcon = function (type, direction) {
         var icon = new BuildIcon(type, this.gold);

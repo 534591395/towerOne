@@ -27,6 +27,10 @@ class BuildIcon extends egret.DisplayObjectContainer {
         // 添加图片资源图标
         this.addChild(Utiles.createBitmapByName(towerConfig.res));
 
+        if(towerName === "SellTower" || towerName === "LockTower") {
+            return;
+        }
+
         // 底部显示价格的UI
         const priceBitmap = Utiles.createBitmapByName("cashbg");
         priceBitmap.x = 8;

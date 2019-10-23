@@ -15,6 +15,10 @@ var ArrowTower01 = (function (_super) {
     __extends(ArrowTower01, _super);
     function ArrowTower01() {
         var _this = _super.call(this) || this;
+        _this.damage = 4;
+        _this.minRadius = 100;
+        _this.maxRadius = 140;
+        _this.ratioY = _this.minRadius / _this.maxRadius;
         _this.addChild(Utiles.createBitmapByName("ArrowTower01"));
         // 加入弓箭手
         _this.shooter01 = new ArrowShooter01();
@@ -78,7 +82,7 @@ var ArrowTower01 = (function (_super) {
         }
         //利用对象池产生弓箭对象并进行碰撞检测
         this.weapon = ObjectPool.getInstance().createObject(Arrow01);
-        this.weapon.damage = 4;
+        this.weapon.damage = this.damage;
         this.weapon.init(p, this.target, this.target.offy);
         this.parentContentLayer.addChild(this.weapon);
     };

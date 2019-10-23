@@ -49,4 +49,9 @@ class GuankaUI extends eui.Component {
     public setRound(currentRound:number, totalRound:number) {
         this.roundTxt.text = currentRound.toString() + "/" + totalRound.toString();
     }
+
+    // 实时刷新
+    public onEnterFrame(timeStamp:number) {
+
+    }
 }
