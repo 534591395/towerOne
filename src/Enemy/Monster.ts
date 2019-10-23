@@ -35,11 +35,7 @@ class Monster extends MonsterBase {
         const texture = RES.getRes(tietu+"png");
         const mcf: egret.MovieClipDataFactory = new egret.MovieClipDataFactory(data,texture);
         this.view.movieClipData = mcf.generateMovieClipData(tietu);
-        //this.view.anchorX = 0.5;
         this.view.x = this.view.width / 2;
-        //描点位置
-        // this.anchorX = 0.5;
-        // this.anchorY = 0.9;
         //血条位置
         this.lifeBar.x = (this.view.width-this.lifeBar.width)/2;
         this.lifeBar.y = -5;
