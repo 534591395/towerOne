@@ -1,7 +1,6 @@
 /**
  * 关卡基类
  */
-
 class GuankaBase extends eui.Component {
     // 地图位图
     public backgroundImage: eui.Image;
@@ -21,10 +20,13 @@ class GuankaBase extends eui.Component {
     protected guankaUI: GuankaUI;
     // 防御塔建造工具类
     protected tool: BuildTool;
+    
 
 
     // 地基坐标集合
     protected foundationPosiotionArr: number[][] = [];
+    /** 防御塔的士兵集合点坐标集，取值的时候跟地基对应 */
+    protected soldierPointArr: number[][];
 
     // 地基实例集合
     protected foundationArr: Foundation[] = [];
@@ -503,10 +505,18 @@ class GuankaBase extends eui.Component {
 
 
         // 防御塔所属基地类
-        const foundationClassName = egret.getQualifiedSuperclassName(tower);
-        if (foundationClassName === 'ArrowTowerFoundation') {
+        const foundationParentClassName = egret.getQualifiedSuperclassName(tower);
+        if (foundationParentClassName === 'ArrowTowerFoundation') {
             // 放置子类的容器为游戏场景的武器层
             tower.parentContentLayer = this.weaponLayer;
+        } else
+        // 选择的塔是防御塔
+        if (foundationParentClassName === 'ShieldTowerBase') {
+            tower.objArr = this.objArr;
+            tower.parentContentLayer = this.objLayer;
+            let pointArr: number[] = this.soldierPointArr[tower.index];
+            // 设置士兵的集合点
+            tower.soldierPoint = new egret.Point(pointArr[0], pointArr[1]);
         }
         
 

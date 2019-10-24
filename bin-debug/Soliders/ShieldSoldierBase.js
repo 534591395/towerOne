@@ -17,6 +17,9 @@ var ShieldSoldierBase = (function (_super) {
         var _this = _super.call(this) || this;
         // 进入攻击范围的怪物集合
         _this.targets = [];
+        /**相对于集结点的偏移量 */
+        _this.xoffset = 0;
+        _this.yoffset = 0;
         // 申明状态机
         _this.fsm = new StateMachine(_this);
         // 血条

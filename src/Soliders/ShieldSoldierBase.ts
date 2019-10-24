@@ -16,7 +16,12 @@ class ShieldSoldierBase extends VectorElements {
     // 士兵当前生命值
     protected _hp: number;
     // 总生命值（最大生命值）
-    protected life: number;
+    public life: number;
+
+    /**相对于集结点的偏移量 */
+    public xoffset: number = 0;
+    public yoffset: number = 0;
+
 
     // 血条
     protected lifeBar: LifeBar;

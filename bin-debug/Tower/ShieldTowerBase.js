@@ -15,6 +15,18 @@ var ShieldTowerBase = (function (_super) {
     __extends(ShieldTowerBase, _super);
     function ShieldTowerBase() {
         var _this = _super.call(this) || this;
+        /** 士兵集合 */
+        _this.soldiers = [];
+        /**士兵集合点偏移量- 跟集合点坐标的偏移，防止士兵扎堆在一个点上，默认塔生成三个士兵 */
+        _this.offsetArr = [[10, 0], [0, -10], [-10, 0]];
+        /**集合点偏移量数组索引*/
+        _this.offsetIndex = -1;
+        /** 士兵少于规定的人数时，重新恢复一个士兵的时间 */
+        _this.createTime = 10000;
+        /** 时间累计， 跟 createTime 比较，timeSum >= createTime 可重新生成一个损失的士兵 */
+        _this.timeSum = 0;
+        // 最多生成的士兵数量
+        _this.maxSolider = 3;
         /**音效资源*/
         _this.voiceArr = ["shield_ready1", "shield_ready2", "shield_ready3"];
         //播放音效
@@ -22,6 +34,31 @@ var ShieldTowerBase = (function (_super) {
         return _this;
         //SoundManager.playEffect(this.voiceArr[idx]);
     }
+    ShieldTowerBase.prototype.init = function () {
+        this.timer = new egret.Timer(1000, this.maxSolider);
+        this.timer.addEventListener(egret.TimerEvent.TIMER, this.createOneSolider, this);
+        this.timer.start();
+    };
+    /** 生成一个士兵 */
+    ShieldTowerBase.prototype.createOneSolider = function (e) {
+        var soldier = ObjectPool.getInstance().createObject(ShieldSoldier01);
+        soldier.life = this.life;
+        soldier.damage = this.damage;
+        this.parentContentLayer.addChild(soldier);
+        this.objArr.push(soldier);
+        this.soldiers.push(soldier);
+        // 更新索引
+        this.updateOffsetIndex();
+        soldier.xoffset = this.offsetArr[this.offsetIndex][0];
+        soldier.yoffset = this.offsetArr[this.offsetIndex][1];
+    };
+    // 更新索引
+    ShieldTowerBase.prototype.updateOffsetIndex = function () {
+        this.offsetIndex++;
+        if (this.offsetIndex > (this.maxSolider - 1)) {
+            this.offsetIndex = 0;
+        }
+    };
     return ShieldTowerBase;
 }(TowerFoundation));
 __reflect(ShieldTowerBase.prototype, "ShieldTowerBase");

@@ -1,6 +1,3 @@
-/**
- * 关卡基类
- */
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;
 };
@@ -11,6 +8,9 @@ var __extends = this && this.__extends || function __extends(t, e) {
 for (var i in e) e.hasOwnProperty(i) && (t[i] = e[i]);
 r.prototype = e.prototype, t.prototype = new r();
 };
+/**
+ * 关卡基类
+ */
 var GuankaBase = (function (_super) {
     __extends(GuankaBase, _super);
     function GuankaBase() {
@@ -429,10 +429,19 @@ var GuankaBase = (function (_super) {
         tower.index = towerObj.index;
         tower.targets = this.enemyArr;
         // 防御塔所属基地类
-        var foundationClassName = egret.getQualifiedSuperclassName(tower);
-        if (foundationClassName === 'ArrowTowerFoundation') {
+        var foundationParentClassName = egret.getQualifiedSuperclassName(tower);
+        if (foundationParentClassName === 'ArrowTowerFoundation') {
             // 放置子类的容器为游戏场景的武器层
             tower.parentContentLayer = this.weaponLayer;
+        }
+        else 
+        // 选择的塔是防御塔
+        if (foundationParentClassName === 'ShieldTowerBase') {
+            tower.objArr = this.objArr;
+            tower.parentContentLayer = this.objLayer;
+            var pointArr = this.soldierPointArr[tower.index];
+            // 设置士兵的集合点
+            tower.soldierPoint = new egret.Point(pointArr[0], pointArr[1]);
         }
         this.objLayer.addChild(tower);
         this.towerArr.push(tower);
