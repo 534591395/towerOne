@@ -62,6 +62,7 @@ class ShieldTowerBase extends TowerFoundation {
         this.updateOffsetIndex();
         soldier.xoffset = this.offsetArr[this.offsetIndex][0];
         soldier.yoffset = this.offsetArr[this.offsetIndex][1];
+        soldier.init([[this.sx, this.sy],[this.soldierPoint.x, this.soldierPoint.y]]);
     }
 
     // 更新索引

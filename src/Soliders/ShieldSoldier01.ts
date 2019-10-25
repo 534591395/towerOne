@@ -15,6 +15,7 @@ class ShieldSoldier01 extends ShieldSoldierBase {
     public init(arr: number[][]): void {
         this.hp = this.life;
         this.atJihePoint = true;
+        // 默认初始位置在防御塔的中心（椭圆中心），然后移动到指定的集合点
         this.position.x = this.x = arr[0][0];
         this.position.y = this.y = arr[0][1];
 
