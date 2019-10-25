@@ -354,7 +354,7 @@ class ShieldSoldierBase extends VectorElements {
     }
 
     /** 设置新的路径点，并移动 */
-    public setPathToMove(v2d: Vector2D):void {
+    private setPathToMove(v2d: Vector2D):void {
         this.positionArr = [];
         this.positionArr.push(v2d);
         // 执行状态机，会执行 this.moving

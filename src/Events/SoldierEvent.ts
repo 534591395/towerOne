@@ -8,6 +8,7 @@ class SoldierEvent extends egret.Event {
     public static Move: string = '移动';
 
     private _obj: any;
+    // 坐标点集合
     private _arr: number[];
 
     public constructor(type:string, obj:any=null, arr:number[]=null, bubbles:boolean=false, cancelable:boolean=false) {
