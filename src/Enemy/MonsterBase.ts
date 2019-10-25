@@ -20,9 +20,9 @@ class MonsterBase extends VectorElements {
     protected value: number;
     // 怪物是否被杀死标记
     protected beKill: boolean = false;
-    /** 怪物是否被攻击 */
+    /** 怪物是否被攻击,，在士兵类里设置 */
     protected beAttack: boolean = false;
-    // 怪物攻击目标
+    // 怪物攻击目标，在士兵类里互设
     protected target: any;
     /**弓箭瞄向目标向上偏移量(自身头部位置)*/
     public offy: number;
@@ -106,7 +106,6 @@ class MonsterBase extends VectorElements {
     }
     /**移动 -- 状态机里执行*/
     public isMove():boolean{
-        //this.stateLabel = "walking";
         return true;
     }
     /**攻击 -- 状态机里执行*/
@@ -129,10 +128,10 @@ class MonsterBase extends VectorElements {
             this.view.gotoAndPlay(this.stateLabel);
         }
         //判断目标!=null 则切换到闲置状态 --从移动状态到闲置状态 --
-        // 闲置状态-到攻击状态
         if(this.target!=null){
             this.fsm.changeState(stateType.idleState);
         }
+        // 实时切换状态
         this.checkLast(this.stateLabel, this.view.currentFrame);
     } 
 
@@ -197,7 +196,7 @@ class MonsterBase extends VectorElements {
     /**死亡中*/
     protected dieVoiceArr: string[] = ["monster_die1","monster_die2","monster_die3","monster_die4"];
     public dying(){
-        if(!(this.currentState == stateType.deadState)) {
+        if(this.currentState !== stateType.deadState) {
             this.currentState = stateType.deadState;
             this.view.gotoAndPlay(this.stateLabel);
             
@@ -209,7 +208,7 @@ class MonsterBase extends VectorElements {
     }
     /**死亡完毕-可以消除*/
     public dyingEnd(){
-        if(!(this.currentState == stateType.deadEndState)) {
+        if(this.currentState !== stateType.deadEndState) {
             this.currentState = stateType.deadEndState;
             
             this.beKill = true;
@@ -254,7 +253,7 @@ class MonsterBase extends VectorElements {
         return label;
     }
 
-    /**循环播放检查*/
+    /**循环播放检查，当播放的帧lable跟指定的stateLabel不一致时，播放stateLabel  */
     private checkLast(str:string, currentFrame: number){
         const nextFrameNum:number = currentFrame+1;
         const movieClipData = this.view.movieClipData;
