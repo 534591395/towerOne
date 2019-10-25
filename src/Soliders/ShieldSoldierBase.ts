@@ -326,7 +326,7 @@ class ShieldSoldierBase extends VectorElements {
                 // 设置移动距离
                 let tx: number;
                 let ty: number;
-                // 怪物在士兵前面 ？
+                // 设置移动的目标点在怪物左右附近
                 if (this.target.x < this.x) {
                     tx = this.target.x + 16;
                 } else {
