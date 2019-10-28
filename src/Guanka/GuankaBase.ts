@@ -240,7 +240,7 @@ class GuankaBase extends eui.Component {
             const py = Math.round(e.localY);
             // 可通行
             if (this.checkPoint(px, py)) {
-               select.setJihePointToMove([px, py]);
+               select.setJihePointEvent([px, py]);
             }
         }
 
