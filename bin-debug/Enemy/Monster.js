@@ -42,6 +42,7 @@ var Monster = (function (_super) {
         var mcf = new egret.MovieClipDataFactory(data, texture);
         this.view.movieClipData = mcf.generateMovieClipData(tietu);
         this.view.x = this.view.width / 2;
+        this.view.anchorOffsetX = this.view.width / 2;
         //血条位置
         this.lifeBar.x = (this.view.width - this.lifeBar.width) / 2;
         this.lifeBar.y = -5;

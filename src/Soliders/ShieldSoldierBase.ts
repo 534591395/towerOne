@@ -165,7 +165,7 @@ class ShieldSoldierBase extends VectorElements {
 
     /**闲置中*/
     public idling(){
-        if(!(this.currentState == stateType.idleState)) {
+        if(this.currentState !== stateType.idleState) {
             this.currentState = stateType.idleState;
             this.view.gotoAndStop(this.stateLabel);
         }
@@ -190,14 +190,14 @@ class ShieldSoldierBase extends VectorElements {
 
     /**攻击完毕-碰撞检测*/
     public fightingEnd() {
-        if(!(this.currentState == stateType.fightEndState)) {
+        if(this.currentState !== stateType.fightEndState) {
             this.currentState = stateType.fightEndState;
             this.hittest();
             this.timesum = 0;
         }
-        //攻击完毕敌人若死亡切换到移动状态
+        //攻击完毕敌人若死亡切换到休闲状态
         if(this.target == null) {
-            this.fsm.changeState(stateType.moveState);
+            this.fsm.changeState(stateType.idleState);
         } else {
             //循环攻击
             if(this.timesum >= this.fireDelay) {
@@ -342,6 +342,7 @@ class ShieldSoldierBase extends VectorElements {
                 this.target.beAttack = true;
             }
         } else {
+            this.moveToTarget = false;
             // 若可攻击敌人集合为空，士兵回到集合点
             if (this.atargets.length === 0) {
                 // 若士兵不在集合点，移动到集合点

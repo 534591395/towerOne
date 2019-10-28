@@ -26,7 +26,7 @@ class ShieldTowerBase extends TowerFoundation {
     protected timeSum: number = 0;
 
     // 最多生成的士兵数量
-    protected maxSolider: number = 3;
+    protected maxSolider: number = 1;
     // 士兵的血量
     protected soldierLife: number;
     // 士兵的攻击力
@@ -95,7 +95,7 @@ class ShieldTowerBase extends TowerFoundation {
         });
 
         // 士兵数量少于规定的最大数（死亡后重新生成）
-        if (this.soldiers.length < 3) {
+        if (this.soldiers.length < this.maxSolider) {
             this.timeSum += timeStamp;
             if (this.timeSum >= this.createTime) {
                 this.createOneSolider(null);

@@ -26,7 +26,7 @@ var ShieldTowerBase = (function (_super) {
         /** 时间累计， 跟 createTime 比较，timeSum >= createTime 可重新生成一个损失的士兵 */
         _this.timeSum = 0;
         // 最多生成的士兵数量
-        _this.maxSolider = 3;
+        _this.maxSolider = 1;
         /**音效资源*/
         _this.voiceArr = ["shield_ready1", "shield_ready2", "shield_ready3"];
         //播放音效
@@ -83,7 +83,7 @@ var ShieldTowerBase = (function (_super) {
             }
         });
         // 士兵数量少于规定的最大数（死亡后重新生成）
-        if (this.soldiers.length < 3) {
+        if (this.soldiers.length < this.maxSolider) {
             this.timeSum += timeStamp;
             if (this.timeSum >= this.createTime) {
                 this.createOneSolider(null);
