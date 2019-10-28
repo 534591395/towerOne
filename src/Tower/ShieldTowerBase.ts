@@ -63,6 +63,45 @@ class ShieldTowerBase extends TowerFoundation {
         soldier.xoffset = this.offsetArr[this.offsetIndex][0];
         soldier.yoffset = this.offsetArr[this.offsetIndex][1];
         soldier.init([[this.sx, this.sy],[this.soldierPoint.x, this.soldierPoint.y]]);
+
+        // 添加自定义事件监听: SoldierEvent.Select, SoldierEvent.Deselect， 这两个事件触发请查看 GuankaBase的 bgTouch方法。SoldEvent.Move事件触发请查看 ShieldTower01的 setJihePointEvent方法，该方法也是在 bgTouch方法内调用
+        soldier.addEventListener(SoldierEvent.Select, this.selectAll, this);
+        soldier.addEventListener(SoldierEvent.Deselect, this.deselectAll, this);
+        soldier.addEventListener(SoldierEvent.Move, this.moveAll, this);
+    }
+
+    /** 选择该塔的所有士兵 */
+    private selectAll() {
+        this.soldiers.map(soldier => {
+            // 启动触摸事件
+            soldier.select();
+        });
+    }
+
+    /** 取消选中该塔的所有士兵 */
+    private deselectAll() {
+        this.soldiers.map(soldier => {
+            // 启动触摸事件
+            soldier.deselect();
+        });
+    }
+
+    /** 移动该塔的所有士兵 */
+    private moveAll(e: SoldierEvent) {
+        // 新的坐标集
+        const arr = e.arr || [];
+        // 超出移动范围，士兵有最大移动范围（即所在塔的攻击范围），不能移动
+        const isin: boolean = Utiles.containsXY(arr[0],arr[1],this.sx,this.sy-22,this.maxRadius,this.ratioY);
+        if (!isin) {
+            return;
+        }
+        //新的集结点
+        this.soldierPoint = new egret.Point(arr[0],arr[1]+8);
+        // 移动士兵
+        this.soldiers.map(soldier => {
+            // 启动触摸事件
+            soldier.setJihePointToMove([this.soldierPoint.x, this.soldierPoint.y]);
+        });
     }
 
     // 更新索引

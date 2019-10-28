@@ -38,6 +38,7 @@ var Guanka01 = (function (_super) {
         ];
         _this.createUI();
         _this.backgroundImage.source = Utiles.createBitmapByName("map0").texture;
+        _this.makeGrid("map0_json");
         _this.createFoundation(Foundation01);
         _this.default();
         //门

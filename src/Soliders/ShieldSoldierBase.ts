@@ -71,6 +71,15 @@ class ShieldSoldierBase extends VectorElements {
         }
     }
 
+    /** 选中时调用 */
+    public select() {
+        this.view.touchEnabled = true;
+    }
+    /** 取消选中时调用 */
+    public deselect() {
+        this.view.touchEnabled = false;
+    }
+
     // 外部设置当前生命值后，执行
     public set hp(value: number) {
         this._hp = value;
@@ -101,7 +110,7 @@ class ShieldSoldierBase extends VectorElements {
     protected hittest() {
         if (this.target) {
             this.target.hp -= this.damage;
-            console.log('敌人的血量:', this.target.hp);
+            //console.log('敌人的血量:', this.target.hp);
             if (this.target.hp <= 0) {
                 // 将被消灭的敌人从敌人集合里移除
                 let index = this.targets.indexOf(this.target);
@@ -170,9 +179,9 @@ class ShieldSoldierBase extends VectorElements {
             this.currentState = stateType.idleState;
             this.view.gotoAndStop(this.stateLabel);
         }
-        console.log('休闲中。。状态', this.stateLabel);
+        //console.log('休闲中。。状态', this.stateLabel);
         this.moveOrFight();
-        console.log('休闲中执行了moveOrFight。。状态', this.stateLabel);
+        //console.log('休闲中执行了moveOrFight。。状态', this.stateLabel);
     }
 
     // 移动中，状态机里调用
@@ -199,7 +208,7 @@ class ShieldSoldierBase extends VectorElements {
             this.timesum = 0;
         }
         //攻击完毕敌人若死亡切换到休闲状态
-        console.log('执行到fightingEnd', this.target);
+        //console.log('执行到fightingEnd', this.target);
         if(this.target == null) {
             this.fsm.changeState(stateType.idleState);
         } else {
@@ -234,7 +243,7 @@ class ShieldSoldierBase extends VectorElements {
         if (this.currentState !== stateType.moveEndState) {
             this.currentState = stateType.moveEndState;
             this.fsm.changeState(stateType.idleState);
-            console.log('移动完毕');
+            //console.log('移动完毕');
         }
     }
 
@@ -296,7 +305,7 @@ class ShieldSoldierBase extends VectorElements {
         const label: string = this.getFrameLable(movieClipData, nextFrameNum);
         if( label != curLabel || this.view.currentFrame>=this.view.totalFrames){
             this.view.stop();
-            console.log('攻击结束：', this.currentState);
+            //console.log('攻击结束：', this.currentState);
             if(this.currentState == stateType.fightState){
                 this.fsm.changeState(stateType.fightEndState);
             }else if(this.currentState == stateType.deadState){
@@ -320,7 +329,7 @@ class ShieldSoldierBase extends VectorElements {
     /**判断目标!=null 且目标距离达到攻击距离时则切换到攻击状态 若目标==null则切换到移动状态*/
     private moveOrFight() {
         this.setTarget();
-        console.log('设置敌人', this.target);
+        //console.log('设置敌人', this.target);
         // 若当前士兵指定了攻击目标，让士兵移动到目标点，开始攻击
         if (this.target) {
             // 移动到目标点
@@ -350,7 +359,7 @@ class ShieldSoldierBase extends VectorElements {
             this.moveToTarget = false;
             // 若可攻击敌人集合为空，士兵回到集合点
             if (this.atargets.length === 0) {
-                console.log('this.atargets.length=0,this.atJihePoint, this.jihePoint',this.atJihePoint, this.jihePoint);
+                //console.log('this.atargets.length=0,this.atJihePoint, this.jihePoint',this.atJihePoint, this.jihePoint);
                 // 若士兵不在集合点，移动到集合点
                 if (!this.atJihePoint) {
                     this.atJihePoint = true;

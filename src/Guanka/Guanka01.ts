@@ -34,6 +34,7 @@ class Guanka01 extends GuankaBase {
         this.createUI();
 
         this.backgroundImage.source = Utiles.createBitmapByName("map0").texture;
+        this.makeGrid("map0_json");
          
         this.createFoundation(Foundation01);
 

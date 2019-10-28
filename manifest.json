@@ -40,8 +40,8 @@
 		"bin-debug/Loader/LoadingUI.js",
 		"bin-debug/Loader/LoadResource.js",
 		"bin-debug/skins/Bg.js",
+		"bin-debug/Soliders/ArrowShooter01.js",
 		"bin-debug/Run.js",
-		"bin-debug/Soliders/ArrowShooter02.js",
 		"bin-debug/Soliders/ArrowShooter031.js",
 		"bin-debug/Soliders/ArrowShooter032.js",
 		"bin-debug/ThemeAdapter.js",
@@ -58,14 +58,16 @@
 		"bin-debug/Tower/ShieldTower01.js",
 		"bin-debug/BuildTool/BuildTool.js",
 		"bin-debug/BuildTool/BuildWait.js",
+		"bin-debug/Utils/Grid.js",
 		"bin-debug/Utils/Group.js",
 		"bin-debug/Utils/InnerGroupItem.js",
 		"bin-debug/Utils/LifeBar.js",
+		"bin-debug/Utils/NodePoint.js",
 		"bin-debug/Utils/ObjectPool.js",
 		"bin-debug/Utils/SoundManager.js",
 		"bin-debug/Utils/Utils.js",
 		"bin-debug/Utils/Vector2D.js",
 		"bin-debug/Weapon/Arrow01.js",
-		"bin-debug/Soliders/ArrowShooter01.js"
+		"bin-debug/Soliders/ArrowShooter02.js"
 	]
 }

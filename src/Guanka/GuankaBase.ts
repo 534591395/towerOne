@@ -4,7 +4,12 @@
 class GuankaBase extends eui.Component {
     // 地图位图
     public backgroundImage: eui.Image;
-    
+    /**节点边长*/
+    protected cellSize: number;
+    /**节点网格*/
+    protected grid: Grid;
+
+
     // UI特效层、提示层
     protected uiLayer: egret.DisplayObjectContainer;
     // 地基层
@@ -212,7 +217,7 @@ class GuankaBase extends eui.Component {
     
     /** 点击背景图片 */
     private bgTouch(e: egret.TouchEvent) {
-        // 获取当前选择的对象，若无对象不用做操作
+        // 获取当前已经选择的对象，若无对象不用做操作，这些对象指的是: 塔、士兵
         const select = Group.selectedItem;
         if (select === null) {
             return;
@@ -220,12 +225,58 @@ class GuankaBase extends eui.Component {
         const selectParentClassName = egret.getQualifiedSuperclassName(select);
         // 建筑基类
         const arr1 = ["Foundation", "ArrowTowerBase", "ShieldTowerBase"];
-         // 隐藏工具
+        // 士兵基类
+        const arr2 = ["ShieldSoldierBase"];
+         // 若满足下面条件，说明可能展开了建筑建造的工具ui，隐藏工具
         if (arr1.indexOf(selectParentClassName) > -1) {
             this.hideTool();
         }
+        // 选择了士兵
+        if (arr2.indexOf(selectParentClassName) > -1) {
+            // 取消士兵的选中状态，方法定义在 ShieldSoldierBase.ts
+            select.deselectItem();
+            // 获取当前手指点击的坐标
+            const px = Math.round(e.localX);
+            const py = Math.round(e.localY);
+            // 可通行
+            if (this.checkPoint(px, py)) {
+               select.setJihePointToMove([px, py]);
+            }
+        }
+
         // 清除选择项
         Group.dispose();
+    }
+
+    /**地图网格，参考第三方代码 */
+    protected makeGrid(path:string): void {
+        //解析地图json
+        const str = RES.getRes(path);
+        let i: number;
+        let j: number;
+        const col: number = str.MapData.length;//列数
+        const row: number = str.MapData[0].length;//行数
+        this.cellSize = str.TileWidth;//边长
+        this.grid = new Grid(col,row);
+        for(i = 0;i < col;i++){
+            for(j = 0;j < row;j++){
+                if(str.MapData[i][j].val == 1) {
+                    this.grid.setWalkable(i,j,false);
+                }
+            }
+        }
+    }
+
+    /**检查点击网格是否可通过，参考第三方代码*/
+    protected checkPoint(xnum:number,ynum:number):boolean{
+        var xpos: number = Math.floor(xnum / this.cellSize);
+        var ypos: number = Math.floor(ynum / this.cellSize);
+        var endNp: NodePoint = this.grid.getNode(xpos,ypos);
+        if(endNp.walkable == false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**再次尝试*/
