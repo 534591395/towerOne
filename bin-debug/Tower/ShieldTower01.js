@@ -19,6 +19,8 @@ var ShieldTower01 = (function (_super) {
         _this.maxRadius = 140;
         _this.ratioY = _this.minRadius / _this.maxRadius;
         _this.addChild(Utiles.createBitmapByName("ShieldTower01"));
+        _this.soldierLife = 15;
+        _this.soldierDamage = 2;
         return _this;
     }
     return ShieldTower01;

@@ -28,9 +28,9 @@ class ShieldTowerBase extends TowerFoundation {
     // 最多生成的士兵数量
     protected maxSolider: number = 3;
     // 士兵的血量
-    protected life: number;
+    protected soldierLife: number;
     // 士兵的攻击力
-    protected damage: number;
+    protected soldierDamage: number;
     
 
     /**音效资源*/
@@ -53,8 +53,8 @@ class ShieldTowerBase extends TowerFoundation {
     /** 生成一个士兵 */
     private createOneSolider(e: egret.TimerEvent) {
         const soldier: ShieldSoldier01 = <ShieldSoldier01>ObjectPool.getInstance().createObject(ShieldSoldier01);
-        soldier.life = this.life;
-        soldier.damage = this.damage;
+        soldier.life = this.soldierLife;
+        soldier.damage = this.soldierDamage;
         this.parentContentLayer.addChild(soldier);
         this.objArr.push(soldier);
         this.soldiers.push(soldier);
@@ -71,5 +71,59 @@ class ShieldTowerBase extends TowerFoundation {
         if (this.offsetIndex > (this.maxSolider-1)) {
             this.offsetIndex = 0;
         }
+    }
+
+    public onEnterFrame(timeStamp: number) {
+        super.onEnterFrame(timeStamp);
+        // 设置进入攻击范围的敌人集合
+        this.atargets = [];
+        this.targets.map(target => {
+            // 判断是否进入攻击范围
+            const isIn: boolean = Utiles.containsXY(target.x, target.y, this.sx, this.sy-22, this.maxRadius,this.ratioY);
+            const index = this.atargets.indexOf(target);
+            // 进入攻击范围的敌人且敌人活着
+            if (isIn && target.hp > 0) {
+                if (index === -1) {
+                    this.atargets.push(target);
+                }
+            } else {
+                // 移除已经离开攻击范围的敌人
+                if (index > -1) {
+                    this.atargets.splice(index, 1);
+                }
+            }
+        });
+
+        // 士兵数量少于规定的最大数（死亡后重新生成）
+        if (this.soldiers.length < 3) {
+            this.timeSum += timeStamp;
+            if (this.timeSum >= this.createTime) {
+                this.createOneSolider(null);
+                this.timeSum = 0;
+            }
+        }
+
+        let tumpArr = [];
+
+        this.soldiers.map(soldier => {
+            if (soldier.hp <= 0) {
+                // 去掉监听
+            } else {
+                tumpArr.push(soldier);
+                // 更新士兵的敌人集合，值为当前塔的进入攻击范围的敌人集合
+                soldier.targets = this.atargets;
+            }
+        });
+        this.soldiers = tumpArr;
+    }
+
+    public onDestroy(): void {
+        if (this.timer !== null) {
+            this.timer.removeEventListener(egret.TimerEvent.TIMER, this.createOneSolider, this);
+            this.timer.stop();
+            this.timer = null;
+        }
+        this.soldiers = [];
+        this.atargets = [];
     }
 }

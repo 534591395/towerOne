@@ -38,11 +38,11 @@ class ShieldSoldierBase extends VectorElements {
     
 
     /**攻击范围最大半径*/
-    protected maxSoldRadius: number = 60;
+    protected maxSoldierRadius: number = 60;
     /**攻击范围最小半径*/
-    protected minSoldRadius: number = 40;
+    protected minSoldierRadius: number = 40;
     /**将圆沿y轴压扁变为椭圆时候的比例*/
-    protected ratioSoldY: number;
+    protected ratioSoldierY: number;
 
     /** 士兵血条 */
     protected lifeBar: LifeBar;
@@ -52,7 +52,7 @@ class ShieldSoldierBase extends VectorElements {
 
     public constructor() {
         super();
-        this.ratioSoldY = this.minSoldRadius / this.maxSoldRadius;
+        this.ratioSoldierY = this.minSoldierRadius / this.maxSoldierRadius;
         // 申明状态机
         this.fsm = new StateMachine(this);
 
@@ -128,13 +128,13 @@ class ShieldSoldierBase extends VectorElements {
         }
     }
 
-    public onEnterFrame(advancedTime :number) {
+    public onEnterFrame(timeStamp :number) {
         // 累加时间-用来判断是否到了怪物攻击的时间
-        this.timesum += advancedTime;
+        this.timesum += timeStamp;
         // 刷新怪物状态
-        this.fsm.onEnterFrame(advancedTime);
+        this.fsm.onEnterFrame(timeStamp);
         // 移动（向量）
-        super.onEnterFrame(advancedTime);
+        super.onEnterFrame(timeStamp);
         
         if (this.canClear) {
             ObjectPool.getInstance().destroyObject(this);
@@ -366,7 +366,7 @@ class ShieldSoldierBase extends VectorElements {
         this.atargets = [];
         this.targets.map(target => {
             // 判断是否进入攻击范围
-            const isIn: boolean = Utiles.containsXY(target.x, target.y, this.x,this.y,this.maxSoldRadius,this.ratioSoldY);
+            const isIn: boolean = Utiles.containsXY(target.x, target.y, this.x,this.y,this.maxSoldierRadius,this.ratioSoldierY);
             const index = this.atargets.indexOf(target);
             if (isIn) {
                 if (index === -1) {

@@ -73,7 +73,7 @@ class Monster extends MonsterBase {
     }
     
     /**帧事件*/
-    public onEnterFrame(advancedTime: number) {
-        super.onEnterFrame(advancedTime);
+    public onEnterFrame(timeStamp: number) {
+        super.onEnterFrame(timeStamp);
     }
 }

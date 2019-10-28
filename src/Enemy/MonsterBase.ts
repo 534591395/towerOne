@@ -86,13 +86,13 @@ class MonsterBase extends VectorElements {
     }
 
     // 实时刷新
-    public onEnterFrame(advancedTime :number) {
+    public onEnterFrame(timeStamp :number) {
         // 累加时间-用来判断是否到了怪物攻击的时间
-        this.timesum += advancedTime;
+        this.timesum += timeStamp;
         // 刷新怪物状态
-        this.fsm.onEnterFrame(advancedTime);
+        this.fsm.onEnterFrame(timeStamp);
         // 移动（向量）
-        super.onEnterFrame(advancedTime);
+        super.onEnterFrame(timeStamp);
         
         if (this.canClear) {
             ObjectPool.getInstance().destroyObject(this);

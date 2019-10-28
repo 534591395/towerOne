@@ -42,8 +42,8 @@ var ShieldTowerBase = (function (_super) {
     /** 生成一个士兵 */
     ShieldTowerBase.prototype.createOneSolider = function (e) {
         var soldier = ObjectPool.getInstance().createObject(ShieldSoldier01);
-        soldier.life = this.life;
-        soldier.damage = this.damage;
+        soldier.life = this.soldierLife;
+        soldier.damage = this.soldierDamage;
         this.parentContentLayer.addChild(soldier);
         this.objArr.push(soldier);
         this.soldiers.push(soldier);
@@ -51,6 +51,7 @@ var ShieldTowerBase = (function (_super) {
         this.updateOffsetIndex();
         soldier.xoffset = this.offsetArr[this.offsetIndex][0];
         soldier.yoffset = this.offsetArr[this.offsetIndex][1];
+        soldier.init([[this.sx, this.sy], [this.soldierPoint.x, this.soldierPoint.y]]);
     };
     // 更新索引
     ShieldTowerBase.prototype.updateOffsetIndex = function () {
@@ -58,6 +59,58 @@ var ShieldTowerBase = (function (_super) {
         if (this.offsetIndex > (this.maxSolider - 1)) {
             this.offsetIndex = 0;
         }
+    };
+    ShieldTowerBase.prototype.onEnterFrame = function (timeStamp) {
+        var _this = this;
+        _super.prototype.onEnterFrame.call(this, timeStamp);
+        // 设置进入攻击范围的敌人集合
+        this.atargets = [];
+        this.targets.map(function (target) {
+            // 判断是否进入攻击范围
+            var isIn = Utiles.containsXY(target.x, target.y, _this.sx, _this.sy - 22, _this.maxRadius, _this.ratioY);
+            var index = _this.atargets.indexOf(target);
+            // 进入攻击范围的敌人且敌人活着
+            if (isIn && target.hp > 0) {
+                if (index === -1) {
+                    _this.atargets.push(target);
+                }
+            }
+            else {
+                // 移除已经离开攻击范围的敌人
+                if (index > -1) {
+                    _this.atargets.splice(index, 1);
+                }
+            }
+        });
+        // 士兵数量少于规定的最大数（死亡后重新生成）
+        if (this.soldiers.length < 3) {
+            this.timeSum += timeStamp;
+            if (this.timeSum >= this.createTime) {
+                this.createOneSolider(null);
+                this.timeSum = 0;
+            }
+        }
+        var tumpArr = [];
+        this.soldiers.map(function (soldier) {
+            if (soldier.hp <= 0) {
+                // 去掉监听
+            }
+            else {
+                tumpArr.push(soldier);
+                // 更新士兵的敌人集合，值为当前塔的进入攻击范围的敌人集合
+                soldier.targets = _this.atargets;
+            }
+        });
+        this.soldiers = tumpArr;
+    };
+    ShieldTowerBase.prototype.onDestroy = function () {
+        if (this.timer !== null) {
+            this.timer.removeEventListener(egret.TimerEvent.TIMER, this.createOneSolider, this);
+            this.timer.stop();
+            this.timer = null;
+        }
+        this.soldiers = [];
+        this.atargets = [];
     };
     return ShieldTowerBase;
 }(TowerFoundation));

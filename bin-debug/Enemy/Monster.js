@@ -74,8 +74,8 @@ var Monster = (function (_super) {
         this.fsm.changeState(stateType.moveState);
     };
     /**帧事件*/
-    Monster.prototype.onEnterFrame = function (advancedTime) {
-        _super.prototype.onEnterFrame.call(this, advancedTime);
+    Monster.prototype.onEnterFrame = function (timeStamp) {
+        _super.prototype.onEnterFrame.call(this, timeStamp);
     };
     return Monster;
 }(MonsterBase));

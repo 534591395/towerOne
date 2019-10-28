@@ -17,7 +17,7 @@ var MonsterBase = (function (_super) {
         var _this = _super.call(this) || this;
         // 怪物是否被杀死标记
         _this.beKill = false;
-        /** 怪物是否被攻击 */
+        /** 怪物是否被攻击,，在士兵类里设置 */
         _this.beAttack = false;
         /**死亡中*/
         _this.dieVoiceArr = ["monster_die1", "monster_die2", "monster_die3", "monster_die4"];
@@ -69,13 +69,13 @@ var MonsterBase = (function (_super) {
         }
     };
     // 实时刷新
-    MonsterBase.prototype.onEnterFrame = function (advancedTime) {
+    MonsterBase.prototype.onEnterFrame = function (timeStamp) {
         // 累加时间-用来判断是否到了怪物攻击的时间
-        this.timesum += advancedTime;
+        this.timesum += timeStamp;
         // 刷新怪物状态
-        this.fsm.onEnterFrame(advancedTime);
+        this.fsm.onEnterFrame(timeStamp);
         // 移动（向量）
-        _super.prototype.onEnterFrame.call(this, advancedTime);
+        _super.prototype.onEnterFrame.call(this, timeStamp);
         if (this.canClear) {
             ObjectPool.getInstance().destroyObject(this);
         }
@@ -87,7 +87,6 @@ var MonsterBase = (function (_super) {
     };
     /**移动 -- 状态机里执行*/
     MonsterBase.prototype.isMove = function () {
-        //this.stateLabel = "walking";
         return true;
     };
     /**攻击 -- 状态机里执行*/
@@ -109,10 +108,10 @@ var MonsterBase = (function (_super) {
             this.view.gotoAndPlay(this.stateLabel);
         }
         //判断目标!=null 则切换到闲置状态 --从移动状态到闲置状态 --
-        // 闲置状态-到攻击状态
         if (this.target != null) {
             this.fsm.changeState(stateType.idleState);
         }
+        // 实时切换状态
         this.checkLast(this.stateLabel, this.view.currentFrame);
     };
     /**闲置中*/
@@ -170,7 +169,7 @@ var MonsterBase = (function (_super) {
         }
     };
     MonsterBase.prototype.dying = function () {
-        if (!(this.currentState == stateType.deadState)) {
+        if (this.currentState !== stateType.deadState) {
             this.currentState = stateType.deadState;
             this.view.gotoAndPlay(this.stateLabel);
             //死亡音效
@@ -181,7 +180,7 @@ var MonsterBase = (function (_super) {
     };
     /**死亡完毕-可以消除*/
     MonsterBase.prototype.dyingEnd = function () {
-        if (!(this.currentState == stateType.deadEndState)) {
+        if (this.currentState !== stateType.deadEndState) {
             this.currentState = stateType.deadEndState;
             this.beKill = true;
             this.canClear = true;
@@ -222,7 +221,7 @@ var MonsterBase = (function (_super) {
         });
         return label;
     };
-    /**循环播放检查*/
+    /**循环播放检查，当播放的帧lable跟指定的stateLabel不一致时，播放stateLabel  */
     MonsterBase.prototype.checkLast = function (str, currentFrame) {
         var nextFrameNum = currentFrame + 1;
         var movieClipData = this.view.movieClipData;

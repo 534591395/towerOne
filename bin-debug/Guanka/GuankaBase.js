@@ -314,7 +314,7 @@ var GuankaBase = (function (_super) {
         // 防御塔类别名称
         var towerName = e.className;
         // 新建防御塔
-        if (towerName === 'ArrowTower01') {
+        if (['ArrowTower01', 'ShieldTower01'].indexOf(towerName) > -1) {
             // 播放修建动画
             var buildWait = new BuildWait(towerName, this.selectObj.index);
             buildWait.x = this.selectObj.x;

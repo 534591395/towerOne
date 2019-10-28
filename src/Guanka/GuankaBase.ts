@@ -380,7 +380,7 @@ class GuankaBase extends eui.Component {
         // 防御塔类别名称
         const towerName = e.className;
         // 新建防御塔
-        if (towerName === 'ArrowTower01') {
+        if (['ArrowTower01', 'ShieldTower01'].indexOf(towerName) > -1) {
             // 播放修建动画
             const buildWait = new BuildWait(towerName, this.selectObj.index);
             buildWait.x = this.selectObj.x;

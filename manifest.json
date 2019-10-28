@@ -29,6 +29,7 @@
 		"bin-debug/Enemy/Monster.js",
 		"bin-debug/Main.js",
 		"bin-debug/Events/MainEvent.js",
+		"bin-debug/Events/SoldierEvent.js",
 		"bin-debug/Events/ToolEvent.js",
 		"bin-debug/Events/TowerEvent.js",
 		"bin-debug/FSM/StateMachine.js",
