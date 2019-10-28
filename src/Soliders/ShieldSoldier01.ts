@@ -11,7 +11,8 @@ class ShieldSoldier01 extends ShieldSoldierBase {
 
         this.addTexture();
     }
-
+    
+    /**arr.length =2 ,第一个表示士兵产生点，第二个表示士兵集合点  */
     public init(arr: number[][]): void {
         this.hp = this.life;
         this.atJihePoint = true;
@@ -23,6 +24,7 @@ class ShieldSoldier01 extends ShieldSoldierBase {
             let point = new Vector2D(item[0] + this.xoffset, item[1] + this.yoffset);
             this.positionArr.push(point);
         });
+        this.jihePoint = this.positionArr[this.positionArr.length-1];
 
         this.fsm.changeState(stateType.moveState);
     }
@@ -73,13 +75,14 @@ class ShieldSoldier01 extends ShieldSoldierBase {
         this.view.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.viewSelect, this);
     }
 
-    public onEnterFrame(advancedTime: number) {
-        super.onEnterFrame(advancedTime);
+    public onEnterFrame(timeStamp: number) {
+        super.onEnterFrame(timeStamp);
     }
 
     /** 设置士兵的集合点，并移动 */
     public setJihePointToMove(arr: number[]) {
         this.atJihePoint = true;
+        this.pathIndex = 0;
         this.positionArr = [];
         this.jihePoint = new Vector2D(arr[0] + this.xoffset, arr[1] + this.yoffset);
         this.positionArr.push(this.jihePoint);

@@ -75,6 +75,7 @@ var ShieldSoldierBase = (function (_super) {
     ShieldSoldierBase.prototype.hittest = function () {
         if (this.target) {
             this.target.hp -= this.damage;
+            console.log('敌人的血量:', this.target.hp);
             if (this.target.hp <= 0) {
                 // 将被消灭的敌人从敌人集合里移除
                 var index = this.targets.indexOf(this.target);
@@ -135,7 +136,9 @@ var ShieldSoldierBase = (function (_super) {
             this.currentState = stateType.idleState;
             this.view.gotoAndStop(this.stateLabel);
         }
+        console.log('休闲中。。状态', this.stateLabel);
         this.moveOrFight();
+        console.log('休闲中执行了moveOrFight。。状态', this.stateLabel);
     };
     // 移动中，状态机里调用
     ShieldSoldierBase.prototype.moving = function () {
@@ -146,9 +149,9 @@ var ShieldSoldierBase = (function (_super) {
             this.view.gotoAndPlay(this.stateLabel);
         }
         //判断目标!=null 则切换到闲置状态 --从移动状态到闲置状态 --
-        if (this.target != null) {
-            this.fsm.changeState(stateType.idleState);
-        }
+        // if(this.target!=null){
+        //     this.fsm.changeState(stateType.idleState);
+        // }
         // 实时切换状态
         this.checkLast(this.stateLabel, this.view.currentFrame);
     };
@@ -160,14 +163,13 @@ var ShieldSoldierBase = (function (_super) {
             this.timesum = 0;
         }
         //攻击完毕敌人若死亡切换到休闲状态
+        console.log('执行到fightingEnd', this.target);
         if (this.target == null) {
             this.fsm.changeState(stateType.idleState);
         }
         else {
             //循环攻击
             if (this.timesum >= this.fireDelay) {
-                //攻击之前检测目标是否活着
-                this.moveOrFight();
                 this.fsm.changeState(stateType.fightState);
                 this.timesum = 0;
             }
@@ -193,6 +195,7 @@ var ShieldSoldierBase = (function (_super) {
         if (this.currentState !== stateType.moveEndState) {
             this.currentState = stateType.moveEndState;
             this.fsm.changeState(stateType.idleState);
+            console.log('移动完毕');
         }
     };
     /**攻击中 */
@@ -250,6 +253,7 @@ var ShieldSoldierBase = (function (_super) {
         var label = this.getFrameLable(movieClipData, nextFrameNum);
         if (label != curLabel || this.view.currentFrame >= this.view.totalFrames) {
             this.view.stop();
+            console.log('攻击结束：', this.currentState);
             if (this.currentState == stateType.fightState) {
                 this.fsm.changeState(stateType.fightEndState);
             }
@@ -272,6 +276,7 @@ var ShieldSoldierBase = (function (_super) {
     /**判断目标!=null 且目标距离达到攻击距离时则切换到攻击状态 若目标==null则切换到移动状态*/
     ShieldSoldierBase.prototype.moveOrFight = function () {
         this.setTarget();
+        console.log('设置敌人', this.target);
         // 若当前士兵指定了攻击目标，让士兵移动到目标点，开始攻击
         if (this.target) {
             // 移动到目标点
@@ -304,6 +309,7 @@ var ShieldSoldierBase = (function (_super) {
             this.moveToTarget = false;
             // 若可攻击敌人集合为空，士兵回到集合点
             if (this.atargets.length === 0) {
+                console.log('this.atargets.length=0,this.atJihePoint, this.jihePoint', this.atJihePoint, this.jihePoint);
                 // 若士兵不在集合点，移动到集合点
                 if (!this.atJihePoint) {
                     this.atJihePoint = true;
@@ -314,6 +320,7 @@ var ShieldSoldierBase = (function (_super) {
     };
     /** 设置新的路径点，并移动 */
     ShieldSoldierBase.prototype.setPathToMove = function (v2d) {
+        this.pathIndex = 0;
         this.positionArr = [];
         this.positionArr.push(v2d);
         // 执行状态机，会执行 this.moving

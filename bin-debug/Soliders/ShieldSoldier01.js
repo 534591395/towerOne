@@ -20,6 +20,7 @@ var ShieldSoldier01 = (function (_super) {
         _this.addTexture();
         return _this;
     }
+    /**arr.length =2 ,第一个表示士兵产生点，第二个表示士兵集合点  */
     ShieldSoldier01.prototype.init = function (arr) {
         var _this = this;
         this.hp = this.life;
@@ -31,6 +32,7 @@ var ShieldSoldier01 = (function (_super) {
             var point = new Vector2D(item[0] + _this.xoffset, item[1] + _this.yoffset);
             _this.positionArr.push(point);
         });
+        this.jihePoint = this.positionArr[this.positionArr.length - 1];
         this.fsm.changeState(stateType.moveState);
     };
     /**创建*/
@@ -71,12 +73,13 @@ var ShieldSoldier01 = (function (_super) {
         this.view.touchEnabled = false;
         this.view.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.viewSelect, this);
     };
-    ShieldSoldier01.prototype.onEnterFrame = function (advancedTime) {
-        _super.prototype.onEnterFrame.call(this, advancedTime);
+    ShieldSoldier01.prototype.onEnterFrame = function (timeStamp) {
+        _super.prototype.onEnterFrame.call(this, timeStamp);
     };
     /** 设置士兵的集合点，并移动 */
     ShieldSoldier01.prototype.setJihePointToMove = function (arr) {
         this.atJihePoint = true;
+        this.pathIndex = 0;
         this.positionArr = [];
         this.jihePoint = new Vector2D(arr[0] + this.xoffset, arr[1] + this.yoffset);
         this.positionArr.push(this.jihePoint);

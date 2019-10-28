@@ -450,6 +450,7 @@ var GuankaBase = (function (_super) {
         tower.addEventListener(egret.TouchEvent.TOUCH_BEGIN, this.foundationOrTowerTouch, this);
         tower.addEventListener(TowerEvent.ShowTool, this.showTool, this);
         tower.addEventListener(TowerEvent.HideTool, this.hideTool, this);
+        tower.init();
     };
     GuankaBase.prototype.destroy = function () {
         ObjectPool.getInstance()._pool = {};
