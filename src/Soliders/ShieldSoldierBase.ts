@@ -73,11 +73,11 @@ class ShieldSoldierBase extends VectorElements {
 
     /** 选中时调用 */
     public select() {
-        this.view.touchEnabled = true;
+        this.view.touchEnabled = false;
     }
     /** 取消选中时调用 */
     public deselect() {
-        this.view.touchEnabled = false;
+        this.view.touchEnabled = true;
     }
 
     // 外部设置当前生命值后，执行

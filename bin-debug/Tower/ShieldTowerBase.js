@@ -60,7 +60,7 @@ var ShieldTowerBase = (function (_super) {
     /** 选择该塔的所有士兵 */
     ShieldTowerBase.prototype.selectAll = function () {
         this.soldiers.map(function (soldier) {
-            // 启动触摸事件
+            // 取消触摸事件
             soldier.select();
         });
     };
@@ -85,7 +85,7 @@ var ShieldTowerBase = (function (_super) {
         this.soldierPoint = new egret.Point(arr[0], arr[1] + 8);
         // 移动士兵
         this.soldiers.map(function (soldier) {
-            // 启动触摸事件
+            // 设置新的移动点
             soldier.setJihePointToMove([_this.soldierPoint.x, _this.soldierPoint.y]);
         });
     };

@@ -49,11 +49,11 @@ var ShieldSoldierBase = (function (_super) {
     };
     /** 选中时调用 */
     ShieldSoldierBase.prototype.select = function () {
-        this.view.touchEnabled = true;
+        this.view.touchEnabled = false;
     };
     /** 取消选中时调用 */
     ShieldSoldierBase.prototype.deselect = function () {
-        this.view.touchEnabled = false;
+        this.view.touchEnabled = true;
     };
     Object.defineProperty(ShieldSoldierBase.prototype, "hp", {
         get: function () {

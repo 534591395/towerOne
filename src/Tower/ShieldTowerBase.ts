@@ -73,7 +73,7 @@ class ShieldTowerBase extends TowerFoundation {
     /** 选择该塔的所有士兵 */
     private selectAll() {
         this.soldiers.map(soldier => {
-            // 启动触摸事件
+            // 取消触摸事件
             soldier.select();
         });
     }
@@ -99,7 +99,7 @@ class ShieldTowerBase extends TowerFoundation {
         this.soldierPoint = new egret.Point(arr[0],arr[1]+8);
         // 移动士兵
         this.soldiers.map(soldier => {
-            // 启动触摸事件
+            // 设置新的移动点
             soldier.setJihePointToMove([this.soldierPoint.x, this.soldierPoint.y]);
         });
     }
