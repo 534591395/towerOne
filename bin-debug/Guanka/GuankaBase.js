@@ -167,7 +167,7 @@ var GuankaBase = (function (_super) {
         }
         var selectParentClassName = egret.getQualifiedSuperclassName(select);
         // 建筑基类
-        var arr1 = ["Foundation", "ArrowTowerBase", "ShieldTowerBase"];
+        var arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase"];
         // 士兵基类
         var arr2 = ["ShieldSoldierBase"];
         // 若满足下面条件，说明可能展开了建筑建造的工具ui，隐藏工具

@@ -224,7 +224,7 @@ class GuankaBase extends eui.Component {
         }
         const selectParentClassName = egret.getQualifiedSuperclassName(select);
         // 建筑基类
-        const arr1 = ["Foundation", "ArrowTowerBase", "ShieldTowerBase"];
+        const arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase"];
         // 士兵基类
         const arr2 = ["ShieldSoldierBase"];
          // 若满足下面条件，说明可能展开了建筑建造的工具ui，隐藏工具

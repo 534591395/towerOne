@@ -20,7 +20,7 @@
 		"bin-debug/Weapon/ArrowBase.js",
 		"bin-debug/Enemy/MonsterBase.js",
 		"bin-debug/Soliders/ShieldSoldierBase.js",
-		"bin-debug/Tower/ArrowTowerBase.js",
+		"bin-debug/Tower/ArrowTowerFoundation.js",
 		"bin-debug/Guanka/GuankaBase.js",
 		"bin-debug/Tower/ShieldTowerBase.js",
 		"bin-debug/Soliders/ArrowShooterBase.js",
