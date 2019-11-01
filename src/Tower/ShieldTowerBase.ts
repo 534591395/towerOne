@@ -146,7 +146,9 @@ class ShieldTowerBase extends TowerFoundation {
 
         this.soldiers.map(soldier => {
             if (soldier.hp <= 0) {
-                // 去掉监听
+                soldier.removeEventListener(SoldierEvent.Select, this.selectAll, this);
+                soldier.removeEventListener(SoldierEvent.Deselect, this.deselectAll, this);
+                soldier.removeEventListener(SoldierEvent.Move, this.moveAll, this);
             } else {
                 tumpArr.push(soldier);
                 // 更新士兵的敌人集合，值为当前塔的进入攻击范围的敌人集合
@@ -156,12 +158,18 @@ class ShieldTowerBase extends TowerFoundation {
         this.soldiers = tumpArr;
     }
 
-    public onDestroy(): void {
+    public destroy(): void {
         if (this.timer !== null) {
             this.timer.removeEventListener(egret.TimerEvent.TIMER, this.createOneSolider, this);
             this.timer.stop();
             this.timer = null;
         }
+        this.soldiers.map(soldier => {
+            soldier.removeEventListener(SoldierEvent.Select, this.selectAll, this);
+            soldier.removeEventListener(SoldierEvent.Deselect, this.deselectAll, this);
+            soldier.removeEventListener(SoldierEvent.Move, this.moveAll, this);
+            soldier.canClear = true;
+        });
         this.soldiers = [];
         this.atargets = [];
     }

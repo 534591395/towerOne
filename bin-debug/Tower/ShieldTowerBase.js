@@ -129,7 +129,9 @@ var ShieldTowerBase = (function (_super) {
         var tumpArr = [];
         this.soldiers.map(function (soldier) {
             if (soldier.hp <= 0) {
-                // 去掉监听
+                soldier.removeEventListener(SoldierEvent.Select, _this.selectAll, _this);
+                soldier.removeEventListener(SoldierEvent.Deselect, _this.deselectAll, _this);
+                soldier.removeEventListener(SoldierEvent.Move, _this.moveAll, _this);
             }
             else {
                 tumpArr.push(soldier);
@@ -139,12 +141,19 @@ var ShieldTowerBase = (function (_super) {
         });
         this.soldiers = tumpArr;
     };
-    ShieldTowerBase.prototype.onDestroy = function () {
+    ShieldTowerBase.prototype.destroy = function () {
+        var _this = this;
         if (this.timer !== null) {
             this.timer.removeEventListener(egret.TimerEvent.TIMER, this.createOneSolider, this);
             this.timer.stop();
             this.timer = null;
         }
+        this.soldiers.map(function (soldier) {
+            soldier.removeEventListener(SoldierEvent.Select, _this.selectAll, _this);
+            soldier.removeEventListener(SoldierEvent.Deselect, _this.deselectAll, _this);
+            soldier.removeEventListener(SoldierEvent.Move, _this.moveAll, _this);
+            soldier.canClear = true;
+        });
         this.soldiers = [];
         this.atargets = [];
     };

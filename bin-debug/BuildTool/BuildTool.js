@@ -25,6 +25,7 @@ var BuildTool = (function (_super) {
         return _this;
     }
     BuildTool.prototype.createTools = function (obj) {
+        // LockTower 锁住 -- 当前未实现该功能
         // 选中的是地基类
         if (obj instanceof Foundation01) {
             // 箭塔
@@ -49,6 +50,20 @@ var BuildTool = (function (_super) {
         if (obj instanceof ArrowTower02) {
             this.addIcon("ArrowTower03_1", this.topLeftGroup);
             this.addIcon("ArrowTower03_2", this.topRightGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup);
+        }
+        else 
+        // 选中的是一级防御塔
+        if (obj instanceof ShieldTower01) {
+            // 升级到2级的icon
+            this.addIcon("ShieldTower02", this.topMiddleGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup);
+        }
+        else 
+        // 选择的是二级防御塔
+        if (obj instanceof ShieldTower02) {
+            this.addIcon("ShieldTower03_1", this.topLeftGroup);
+            this.addIcon("ShieldTower03_2", this.topRightGroup);
             this.addIcon("SellTower", this.bottomMiddleGroup);
         }
         else {
