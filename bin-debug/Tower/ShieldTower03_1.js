@@ -1,5 +1,5 @@
 /**
- * 盾塔-等级：三级 01--   士兵小队
+ * 盾塔-等级：三级-类型1--   士兵小队
  */
 var __reflect = (this && this.__reflect) || function (p, c, t) {
     p.__class__ = c, t ? t.push(c) : t = [c], p.__types__ = p.__types__ ? t.concat(p.__types__) : t;

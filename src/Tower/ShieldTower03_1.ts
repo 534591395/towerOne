@@ -1,5 +1,5 @@
 /**
- * 盾塔-等级：三级 01--   士兵小队
+ * 盾塔-等级：三级-类型1--   士兵小队
  */
 
 class ShieldTower03_1 extends ShieldTowerBase {
