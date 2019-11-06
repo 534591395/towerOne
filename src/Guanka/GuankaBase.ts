@@ -224,7 +224,7 @@ class GuankaBase extends eui.Component {
         }
         const selectParentClassName = egret.getQualifiedSuperclassName(select);
         // 建筑基类
-        const arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase"];
+        const arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase", "MagicTowerBase"];
         // 士兵基类
         const arr2 = ["ShieldSoldierBase"];
          // 若满足下面条件，说明可能展开了建筑建造的工具ui，隐藏工具
@@ -341,10 +341,7 @@ class GuankaBase extends eui.Component {
             }
             // 累加时间，直到下一个怪物产生平均间隔
             this.otime += pass;
-            // //路径
-            // if(this.roundMosterLeft>0 && this.otime >= this.meanTime-50) {
-            //     this.curRoadArr = this.roadArr[this.roundMosterLeft % this.roadArr.length];
-            // }
+
             // 还没达到下一个怪物产生时间
             if (this.otime < this.meanTime) {
                 return;
@@ -426,12 +423,12 @@ class GuankaBase extends eui.Component {
         this.selectObj = touchObj;
     }
 
-    // 开始建筑---说明：升级塔无需等待
+    // 开始建筑---说明：升级塔无需等待, 点击建筑工具的icon触发该方法
     private buildStart(e: ToolEvent) {
         // 防御塔类别名称
         const towerName = e.className;
         // 新建防御塔
-        if (['ArrowTower01', 'ShieldTower01'].indexOf(towerName) > -1) {
+        if (['ArrowTower01', 'ShieldTower01', "MagicTower01"].indexOf(towerName) > -1) {
             // 播放修建动画
             const buildWait = new BuildWait(towerName, this.selectObj.index);
             buildWait.x = this.selectObj.x;
@@ -557,11 +554,11 @@ class GuankaBase extends eui.Component {
 
         // 防御塔所属基地类
         const foundationParentClassName = egret.getQualifiedSuperclassName(tower);
-        if (foundationParentClassName === 'ArrowTowerFoundation') {
+        if (['ArrowTowerFoundation', 'MagicTowerBase'].indexOf(foundationParentClassName) > -1) {
             // 放置子类的容器为游戏场景的武器层
             tower.parentContentLayer = this.weaponLayer;
         } else
-        // 选择的塔是防御塔
+        // 选择的塔是防御塔-生成士兵的塔
         if (foundationParentClassName === 'ShieldTowerBase') {
             tower.objArr = this.objArr;
             tower.parentContentLayer = this.objLayer;
