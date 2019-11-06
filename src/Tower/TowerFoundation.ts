@@ -9,6 +9,7 @@ class TowerFoundation extends Foundation {
 
     /** 位于舞台的坐标x,y(椭圆圆心)，攻击范围是一个椭圆 */
     public sx: number;
+    /** 位于舞台的坐标x,y(椭圆圆心)，攻击范围是一个椭圆 */
     public sy: number;
     /**敌人集合 */
     public targets: any[] = [];

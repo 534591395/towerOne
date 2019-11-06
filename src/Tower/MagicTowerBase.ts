@@ -16,6 +16,13 @@ class MagicTowerBase extends TowerFoundation {
     protected isfire: boolean = false;
     /**音效资源*/
     protected voiceArr: string[] = ["magic_ready1","magic_ready2","magic_ready3"];
+    
+    // 魔法师
+    protected shooter: any;
+    // 魔法师武器
+    protected weapon: MagicBullet010203;
+    // 武器攻击力
+    protected damage: number;
 
     public constructor() {
         super();
@@ -61,5 +68,57 @@ class MagicTowerBase extends TowerFoundation {
                 }
             }
         });
+    }
+    
+    // 射击，法师生成的魔法球需要点时间，所以发射前需要处理
+    public fire(timeStamp:number) {
+        this.shooter.onEnterFrame(timeStamp);
+        // 若没有敌人进入攻击范围，停止攻击
+        if (this.atargets.length === 0) {
+            // 减去的 299 阈值，是发射前魔法师生成魔法球的时间
+            this.timesum = this.fireDelay - 299;
+            return;
+        }
+        
+        // 获取第一个敌人
+        this.target = this.atargets[0];
+        // 确定敌人方向，即魔法弹的进攻方向
+        if (this.target.y<=this.sy-22) {
+            this.direct = "up";
+        }
+        if (this.target.y>this.sy-22) {
+            this.direct = "down";
+        }
+
+        // 时间累积，设置攻击间隔
+        this.timesum += timeStamp;
+        // 攻击间隔时间未到
+        if (this.timesum < this.fireDelay) {
+            // 生成魔法球判断
+            if ((this.fireDelay - this.timesum) < 300 && !this.isfire) {
+                this.shooter.fire(this.direct);
+                this.isfire = true;
+            }
+            return;
+        }
+        this.timesum = 0;
+        this.isfire = false;
+
+        // 播放射击音效
+        //this.playFireVoice();
+
+        // 魔法球生成的坐标
+        let p: egret.Point;
+        if(this.direct == "down") {
+            p = new egret.Point(this.sx - 9,this.sy - 58);
+        } else {
+            p = new egret.Point(this.sx + 5,this.sy - 58);
+        }
+
+        //利用对象池产生弓箭对象并进行碰撞检测
+        this.weapon = <MagicBullet010203>ObjectPool.getInstance().createObject(MagicBullet010203);
+        this.weapon.damage = this.damage;
+        this.weapon.init(p,this.target,this.target.offy);
+        this.parentContentLayer.addChild(this.weapon);
     }
 }

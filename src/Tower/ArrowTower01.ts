@@ -77,7 +77,7 @@ class ArrowTower01 extends ArrowTowerFoundation {
         // 播放射击音效
         //this.playFireVoice();
 
-        // 两个射手轮流射击
+        // 两个射手轮流射击，左右
         // 弓箭发射（产生点）的坐标点
         let p: egret.Point;
         if (this.firststrike === "L") {
