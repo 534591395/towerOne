@@ -5,8 +5,8 @@
 class ArrowTower03_1 extends ArrowTowerFoundation {
 
     // 箭塔上有两个弓箭手, shooter01 在左边，shooter02 在右边
-    private shooter01: ArrowShooter02;
-    private shooter02: ArrowShooter02;
+    private shooter01: ArrowShooter031;
+    private shooter02: ArrowShooter031;
 
     // 武器
     private weapon: Arrow01;
@@ -24,12 +24,12 @@ class ArrowTower03_1 extends ArrowTowerFoundation {
         this.addChild(Utiles.createBitmapByName("ArrowTower03_1"));
 
         // 加入弓箭手
-        this.shooter01 = new ArrowShooter01();
+        this.shooter01 = new ArrowShooter031();
         this.shooter01.x = 36;
         this.shooter01.y = 5;
         this.addChild(this.shooter01);
         
-        this.shooter02 = new ArrowShooter01();
+        this.shooter02 = new ArrowShooter031();
         this.shooter02.x = 50;
         this.shooter02.y = 5;
         this.addChild(this.shooter02);

@@ -234,30 +234,12 @@ class MonsterBase extends VectorElements {
         }
     }
     
-    // 根据播放帧序列号获取帧lable
-    private getFrameLable(movieClipData: egret.MovieClipData, nextFrame: number) {
-        let label = '';
-        const labels = movieClipData.labels || [];
-        labels.map((item, i) => {
-            if (i === labels.length-1) {
-                if (nextFrame >= item.frame && nextFrame <= movieClipData.numFrames) {
-                    label = item.name;
-                }
-            } else
-            if (labels[i+1]) {
-                if (nextFrame >= item.frame && nextFrame < labels[i+1].frame) {
-                    label = item.name;
-                }
-            }
-        });
-        return label;
-    }
 
     /**循环播放检查，当播放的帧lable跟指定的stateLabel不一致时，播放stateLabel  */
     private checkLast(str:string, currentFrame: number){
         const nextFrameNum:number = currentFrame+1;
         const movieClipData = this.view.movieClipData;
-        const mz: string = this.getFrameLable(movieClipData, nextFrameNum);
+        const mz: string = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if( mz != str){
             this.view.gotoAndPlay(str);
         }
@@ -267,7 +249,7 @@ class MonsterBase extends VectorElements {
     private checkLastEnd(curLabel:string){
         const nextFrameNum:number = this.view.currentFrame+1;
         const movieClipData = this.view.movieClipData;
-        const label: string = this.getFrameLable(movieClipData, nextFrameNum);
+        const label: string = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if( label != curLabel || this.view.currentFrame>=this.view.totalFrames){
             this.view.stop();
             if(this.currentState == stateType.fightState){

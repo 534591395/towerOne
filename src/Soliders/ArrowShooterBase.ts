@@ -16,15 +16,12 @@ class ArrowShooterBase extends egret.MovieClip {
     }
 
     // 帧率执行回调
-    public onEnterFrame(advancedTime? :number) {
-        // 当前播放帧标签是结束标签，结束动画帧播放
-        if (this.currentLabel === this.endLabel) {
-            this.gotoAndStop(this.idleLabel);
-        }
+    public onEnterFrame(timeStamp? :number) {
+        this.checkLastEnd();
     }
 
     // 播放发射动画帧: direct 发射方向
-    public file(direct): void {
+    public file(direct: string): void {
         switch(direct) {
             case "downRight":
                 this.startLabel = "shootDown";
@@ -52,5 +49,15 @@ class ArrowShooterBase extends egret.MovieClip {
                 break;
         }
         this.gotoAndPlay(this.startLabel);
+    }
+
+    /**
+     * 播放结束检查
+     */
+    protected checkLastEnd() {
+        // 当前播放帧标签是结束标签，结束动画帧播放
+        if (this.currentLabel === this.endLabel) {
+            this.gotoAndStop(this.idleLabel);
+        }
     }
 }

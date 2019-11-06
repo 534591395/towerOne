@@ -50,4 +50,23 @@ class Utiles {
         }
         return arr;
     }
+
+    // 根据播放帧序列号获取帧lable
+    public static getFrameLable(movieClipData: egret.MovieClipData, nextFrame: number) {
+        let label = '';
+        const labels = movieClipData.labels || [];
+        labels.map((item, i) => {
+            if (i === labels.length-1) {
+                if (nextFrame >= item.frame && nextFrame <= movieClipData.numFrames) {
+                    label = item.name;
+                }
+            } else
+            if (labels[i+1]) {
+                if (nextFrame >= item.frame && nextFrame < labels[i+1].frame) {
+                    label = item.name;
+                }
+            }
+        });
+        return label;
+    }
 }
