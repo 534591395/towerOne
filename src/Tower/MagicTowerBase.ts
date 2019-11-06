@@ -25,7 +25,7 @@ class MagicTowerBase extends TowerFoundation {
 
     }
 
-    public onEnterFrame() {
+    public onEnterFrame(timeStamp:number) {
         // 进入攻击范围的敌人，没有攻击对象的敌人
         this.atargets = [];
         this.targets.map(item => {
