@@ -66,6 +66,20 @@ var BuildTool = (function (_super) {
             this.addIcon("ShieldTower03_2", this.topRightGroup);
             this.addIcon("SellTower", this.bottomMiddleGroup);
         }
+        else 
+        // 选择的是一级魔法塔
+        if (obj instanceof MagicTower01) {
+            // 升级到2级的icon
+            this.addIcon("MagicTower02", this.topMiddleGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup);
+        }
+        else 
+        // 选择的是二级魔法塔
+        if (obj instanceof MagicTower02) {
+            this.addIcon("MagicTower03_1", this.topLeftGroup);
+            this.addIcon("MagicTower03_2", this.topRightGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup);
+        }
         else {
             // 只有卖出icon
             this.addIcon("SellTower", this.bottomMiddleGroup);

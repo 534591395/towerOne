@@ -67,7 +67,7 @@ var ArrowTower01 = (function (_super) {
         }
         // 播放射击音效
         //this.playFireVoice();
-        // 两个射手轮流射击
+        // 两个射手轮流射击，左右
         // 弓箭发射（产生点）的坐标点
         var p;
         if (this.firststrike === "L") {

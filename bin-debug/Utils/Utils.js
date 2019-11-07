@@ -53,6 +53,24 @@ var Utiles = (function () {
         }
         return arr;
     };
+    // 根据播放帧序列号获取帧lable
+    Utiles.getFrameLable = function (movieClipData, nextFrame) {
+        var label = '';
+        var labels = movieClipData.labels || [];
+        labels.map(function (item, i) {
+            if (i === labels.length - 1) {
+                if (nextFrame >= item.frame && nextFrame <= movieClipData.numFrames) {
+                    label = item.name;
+                }
+            }
+            else if (labels[i + 1]) {
+                if (nextFrame >= item.frame && nextFrame < labels[i + 1].frame) {
+                    label = item.name;
+                }
+            }
+        });
+        return label;
+    };
     return Utiles;
 }());
 __reflect(Utiles.prototype, "Utiles");

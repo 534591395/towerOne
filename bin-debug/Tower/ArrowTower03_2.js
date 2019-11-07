@@ -22,11 +22,11 @@ var ArrowTower03_2 = (function (_super) {
         _this.ratioY = _this.minRadius / _this.maxRadius;
         _this.addChild(Utiles.createBitmapByName("ArrowTower03_2"));
         // 加入弓箭手
-        _this.shooter01 = new ArrowShooter01();
+        _this.shooter01 = new ArrowShooter032();
         _this.shooter01.x = 36;
         _this.shooter01.y = 9;
         _this.addChild(_this.shooter01);
-        _this.shooter02 = new ArrowShooter01();
+        _this.shooter02 = new ArrowShooter032();
         _this.shooter02.x = 50;
         _this.shooter02.y = 9;
         _this.addChild(_this.shooter02);

@@ -5,9 +5,7 @@
 class MagicWizard010203 extends MagicWizardBase {
     public constructor() {
         super();
-
-        this.anchorOffsetX = this.width/2;
-
+        
         const data = RES.getRes("MagicWizard010203json");
         const texture = RES.getRes("MagicWizard010203png");
         const mcf: egret.MovieClipDataFactory = new egret.MovieClipDataFactory(data, texture);
@@ -18,5 +16,6 @@ class MagicWizard010203 extends MagicWizardBase {
         this.stateLabel = "idleDown";
         this.idleLabel = "idleDown";
 
+        this.anchorOffsetX = this.width/2;
     }
 }

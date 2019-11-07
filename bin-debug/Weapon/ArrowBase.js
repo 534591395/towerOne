@@ -83,7 +83,7 @@ var ArrowBase = (function (_super) {
     };
     /**碰撞检测*/
     //根据坐标差值检测？
-    //设置一个小的rectangle 优先尝试
+    //设置一个小的rectangle 优先尝试   参考第三方
     ArrowBase.prototype.hittest = function () {
         //允许攻击角度
         if (this.angle >= 0 && this.angle <= 180)
@@ -105,7 +105,8 @@ var ArrowBase = (function (_super) {
                 this.y += dy;
             }
             else {
-                this.isHit = true; //击中敌人效果
+                //击中敌人效果
+                this.isHit = true;
                 //播放音效
                 if (Math.random() > 0.4) {
                     //SoundManager.playEffect("arrow_hit2");

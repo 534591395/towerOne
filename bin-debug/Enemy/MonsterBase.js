@@ -203,29 +203,11 @@ var MonsterBase = (function (_super) {
             this.stateLabel = "walkingUp";
         }
     };
-    // 根据播放帧序列号获取帧lable
-    MonsterBase.prototype.getFrameLable = function (movieClipData, nextFrame) {
-        var label = '';
-        var labels = movieClipData.labels || [];
-        labels.map(function (item, i) {
-            if (i === labels.length - 1) {
-                if (nextFrame >= item.frame && nextFrame <= movieClipData.numFrames) {
-                    label = item.name;
-                }
-            }
-            else if (labels[i + 1]) {
-                if (nextFrame >= item.frame && nextFrame < labels[i + 1].frame) {
-                    label = item.name;
-                }
-            }
-        });
-        return label;
-    };
     /**循环播放检查，当播放的帧lable跟指定的stateLabel不一致时，播放stateLabel  */
     MonsterBase.prototype.checkLast = function (str, currentFrame) {
         var nextFrameNum = currentFrame + 1;
         var movieClipData = this.view.movieClipData;
-        var mz = this.getFrameLable(movieClipData, nextFrameNum);
+        var mz = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if (mz != str) {
             this.view.gotoAndPlay(str);
         }
@@ -234,7 +216,7 @@ var MonsterBase = (function (_super) {
     MonsterBase.prototype.checkLastEnd = function (curLabel) {
         var nextFrameNum = this.view.currentFrame + 1;
         var movieClipData = this.view.movieClipData;
-        var label = this.getFrameLable(movieClipData, nextFrameNum);
+        var label = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if (label != curLabel || this.view.currentFrame >= this.view.totalFrames) {
             this.view.stop();
             if (this.currentState == stateType.fightState) {

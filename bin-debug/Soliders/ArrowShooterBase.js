@@ -17,11 +17,8 @@ var ArrowShooterBase = (function (_super) {
         return _super.call(this) || this;
     }
     // 帧率执行回调
-    ArrowShooterBase.prototype.onEnterFrame = function (advancedTime) {
-        // 当前播放帧标签是结束标签，结束动画帧播放
-        if (this.currentLabel === this.endLabel) {
-            this.gotoAndStop(this.idleLabel);
-        }
+    ArrowShooterBase.prototype.onEnterFrame = function (timeStamp) {
+        this.checkLastEnd();
     };
     // 播放发射动画帧: direct 发射方向
     ArrowShooterBase.prototype.file = function (direct) {
@@ -52,6 +49,15 @@ var ArrowShooterBase = (function (_super) {
                 break;
         }
         this.gotoAndPlay(this.startLabel);
+    };
+    /**
+     * 播放结束检查
+     */
+    ArrowShooterBase.prototype.checkLastEnd = function () {
+        // 当前播放帧标签是结束标签，结束动画帧播放
+        if (this.currentLabel === this.endLabel) {
+            this.gotoAndStop(this.idleLabel);
+        }
     };
     return ArrowShooterBase;
 }(egret.MovieClip));
