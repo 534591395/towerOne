@@ -53,7 +53,7 @@ var Utiles = (function () {
         }
         return arr;
     };
-    // 根据播放帧序列号获取帧lable
+    /** 根据播放帧序列号获取帧lable */
     Utiles.getFrameLable = function (movieClipData, nextFrame) {
         var label = '';
         var labels = movieClipData.labels || [];

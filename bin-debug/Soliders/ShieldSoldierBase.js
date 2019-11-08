@@ -156,10 +156,6 @@ var ShieldSoldierBase = (function (_super) {
             this.currentState = stateType.moveState;
             this.view.gotoAndPlay(this.stateLabel);
         }
-        //判断目标!=null 则切换到闲置状态 --从移动状态到闲置状态 --
-        // if(this.target!=null){
-        //     this.fsm.changeState(stateType.idleState);
-        // }
         // 实时切换状态
         this.checkLast(this.stateLabel, this.view.currentFrame);
     };
@@ -227,29 +223,11 @@ var ShieldSoldierBase = (function (_super) {
         }
         this.checkLastEnd(this.stateLabel);
     };
-    // 根据播放帧序列号获取帧lable
-    ShieldSoldierBase.prototype.getFrameLable = function (movieClipData, nextFrame) {
-        var label = '';
-        var labels = movieClipData.labels || [];
-        labels.map(function (item, i) {
-            if (i === labels.length - 1) {
-                if (nextFrame >= item.frame && nextFrame <= movieClipData.numFrames) {
-                    label = item.name;
-                }
-            }
-            else if (labels[i + 1]) {
-                if (nextFrame >= item.frame && nextFrame < labels[i + 1].frame) {
-                    label = item.name;
-                }
-            }
-        });
-        return label;
-    };
     /**循环播放检查，当播放的帧lable跟指定的stateLabel不一致时，播放stateLabel  */
     ShieldSoldierBase.prototype.checkLast = function (str, currentFrame) {
         var nextFrameNum = currentFrame + 1;
         var movieClipData = this.view.movieClipData;
-        var mz = this.getFrameLable(movieClipData, nextFrameNum);
+        var mz = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if (mz != str) {
             this.view.gotoAndPlay(str);
         }
@@ -258,7 +236,7 @@ var ShieldSoldierBase = (function (_super) {
     ShieldSoldierBase.prototype.checkLastEnd = function (curLabel) {
         var nextFrameNum = this.view.currentFrame + 1;
         var movieClipData = this.view.movieClipData;
-        var label = this.getFrameLable(movieClipData, nextFrameNum);
+        var label = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if (label != curLabel || this.view.currentFrame >= this.view.totalFrames) {
             this.view.stop();
             //console.log('攻击结束：', this.currentState);

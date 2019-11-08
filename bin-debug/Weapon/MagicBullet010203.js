@@ -14,11 +14,29 @@ r.prototype = e.prototype, t.prototype = new r();
 var MagicBullet010203 = (function (_super) {
     __extends(MagicBullet010203, _super);
     function MagicBullet010203() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        _this.view = new egret.MovieClip();
+        _this.addChild(_this.view);
+        var data = RES.getRes("MagicBullet010203json");
+        var texture = RES.getRes("MagicBullet010203png");
+        var mcf = new egret.MovieClipDataFactory(data, texture);
+        _this.view.movieClipData = mcf.generateMovieClipData("MagicBullet010203");
+        return _this;
     }
     MagicBullet010203.prototype.onCreate = function () {
+        this.canClear = false;
+        this.isHit = false;
+        this.follow = false;
+        this.isTravel = true;
+        this.target = null;
+        this.maxSpeed = 2;
+        this.fsm.changeState(stateType.idleState);
     };
-    MagicBullet010203.prototype.init = function (p, tar, offy) {
+    MagicBullet010203.prototype.init = function (p, target) {
+        this.target = target;
+        this.position.x = this.x = p.x;
+        this.position.y = this.y = p.y;
+        this.setPositionArr();
     };
     MagicBullet010203.prototype.onEnterFrame = function (timeStamp) {
         _super.prototype.onEnterFrame.call(this, timeStamp);

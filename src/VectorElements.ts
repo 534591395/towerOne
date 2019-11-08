@@ -19,13 +19,13 @@ class VectorElements extends Elements {
     protected maxSpeed: number;
     /** 移动角度--播放对应动画帧需要 */
     protected angle: number = 0;
-    // x、y 位置向量 
+    /** x、y 当前对象的位置向量-- 一个个体在位置（x，y），并且它的速度是（a, b）。它的移动用欧拉积分表示为position = position + velocity  */
     protected position: Vector2D;
     /** 速度向量，速度向量的方向控制个体移动的朝向，速度向量的长度控制个体的移动速度。长度越大，个体移动得越快。*/
     protected velocity: Vector2D;
     /** 转向力 -- Steering Behaviors */
     protected steeringForce: Vector2D;
-    // 路径索引
+    /** 路径索引，走到第几个点 */
     protected pathIndex: number;
     /** 到达终点阈值-- 当前点和目标点的距离 dist <= arrivalThreshold ，表示到达终点 */
     protected arrivalThreshold: number = 2;

@@ -18,8 +18,8 @@ var MagicTower02 = (function (_super) {
         _this.minRadius = 100;
         _this.maxRadius = 140;
         _this.ratioY = _this.minRadius / _this.maxRadius;
-        _this.anchorOffsetX = _this.width / 2;
         _this.addChild(Utiles.createBitmapByName("MagicTower02"));
+        _this.anchorOffsetX = _this.width / 2;
         _this.damage = 14;
         // 加入魔法师
         _this.shooter = new MagicWizard010203();

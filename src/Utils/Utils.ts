@@ -51,7 +51,7 @@ class Utiles {
         return arr;
     }
 
-    // 根据播放帧序列号获取帧lable
+    /** 根据播放帧序列号获取帧lable */
     public static getFrameLable(movieClipData: egret.MovieClipData, nextFrame: number) {
         let label = '';
         const labels = movieClipData.labels || [];

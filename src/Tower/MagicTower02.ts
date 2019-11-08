@@ -8,8 +8,8 @@ class MagicTower02 extends MagicTowerBase {
         this.minRadius = 100;
         this.maxRadius = 140;
         this.ratioY = this.minRadius / this.maxRadius;
-        this.anchorOffsetX = this.width/2;
         this.addChild(Utiles.createBitmapByName("MagicTower02"));
+        this.anchorOffsetX = this.width/2;
         this.damage = 14;
         // 加入魔法师
         this.shooter = new MagicWizard010203();
