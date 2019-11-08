@@ -25,6 +25,7 @@ var MagicBullet010203 = (function (_super) {
     }
     MagicBullet010203.prototype.onCreate = function () {
         this.canClear = false;
+        this.isMiss = false;
         this.isHit = false;
         this.follow = false;
         this.isTravel = true;

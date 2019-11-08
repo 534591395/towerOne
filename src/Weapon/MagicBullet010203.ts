@@ -17,6 +17,7 @@ class MagicBullet010203 extends MagicBulletBase {
 
     public onCreate(): void {
         this.canClear = false;
+        this.isMiss = false;
         this.isHit = false;
         this.follow = false;
         this.isTravel = true;

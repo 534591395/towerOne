@@ -36,7 +36,7 @@ class MagicBulletBase extends VectorElements {
             } else {
                 this.isHit = true;
             }
-            
+            //this.isHit = true;
             this.follow = false;
         }
     }
@@ -66,6 +66,8 @@ class MagicBulletBase extends VectorElements {
         // 击中敌人后，播放击中动画
         if (this.isHit|| this.isMiss) {
             this.view.gotoAndPlay("hit");
+            this.isHit = false;
+            this.isMiss = false;
         }
         // 若当前动画label是击中敌人结束，表示当前魔法弹可以销毁
         if (this.view.currentLabel === "hitEnd") {
