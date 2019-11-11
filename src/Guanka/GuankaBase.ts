@@ -224,7 +224,7 @@ class GuankaBase extends eui.Component {
         }
         const selectParentClassName = egret.getQualifiedSuperclassName(select);
         // 建筑基类
-        const arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase", "MagicTowerBase"];
+        const arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase", "MagicTowerBase", "ExploTowerBase"];
         // 士兵基类
         const arr2 = ["ShieldSoldierBase"];
          // 若满足下面条件，说明可能展开了建筑建造的工具ui，隐藏工具
@@ -427,8 +427,8 @@ class GuankaBase extends eui.Component {
     private buildStart(e: ToolEvent) {
         // 防御塔类别名称
         const towerName = e.className;
-        // 新建防御塔
-        if (['ArrowTower01', 'ShieldTower01', "MagicTower01"].indexOf(towerName) > -1) {
+        // 新建一级防御塔，需要添加建造等待动画
+        if (['ArrowTower01', 'ShieldTower01', "MagicTower01", "ExploTower01"].indexOf(towerName) > -1) {
             // 播放修建动画
             const buildWait = new BuildWait(towerName, this.selectObj.index);
             buildWait.x = this.selectObj.x;
@@ -554,7 +554,7 @@ class GuankaBase extends eui.Component {
 
         // 防御塔所属基地类
         const foundationParentClassName = egret.getQualifiedSuperclassName(tower);
-        if (['ArrowTowerFoundation', 'MagicTowerBase'].indexOf(foundationParentClassName) > -1) {
+        if (['ArrowTowerFoundation', 'MagicTowerBase', 'ExploTowerBase'].indexOf(foundationParentClassName) > -1) {
             // 放置子类的容器为游戏场景的武器层
             tower.parentContentLayer = this.weaponLayer;
         } else

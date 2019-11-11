@@ -111,7 +111,7 @@ var MagicTowerBase = (function (_super) {
         //利用对象池产生弓箭对象并进行碰撞检测
         this.weapon = ObjectPool.getInstance().createObject(MagicBullet010203);
         this.weapon.damage = this.damage;
-        this.weapon.init(p, this.target, this.target.offy);
+        this.weapon.init(p, this.target);
         this.parentContentLayer.addChild(this.weapon);
     };
     return MagicTowerBase;

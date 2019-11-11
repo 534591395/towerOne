@@ -167,7 +167,7 @@ var GuankaBase = (function (_super) {
         }
         var selectParentClassName = egret.getQualifiedSuperclassName(select);
         // 建筑基类
-        var arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase", "MagicTowerBase"];
+        var arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase", "MagicTowerBase", "ExploTowerBase"];
         // 士兵基类
         var arr2 = ["ShieldSoldierBase"];
         // 若满足下面条件，说明可能展开了建筑建造的工具ui，隐藏工具
@@ -353,8 +353,8 @@ var GuankaBase = (function (_super) {
     GuankaBase.prototype.buildStart = function (e) {
         // 防御塔类别名称
         var towerName = e.className;
-        // 新建防御塔
-        if (['ArrowTower01', 'ShieldTower01', "MagicTower01"].indexOf(towerName) > -1) {
+        // 新建一级防御塔，需要添加建造等待动画
+        if (['ArrowTower01', 'ShieldTower01', "MagicTower01", "ExploTower01"].indexOf(towerName) > -1) {
             // 播放修建动画
             var buildWait = new BuildWait(towerName, this.selectObj.index);
             buildWait.x = this.selectObj.x;
@@ -470,7 +470,7 @@ var GuankaBase = (function (_super) {
         tower.targets = this.enemyArr;
         // 防御塔所属基地类
         var foundationParentClassName = egret.getQualifiedSuperclassName(tower);
-        if (['ArrowTowerFoundation', 'MagicTowerBase'].indexOf(foundationParentClassName) > -1) {
+        if (['ArrowTowerFoundation', 'MagicTowerBase', 'ExploTowerBase'].indexOf(foundationParentClassName) > -1) {
             // 放置子类的容器为游戏场景的武器层
             tower.parentContentLayer = this.weaponLayer;
         }

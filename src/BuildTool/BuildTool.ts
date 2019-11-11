@@ -73,6 +73,18 @@ class BuildTool extends eui.Component {
             this.addIcon("MagicTower03_1", this.topLeftGroup);
             this.addIcon("MagicTower03_2", this.topRightGroup);
             this.addIcon("SellTower", this.bottomMiddleGroup);
+        } else
+        // 选择的是一级炮塔
+        if (obj instanceof ExploTower01) {
+            // 升级到2级的icon
+            this.addIcon("ExploTower02", this.topMiddleGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup); 
+        } else
+        // 选择的是二级炮塔
+        if (obj instanceof ExploTower02) {
+            this.addIcon("ExploTower03_1", this.topLeftGroup);
+            this.addIcon("ExploTower03_2", this.topRightGroup);
+            this.addIcon("SellTower", this.bottomMiddleGroup);
         }
          else {
             // 只有卖出icon
