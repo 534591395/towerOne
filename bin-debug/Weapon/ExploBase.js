@@ -25,7 +25,7 @@ var ExploBase = (function (_super) {
         _this.minSoldRadius = 40;
         // 射出的箭运行的时间（做抛物线运动）
         _this.t0 = 0;
-        _this.t1 = 20;
+        _this.t1 = 25;
         _this.g = 1; //重力
         _this.ratioSoldY = _this.minSoldRadius / _this.maxSoldRadius;
         return _this;

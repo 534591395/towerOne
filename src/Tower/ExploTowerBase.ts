@@ -33,6 +33,9 @@ class ExploTowerBase extends TowerFoundation {
     }
 
     public onEnterFrame(timeStamp:number) {
+        if(this.view.currentLabel == "shootEnd"){
+            this.view.gotoAndStop("idle");
+        }
         // 进入攻击范围的敌人
         this.atargets = [];
         this.targets.map(item => {
@@ -88,6 +91,7 @@ class ExploTowerBase extends TowerFoundation {
         if (className) {
             this.weapon = ObjectPool.getInstance().createObject(className);
             this.weapon.damage = this.damage;
+            this.weapon.targets = this.atargets;
             this.weapon.init(p,this.target,this.target.offy);
             this.parentContentLayer.addChild(this.weapon);
         }

@@ -35,7 +35,7 @@ class ExploBase extends Elements {
     protected ySpeed: number;
     // 射出的箭运行的时间（做抛物线运动）
     protected t0:number = 0;
-    protected t1:number = 20;
+    protected t1:number = 25;
     protected g:number = 1;//重力
     /**目标位置 */
     protected pos: egret.Point;

@@ -29,6 +29,9 @@ var ExploTowerBase = (function (_super) {
     };
     ExploTowerBase.prototype.onEnterFrame = function (timeStamp) {
         var _this = this;
+        if (this.view.currentLabel == "shootEnd") {
+            this.view.gotoAndStop("idle");
+        }
         // 进入攻击范围的敌人
         this.atargets = [];
         this.targets.map(function (item) {
@@ -79,6 +82,7 @@ var ExploTowerBase = (function (_super) {
         if (className) {
             this.weapon = ObjectPool.getInstance().createObject(className);
             this.weapon.damage = this.damage;
+            this.weapon.targets = this.atargets;
             this.weapon.init(p, this.target, this.target.offy);
             this.parentContentLayer.addChild(this.weapon);
         }
