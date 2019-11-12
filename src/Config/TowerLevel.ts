@@ -14,7 +14,7 @@ class TowerLevel {
         // 魔法塔
         "MagicTower01": {"className":"MagicTower01","res":"mf01","price":100},
         // 炮塔（爆炸）
-        "ExplodeTower01": {"className":"ExplodeTower01","res":"zd01","price":125},
+        "ExploTower01": {"className":"ExploTower01","res":"zd01","price":125},
 
         "ArrowTower02": {"className":"ArrowTower02","res":"sj","price":110},
         "ShieldTower02": {"className":"ShieldTower02","res":"sj","price":120},

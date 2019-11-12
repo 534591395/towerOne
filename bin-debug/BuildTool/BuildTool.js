@@ -35,7 +35,7 @@ var BuildTool = (function (_super) {
             // 魔法塔
             this.addIcon("MagicTower01", this.bottomLeftGroup);
             // 炮塔
-            this.addIcon("ExplodeTower01", this.bottomRightGroup);
+            this.addIcon("ExploTower01", this.bottomRightGroup);
         }
         else 
         // 选中的是一级箭塔
