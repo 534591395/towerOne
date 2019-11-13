@@ -26,15 +26,11 @@ class GuankaUI extends eui.Component {
     constructor() {
         super();
         this.skinName= "resource/skins/guankaUI.exml";
-
-        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+        this.init();
     }
 
-    private onAddToStage():void {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-
+    private init() {
         this.backToWorldBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleBackToWorld, this);
-        
         this.skill1 = new Skill1();
         this.skill2 = new Skill2();
         this.bottomLeftGroup.addChild(this.skill1);
@@ -66,6 +62,7 @@ class GuankaUI extends eui.Component {
 
     // 实时刷新
     public onEnterFrame(timeStamp:number) {
-
+        this.skill1.onEnterFrame(timeStamp);
+        this.skill2.onEnterFrame(timeStamp);
     }
 }

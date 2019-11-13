@@ -17,11 +17,10 @@ var GuankaUI = (function (_super) {
     function GuankaUI() {
         var _this = _super.call(this) || this;
         _this.skinName = "resource/skins/guankaUI.exml";
-        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
+        _this.init();
         return _this;
     }
-    GuankaUI.prototype.onAddToStage = function () {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+    GuankaUI.prototype.init = function () {
         this.backToWorldBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleBackToWorld, this);
         this.skill1 = new Skill1();
         this.skill2 = new Skill2();
@@ -49,6 +48,8 @@ var GuankaUI = (function (_super) {
     };
     // 实时刷新
     GuankaUI.prototype.onEnterFrame = function (timeStamp) {
+        this.skill1.onEnterFrame(timeStamp);
+        this.skill2.onEnterFrame(timeStamp);
     };
     return GuankaUI;
 }(eui.Component));

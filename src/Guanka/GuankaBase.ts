@@ -144,6 +144,8 @@ class GuankaBase extends eui.Component {
         // 创建怪物轮次
         this.createEnemies(pass);
         this.enterFrameTowers(pass);
+        // 关卡ui刷新--玩家技能cd
+        this.guankaUI.onEnterFrame(timeStamp);
 
         //实时刷新排序数组(根据y轴改变对象层级) ?
         this.objArr = Utiles.sortarr(this.objArr);
