@@ -7,6 +7,6 @@ class Skill2 extends SkillBase {
         super();
         
         this.skillResName = 'uiskill2';
-        
+        this.init();
     }
 }

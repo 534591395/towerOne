@@ -16,6 +16,7 @@ var Skill1 = (function (_super) {
     function Skill1() {
         var _this = _super.call(this) || this;
         _this.skillResName = 'uiskill1';
+        _this.init();
         return _this;
     }
     return Skill1;
