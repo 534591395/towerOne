@@ -23,6 +23,12 @@ var GuankaUI = (function (_super) {
     GuankaUI.prototype.onAddToStage = function () {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
         this.backToWorldBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleBackToWorld, this);
+        this.skill1 = new Skill1();
+        this.skill2 = new Skill2();
+        this.bottomLeftGroup.addChild(this.skill1);
+        this.bottomLeftGroup.addChild(this.skill2);
+        this.skill1.x = 0;
+        this.skill2.x = 37;
     };
     // 触发返回到世界地图界面
     GuankaUI.prototype.handleBackToWorld = function () {

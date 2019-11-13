@@ -12,6 +12,13 @@ class GuankaUI extends eui.Component {
      private goldTxt: eui.BitmapLabel;
      // 显示轮次
      private roundTxt: eui.BitmapLabel;
+     // 技能group
+     private bottomLeftGroup: eui.Group;
+
+     /**技能1*/
+     private skill1: Skill1;
+     /**技能2*/
+     private skill2: Skill2;
      
      // 背景图片（地图）
      public backgroundImage: eui.Image;
@@ -27,6 +34,13 @@ class GuankaUI extends eui.Component {
         this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
 
         this.backToWorldBtn.addEventListener(egret.TouchEvent.TOUCH_TAP, this.handleBackToWorld, this);
+        
+        this.skill1 = new Skill1();
+        this.skill2 = new Skill2();
+        this.bottomLeftGroup.addChild(this.skill1);
+        this.bottomLeftGroup.addChild(this.skill2);
+        this.skill1.x = 0;
+        this.skill2.x = 37;
     }
 
     // 触发返回到世界地图界面

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin width="55" height="63" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Group width="100%" height="100%" x="0" y="0">
+		<e:Image id="uiskilliframe" width="100%" height="100%" x="0" y="0" source="uiskilloff"/>
+		<e:Image id="skill" width="31" height="37" x="13" y="8" source=""/>
+		<e:Image id="mb" width="31" height="38" x="13" y="8" source="mb"/>
+	</e:Group>
+</e:Skin>
