@@ -35,7 +35,8 @@
 		"resource/skins/guankaUI.exml",
 		"resource/skins/loadbar.exml",
 		"resource/skins/loading.exml",
-		"resource/skins/world.exml"
+		"resource/skins/world.exml",
+		"resource/skins/skill.exml"
 	],
 	"path": "resource/default.thm.json"
 }

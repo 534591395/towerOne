@@ -27,8 +27,8 @@ var GuankaUI = (function (_super) {
         this.skill2 = new Skill2();
         this.bottomLeftGroup.addChild(this.skill1);
         this.bottomLeftGroup.addChild(this.skill2);
-        this.skill1.x = 0;
-        this.skill2.x = 37;
+        this.skill1.left = 0;
+        this.skill2.right = 37;
     };
     // 触发返回到世界地图界面
     GuankaUI.prototype.handleBackToWorld = function () {

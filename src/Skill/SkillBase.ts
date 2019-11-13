@@ -16,10 +16,7 @@ class SkillBase extends eui.Component {
         super();
         this.skinName= "resource/skins/skill.exml";
 
-        this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStageAt, this);
-    }
-
-    private onAddToStageAt():void {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStageAt, this);
+        this.skill.source = RES.getRes(this.skillResName);
+        this.touchEnabled = true;
     }
 }

@@ -16,14 +16,8 @@ var Skill1 = (function (_super) {
     function Skill1() {
         var _this = _super.call(this) || this;
         _this.skillResName = 'uiskill1';
-        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStage, _this);
         return _this;
     }
-    Skill1.prototype.onAddToStage = function () {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
-        this.skill.source = RES.getRes(this.skillResName);
-        this.touchEnabled = true;
-    };
     return Skill1;
 }(SkillBase));
 __reflect(Skill1.prototype, "Skill1");

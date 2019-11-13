@@ -16,12 +16,10 @@ var SkillBase = (function (_super) {
     function SkillBase() {
         var _this = _super.call(this) || this;
         _this.skinName = "resource/skins/skill.exml";
-        _this.addEventListener(egret.Event.ADDED_TO_STAGE, _this.onAddToStageAt, _this);
+        _this.skill.source = RES.getRes(_this.skillResName);
+        _this.touchEnabled = true;
         return _this;
     }
-    SkillBase.prototype.onAddToStageAt = function () {
-        this.removeEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStageAt, this);
-    };
     return SkillBase;
 }(eui.Component));
 __reflect(SkillBase.prototype, "SkillBase");
