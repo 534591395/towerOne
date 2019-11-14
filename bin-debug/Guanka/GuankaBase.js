@@ -171,7 +171,7 @@ var GuankaBase = (function (_super) {
         // 建筑基类
         var arr1 = ["Foundation", "ArrowTowerFoundation", "ShieldTowerBase", "MagicTowerBase", "ExploTowerBase"];
         // 士兵基类
-        var arr2 = ["ShieldSoldierBase"];
+        var arr2 = ["ShieldSoldierBase", "SkillBase"];
         // 若满足下面条件，说明可能展开了建筑建造的工具ui，隐藏工具
         if (arr1.indexOf(selectParentClassName) > -1) {
             this.hideTool();
