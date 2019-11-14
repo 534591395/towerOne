@@ -15,7 +15,9 @@ var Skill1 = (function (_super) {
     __extends(Skill1, _super);
     function Skill1() {
         var _this = _super.call(this) || this;
-        _this.skillResName = 'uiskill1';
+        _this.skillOffResName = 'uiskill1off';
+        _this.skillOnResName = 'uiskill1';
+        _this.cdtime = 25000;
         _this.init();
         return _this;
     }

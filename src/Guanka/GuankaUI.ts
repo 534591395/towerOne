@@ -35,6 +35,8 @@ class GuankaUI extends eui.Component {
         this.skill2 = new Skill2();
         this.bottomLeftGroup.addChild(this.skill1);
         this.bottomLeftGroup.addChild(this.skill2);
+        this.skill1.onCreate();
+        this.skill1.onCreate();
         this.skill1.left = 0;
         this.skill2.right = 0;
     }

@@ -6,7 +6,9 @@ class Skill1 extends SkillBase {
     public constructor() {
         super();
         
-        this.skillResName = 'uiskill1';
+        this.skillOffResName = 'uiskill1off';
+        this.skillOnResName = 'uiskill1';
+        this.cdtime = 25000;
         this.init();
     }
 }
