@@ -24,7 +24,7 @@ var SkillBase = (function (_super) {
         _this.skinName = "resource/skins/skill.exml";
         return _this;
     }
-    SkillBase.prototype.init = function () {
+    SkillBase.prototype.default = function () {
         this.skill.source = RES.getRes(this.skillOffResName);
         this.touchEnabled = true;
     };
@@ -51,23 +51,37 @@ var SkillBase = (function (_super) {
         this.mb.height = num;
     };
     /**释放技能，状态还原 */
-    SkillBase.prototype.releaseSkills = function () {
+    SkillBase.prototype.releaseSkills = function (arr) {
         this.skill.source = RES.getRes(this.skillOffResName);
         this.setMbHeight(this.skill.height);
         this.sumtime = 0;
         this.iscd = true;
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.touchHandle, this);
     };
     /**点击了技能 */
     SkillBase.prototype.touchHandle = function (e) {
         Group.selectItem(this);
     };
     SkillBase.prototype.reselectItem = function () { };
+    /**选择了技能后，遍历关卡的显示对象，此时士兵不可触摸（原先点击士兵后是可移动的，所以要禁止） */
     SkillBase.prototype.selectItem = function () {
         this.uiskilliframe.source = RES.getRes('uiskillon');
-        //.....
+        GuankaBase.instance.objArr.map(function (obj) {
+            // 如果是士兵
+            if (egret.getQualifiedSuperclassName(obj) === "ShieldSoldierBase") {
+                obj.view.touchEnabled = false;
+            }
+        });
     };
+    /** 选择了技能A后，再次选择某个对象后，会触发这个方法， A.deselectItem()，技能选择状态取消 */
     SkillBase.prototype.deselectItem = function () {
         this.uiskilliframe.source = RES.getRes('uiskilloff');
+        GuankaBase.instance.objArr.map(function (obj) {
+            // 如果是士兵
+            if (egret.getQualifiedSuperclassName(obj) === "ShieldSoldierBase") {
+                obj.view.touchEnabled = true;
+            }
+        });
     };
     return SkillBase;
 }(eui.Component));

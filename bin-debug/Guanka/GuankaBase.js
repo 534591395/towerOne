@@ -52,6 +52,7 @@ var GuankaBase = (function (_super) {
         /** 怪物产生时间差（帧率变动累计），用来判断是否可生成怪物 ： otime >= meanTime 时，表示可以产生怪物 */
         _this.otime = 0;
         _this.time = 0;
+        GuankaBase.instance = _this;
         // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
         // UI特效层、提示层
         _this.uiLayer = new egret.DisplayObjectContainer();
@@ -176,7 +177,7 @@ var GuankaBase = (function (_super) {
         if (arr1.indexOf(selectParentClassName) > -1) {
             this.hideTool();
         }
-        // 选择了士兵
+        // 选择了士兵或者技能
         if (arr2.indexOf(selectParentClassName) > -1) {
             // 取消士兵的选中状态，方法定义在 ShieldSoldierBase.ts
             select.deselectItem();
@@ -185,7 +186,13 @@ var GuankaBase = (function (_super) {
             var py = Math.round(e.localY);
             // 可通行
             if (this.checkPoint(px, py)) {
-                select.setJihePointEvent([px, py]);
+                // 释放技能
+                if (selectParentClassName === 'SkillBase') {
+                    select.releaseSkills([px, py]);
+                }
+                else {
+                    select.setJihePointEvent([px, py]);
+                }
             }
         }
         // 清除选择项
@@ -446,6 +453,7 @@ var GuankaBase = (function (_super) {
         monster.init(roadArr, this.roundMosterLeft, this.roundSpeed, this.roundDamage, this.roundValue);
         this.objLayer.addChild(monster);
         this.enemyArr.push(monster);
+        this.objArr.push(monster);
     };
     // 隐藏建造防御塔的选项工具ui
     GuankaBase.prototype.hideTool = function () {

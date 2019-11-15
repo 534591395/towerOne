@@ -18,7 +18,7 @@ var Skill2 = (function (_super) {
         _this.skillOffResName = 'uiskill2off';
         _this.skillOnResName = 'uiskill2';
         _this.cdtime = 20000;
-        _this.init();
+        _this.default();
         return _this;
     }
     return Skill2;

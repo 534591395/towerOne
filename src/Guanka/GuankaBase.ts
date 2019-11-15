@@ -2,6 +2,7 @@
  * 关卡基类
  */
 class GuankaBase extends eui.Component {
+    public static instance: GuankaBase;
     // 地图位图
     public backgroundImage: eui.Image;
     /**节点边长*/
@@ -40,9 +41,9 @@ class GuankaBase extends eui.Component {
     // 建筑队列--由于建筑异步执行（等待建筑动画执行完毕），故需要一个建筑队列
     protected buildQuene: any[] = [];
     // 敌人(怪物)集合
-    protected enemyArr: any[] = [];
+    public enemyArr: any[] = [];
     // 怪物层、士兵层、英雄层、塔层的child对象集合， 显示排序需要（比如塔的显示序列）
-    protected objArr: any[] = []; 
+    public objArr: any[] = []; 
 
     // 怪物行走路径点数组
     protected roadArr: number[][][] = [];
@@ -98,7 +99,7 @@ class GuankaBase extends eui.Component {
 
     constructor() {
         super();
-
+        GuankaBase.instance = this;
         // 关于这边层的使用说明：通过层来控制显示顺序，以及显示分类
 
         // UI特效层、提示层
@@ -233,7 +234,7 @@ class GuankaBase extends eui.Component {
         if (arr1.indexOf(selectParentClassName) > -1) {
             this.hideTool();
         }
-        // 选择了士兵
+        // 选择了士兵或者技能
         if (arr2.indexOf(selectParentClassName) > -1) {
             // 取消士兵的选中状态，方法定义在 ShieldSoldierBase.ts
             select.deselectItem();
@@ -242,7 +243,12 @@ class GuankaBase extends eui.Component {
             const py = Math.round(e.localY);
             // 可通行
             if (this.checkPoint(px, py)) {
-               select.setJihePointEvent([px, py]);
+                // 释放技能
+                if (selectParentClassName === 'SkillBase') {
+                    select.releaseSkills([px, py]);
+                } else {
+                    select.setJihePointEvent([px, py]);
+                }
             }
         }
 
@@ -525,6 +531,7 @@ class GuankaBase extends eui.Component {
         monster.init(roadArr,this.roundMosterLeft,this.roundSpeed,this.roundDamage,this.roundValue);
         this.objLayer.addChild(monster);
         this.enemyArr.push(monster);
+        this.objArr.push(monster);
     }
 
     // 隐藏建造防御塔的选项工具ui

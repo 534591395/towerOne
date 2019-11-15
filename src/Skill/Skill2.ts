@@ -9,6 +9,6 @@ class Skill2 extends SkillBase {
         this.skillOffResName = 'uiskill2off';
         this.skillOnResName = 'uiskill2';
         this.cdtime = 20000;
-        this.init();
+        this.default();
     }
 }
