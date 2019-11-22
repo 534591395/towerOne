@@ -23,12 +23,13 @@ var FireBall = (function (_super) {
         var mcf = new egret.MovieClipDataFactory(data, texture);
         _this.view.movieClipData = mcf.generateMovieClipData("stone1");
         _this.view.x = _this.view.width / 2;
+        _this.maxSpeed = 5;
         return _this;
     }
     FireBall.prototype.init = function (xnum, ynum) {
         this.p = new egret.Point(xnum, ynum);
         this.position.x = this.x = xnum;
-        this.position.y = this.y = ynum - 480;
+        this.position.y = this.y = ynum - this.stage.stageHeight;
         this.setPositionArr();
     };
     FireBall.prototype.onEnterFrame = function (timeStamp) {

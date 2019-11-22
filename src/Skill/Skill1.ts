@@ -36,8 +36,8 @@ class Skill1 extends SkillBase {
             var xnum = 50 + Math.random() * (this.stage.stageWidth-100);
             var ynum = 50 + Math.random() * (this.stage.stageHeight-100);
         }
+        GuankaBase.instance.weaponLayer.addChild(fireBall);
         fireBall.init(xnum, ynum);
         fireBall.targets = GuankaBase.instance.enemyArr;
-        GuankaBase.instance.weaponLayer.addChild(fireBall);
     }
 }
