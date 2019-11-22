@@ -1,43 +1,43 @@
 {
-  "engineVersion": "5.2.30",
-  "compilerVersion": "5.2.30",
-  "template": {},
-  "target": {
-    "current": "web"
-  },
-  "modules": [
-    {
-      "name": "egret"
-    },
-    {
-      "name": "eui"
-    },
-    {
-      "name": "assetsmanager"
-    },
-    {
-      "name": "dragonBones"
-    },
-    {
-      "name": "game"
-    },
-    {
-      "name": "tween"
-    },
-    {
-      "name": "promise"
-    },
-    {
-      "name": "WXCloudApi",
-      "path": "./libs/WXCloudApi"
-    },
-    {
-      "name": "egretmgobe",
-      "path": "./libs/egretmgobe"
-    },
-    {
+	"engineVersion": "5.2.31",
+	"compilerVersion": "5.2.31",
+	"template": {},
+	"target": {
+		"current": "web"
+	},
+	"modules": [
+		{
+			"name": "egret"
+		},
+		{
+			"name": "eui"
+		},
+		{
+			"name": "assetsmanager"
+		},
+		{
+			"name": "dragonBones"
+		},
+		{
+			"name": "game"
+		},
+		{
+			"name": "tween"
+		},
+		{
+			"name": "promise"
+		},
+		{
+			"name": "WXCloudApi",
+			"path": "./libs/WXCloudApi"
+		},
+		{
+			"name": "egretmgobe",
+			"path": "./libs/egretmgobe"
+		},
+		{
 			"name": "greensock",
 			"path": "../greensock"
 		}
-  ]
+	]
 }
