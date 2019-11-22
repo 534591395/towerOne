@@ -144,9 +144,7 @@ var ShieldSoldierBase = (function (_super) {
             this.currentState = stateType.idleState;
             this.view.gotoAndStop(this.stateLabel);
         }
-        //console.log('休闲中。。状态', this.stateLabel);
         this.moveOrFight();
-        //console.log('休闲中执行了moveOrFight。。状态', this.stateLabel);
     };
     // 移动中，状态机里调用
     ShieldSoldierBase.prototype.moving = function () {
@@ -167,7 +165,6 @@ var ShieldSoldierBase = (function (_super) {
             this.timesum = 0;
         }
         //攻击完毕敌人若死亡切换到休闲状态
-        //console.log('执行到fightingEnd', this.target);
         if (this.target == null) {
             this.fsm.changeState(stateType.idleState);
         }
@@ -239,7 +236,6 @@ var ShieldSoldierBase = (function (_super) {
         var label = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if (label != curLabel || this.view.currentFrame >= this.view.totalFrames) {
             this.view.stop();
-            //console.log('攻击结束：', this.currentState);
             if (this.currentState == stateType.fightState) {
                 this.fsm.changeState(stateType.fightEndState);
             }

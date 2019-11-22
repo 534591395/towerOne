@@ -34,6 +34,14 @@ class Utiles {
         return false;
     }
 
+    public static containsXY2(px:number, py:number, stageWidth: number, stageHeight:number):boolean{
+        if(px>40 && px<stageWidth-80 && py>40 && py<stageHeight-80){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /*
     * 对象冒泡排序
     */ 

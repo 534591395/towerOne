@@ -179,9 +179,7 @@ class ShieldSoldierBase extends VectorElements {
             this.currentState = stateType.idleState;
             this.view.gotoAndStop(this.stateLabel);
         }
-        //console.log('休闲中。。状态', this.stateLabel);
         this.moveOrFight();
-        //console.log('休闲中执行了moveOrFight。。状态', this.stateLabel);
     }
 
     // 移动中，状态机里调用
@@ -204,7 +202,6 @@ class ShieldSoldierBase extends VectorElements {
             this.timesum = 0;
         }
         //攻击完毕敌人若死亡切换到休闲状态
-        //console.log('执行到fightingEnd', this.target);
         if(this.target == null) {
             this.fsm.changeState(stateType.idleState);
         } else {
@@ -282,7 +279,6 @@ class ShieldSoldierBase extends VectorElements {
         const label: string = Utiles.getFrameLable(movieClipData, nextFrameNum);
         if( label != curLabel || this.view.currentFrame>=this.view.totalFrames){
             this.view.stop();
-            //console.log('攻击结束：', this.currentState);
             if(this.currentState == stateType.fightState){
                 this.fsm.changeState(stateType.fightEndState);
             }else if(this.currentState == stateType.deadState){

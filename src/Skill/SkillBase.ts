@@ -19,6 +19,8 @@ class SkillBase extends eui.Component {
     public cdtime: number = 0;
     // 技能cd中
     protected iscd: boolean = true;
+    /** 添加子类的层，外部场景中的对象层，放置武器，武器层在关卡场景里统一管理，故需要这个对象 */
+    protected parentContentLayer: egret.DisplayObjectContainer;
 
     constructor() {
         super();

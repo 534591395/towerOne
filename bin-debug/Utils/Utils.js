@@ -37,6 +37,14 @@ var Utiles = (function () {
         }
         return false;
     };
+    Utiles.containsXY2 = function (px, py, stageWidth, stageHeight) {
+        if (px > 40 && px < stageWidth - 80 && py > 40 && py < stageHeight - 80) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
     /*
     * 对象冒泡排序
     */
