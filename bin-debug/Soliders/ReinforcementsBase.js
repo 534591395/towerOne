@@ -18,6 +18,8 @@ var ReinforcementsBase = (function (_super) {
         // 该增援士兵存在时间
         _this.totalLifeTime = 30000;
         _this.lifetimesum = 0;
+        _this.view = new egret.MovieClip();
+        _this.addChild(_this.view);
         return _this;
     }
     /**arr.length =2 ,第一个表示士兵产生点，第二个表示士兵集合点  */

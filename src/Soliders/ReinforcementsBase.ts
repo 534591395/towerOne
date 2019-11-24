@@ -9,6 +9,8 @@ class ReinforcementsBase extends ShieldSoldierBase {
 
     public constructor() {
         super();
+        this.view = new egret.MovieClip();
+        this.addChild(this.view);
     }
 
 

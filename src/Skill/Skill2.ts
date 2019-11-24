@@ -15,7 +15,7 @@ class Skill2 extends SkillBase {
 
     public constructor() {
         super();
-        
+        this.parentContentLayer = GuankaBase.instance.objLayer;
         this.skillOffResName = 'uiskill2off';
         this.skillOnResName = 'uiskill2';
         this.cdtime = 20000;

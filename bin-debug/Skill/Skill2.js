@@ -21,6 +21,7 @@ var Skill2 = (function (_super) {
         _this.offsetArr = [[-10, 0], [10, 10]];
         /**集合点偏移量数组索引*/
         _this.offsetIndex = -1;
+        _this.parentContentLayer = GuankaBase.instance.objLayer;
         _this.skillOffResName = 'uiskill2off';
         _this.skillOnResName = 'uiskill2';
         _this.cdtime = 20000;
