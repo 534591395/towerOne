@@ -28,32 +28,37 @@ class Skill2 extends SkillBase {
 
         // 进入攻击范围的敌人，没有攻击对象的敌人
         let atargets = [];
-        GuankaBase.instance.enemyArr.map(item => {
-            if (item.target === null) {
-                const isIn: boolean = Utiles.containsXY2(item.x,item.y, this.stage.stageWidth, this.stage.stageHeight);
-                const index = atargets.indexOf(item);
-                if (isIn && item.hp > 0) {
-                    if (index === -1) {
-                        atargets.push(item);
-                    }
-                } else {
-                    // 已经不在该塔的攻击范围内
-                    if (index > -1) {
-                        atargets.splice(index, 1);
+        try {
+            GuankaBase.instance.enemyArr.map(item => {
+                if (item.target === null) {
+                    const isIn: boolean = Utiles.containsXY2(item.x,item.y, this.stage.stageWidth, this.stage.stageHeight);
+                    const index = atargets.indexOf(item);
+                    if (isIn && item.hp > 0) {
+                        if (index === -1) {
+                            atargets.push(item);
+                        }
+                    } else {
+                        // 已经不在该塔的攻击范围内
+                        if (index > -1) {
+                            atargets.splice(index, 1);
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        // 下面是赋值给每个
-        let soliders = [];
-        this.soldiers.map(solider => {
-            if (solider.hp > 0) {
-                soliders.push(solider);
-                solider.targets = atargets;
-            }
-        });
-        this.soldiers = soliders;
+            // 下面是赋值给每个
+            let soliders = [];
+            this.soldiers.map(solider => {
+                if (solider.hp > 0) {
+                    soliders.push(solider);
+                    solider.targets = atargets;
+                }
+            });
+            this.soldiers = soliders;
+        } catch (error) {
+            
+        }
+
     } 
 
     /**释放技能 */

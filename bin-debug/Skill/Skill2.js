@@ -33,32 +33,36 @@ var Skill2 = (function (_super) {
         _super.prototype.onEnterFrame.call(this, timeStamp);
         // 进入攻击范围的敌人，没有攻击对象的敌人
         var atargets = [];
-        GuankaBase.instance.enemyArr.map(function (item) {
-            if (item.target === null) {
-                var isIn = Utiles.containsXY2(item.x, item.y, _this.stage.stageWidth, _this.stage.stageHeight);
-                var index = atargets.indexOf(item);
-                if (isIn && item.hp > 0) {
-                    if (index === -1) {
-                        atargets.push(item);
+        try {
+            GuankaBase.instance.enemyArr.map(function (item) {
+                if (item.target === null) {
+                    var isIn = Utiles.containsXY2(item.x, item.y, _this.stage.stageWidth, _this.stage.stageHeight);
+                    var index = atargets.indexOf(item);
+                    if (isIn && item.hp > 0) {
+                        if (index === -1) {
+                            atargets.push(item);
+                        }
+                    }
+                    else {
+                        // 已经不在该塔的攻击范围内
+                        if (index > -1) {
+                            atargets.splice(index, 1);
+                        }
                     }
                 }
-                else {
-                    // 已经不在该塔的攻击范围内
-                    if (index > -1) {
-                        atargets.splice(index, 1);
-                    }
+            });
+            // 下面是赋值给每个
+            var soliders_1 = [];
+            this.soldiers.map(function (solider) {
+                if (solider.hp > 0) {
+                    soliders_1.push(solider);
+                    solider.targets = atargets;
                 }
-            }
-        });
-        // 下面是赋值给每个
-        var soliders = [];
-        this.soldiers.map(function (solider) {
-            if (solider.hp > 0) {
-                soliders.push(solider);
-                solider.targets = atargets;
-            }
-        });
-        this.soldiers = soliders;
+            });
+            this.soldiers = soliders_1;
+        }
+        catch (error) {
+        }
     };
     /**释放技能 */
     Skill2.prototype.releaseSkills = function (arr) {
