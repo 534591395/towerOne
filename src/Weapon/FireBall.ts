@@ -13,7 +13,7 @@ class FireBall extends FireBallBase {
         const mcf: egret.MovieClipDataFactory = new egret.MovieClipDataFactory(data,texture);
         this.view.movieClipData = mcf.generateMovieClipData("stone1");
         this.view.x = this.view.width / 2;
-        this.maxSpeed = 5;
+        
     }
 
     public init(xnum:number,ynum:number):void {
@@ -28,6 +28,11 @@ class FireBall extends FireBallBase {
         super.onEnterFrame(timeStamp);
     }
 
-    public onCreate(): void {}
+    public onCreate(): void {
+        this.maxSpeed = 5;
+        this.canClear = false;
+        this.isHit = false;
+        this.isTravel = true;
+    }
 
 }

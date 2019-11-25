@@ -23,7 +23,6 @@ var FireBall = (function (_super) {
         var mcf = new egret.MovieClipDataFactory(data, texture);
         _this.view.movieClipData = mcf.generateMovieClipData("stone1");
         _this.view.x = _this.view.width / 2;
-        _this.maxSpeed = 5;
         return _this;
     }
     FireBall.prototype.init = function (xnum, ynum) {
@@ -35,7 +34,12 @@ var FireBall = (function (_super) {
     FireBall.prototype.onEnterFrame = function (timeStamp) {
         _super.prototype.onEnterFrame.call(this, timeStamp);
     };
-    FireBall.prototype.onCreate = function () { };
+    FireBall.prototype.onCreate = function () {
+        this.maxSpeed = 5;
+        this.canClear = false;
+        this.isHit = false;
+        this.isTravel = true;
+    };
     return FireBall;
 }(FireBallBase));
 __reflect(FireBall.prototype, "FireBall");

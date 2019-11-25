@@ -17,8 +17,10 @@ var Skill1 = (function (_super) {
         var _this = _super.call(this) || this;
         _this.skillOffResName = 'uiskill1off';
         _this.skillOnResName = 'uiskill1';
-        _this.cdtime = 25000;
+        _this.cdtime = 2000;
         _this.default();
+        _this.timer = new egret.Timer(100, 10);
+        _this.timer.addEventListener(egret.TimerEvent.TIMER, _this.timerHandle, _this);
         return _this;
     }
     /**释放技能 */
@@ -26,20 +28,20 @@ var Skill1 = (function (_super) {
         _super.prototype.releaseSkills.call(this, arr);
         this.xpos = arr[0];
         this.ypos = arr[1] + 20;
-        this.timer = new egret.Timer(100, 10);
-        this.timer.addEventListener(egret.TimerEvent.TIMER, this.timerHandle, this);
+        this.timer.reset();
         this.timer.start();
     };
     Skill1.prototype.timerHandle = function (e) {
         var fireBall = ObjectPool.getInstance().createObject(FireBall);
         fireBall.damage = Math.sqrt(GuankaBase.instance.hardxs) * 20;
+        var xnum, ynum;
         if (this.timer.currentCount <= 4) {
-            var xnum = 25 - Math.random() * 50 + this.xpos;
-            var ynum = 25 - Math.random() * 50 + this.ypos;
+            xnum = 25 - Math.random() * 50 + this.xpos;
+            ynum = 25 - Math.random() * 50 + this.ypos;
         }
         else {
-            var xnum = 50 + Math.random() * (this.stage.stageWidth - 100);
-            var ynum = 50 + Math.random() * (this.stage.stageHeight - 100);
+            xnum = 50 + Math.random() * (this.stage.stageWidth - 100);
+            ynum = 50 + Math.random() * (this.stage.stageHeight - 100);
         }
         GuankaBase.instance.weaponLayer.addChild(fireBall);
         fireBall.init(xnum, ynum);
